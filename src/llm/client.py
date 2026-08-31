@@ -35,22 +35,35 @@ RETRIES = 1
 # Prompt
 # =========================
 
-SYSTEM_PROMPT = """你是一个作曲引擎。用户给你一段肢体动作的统计画像(JSON)，\
-你把它谱写成一段纯器乐钢琴曲，输出严格符合以下JSON结构：
+SYSTEM_PROMPT = """你是一个严格遵守乐理规则的作曲引擎。用户给你一段肢体动作的统计画像(JSON)，\
+你把它谱写成纯器乐钢琴曲。只输出JSON，不要任何其他文字。
 
-{"bpm":整数, "key":"C", "bars":8到24的整数, \
-"chords":[{"bar":小节号从0,"symbol":"和弦名如 Am"}], \
-"melody":[{"bar":小节号,"note":MIDI音高36到84,"start":小节内位置0到15,\
-"dur":时值1到4,"velocity":30到110}], \
-"title":"曲名(中文)", "description":"50字内的乐曲解读，要提到动作特征"}
+输出JSON结构（字段名不可改）：
+{"bpm":整数, "key":"C"或"Am", "bars":8到16, \
+"chords":[{"bar":小节号从0,"symbol":"和弦名"}], \
+"melody":[{"bar":小节号,"note":MIDI音高,"start":小节内0到15,"dur":1到4,"velocity":30到110}], \
+"title":"中文曲名", "description":"50字内，必须提到动作特征"}
 
-硬性规则：
-1. 时值单位是十六分音符，每小节16格，start+dur不得超过16
-2. note必须在36到84之间，优先使用和弦内音
-3. bpm优先采用画像tempo.bpm；若为null用90
-4. energy高的画像：音符密(每小节6-10个)、力度大、多用强进行；\
-energy低：音符疏(每小节2-4个)、力度轻
-5. 只输出JSON，不要任何其他文字"""
+作曲规则（全部必须遵守）：
+1. 音阶白名单：key="C"时 note 只能取自
+   [48,50,52,53,55,57,59,60,62,64,65,67,69,71,72,74,76,79,81]；
+   key="Am"时 note 只能取自
+   [45,47,48,50,52,53,55,57,59,60,62,64,65,67,69,71,72,74,76,77,79,81]。
+   白名单之外的音一个都不能出现。
+2. 和弦进行从以下模板选一套，按小节循环填写 chords：
+   [C,G,Am,F] / [Am,F,C,G] / [C,Am,F,G] / [F,G,Em,Am]
+3. 强拍和弦音：start=0 或 start=8 的音符必须是当小节和弦的和弦音
+   （C=[60,64,67]类推，可低/高八度）
+4. 禁止大跳：相邻两个旋律音相差不超过7个半音；
+   每小节最多允许一次超过4个半音的跳进，其余用级进
+5. 收束：每4小节乐句的末音用和弦音；全曲最后一个音必须落主音
+   （key="C"用60/72/48，key="Am"用57/69）
+6. 乐句结构：以4小节为一乐句，后一乐句的节奏型是前一乐句的
+   重复或微变，不要每小节都换节奏
+7. 画像映射：bpm用画像tempo.bpm（null或confidence=low时用90）；
+   energy高的画像每小节6~10个音、力度70~110；
+   energy低每小节2~4个音、力度45~75
+8. 曲名和description必须与画像数值一致（剧烈动作不得配舒缓文案）"""
 
 
 def build_user_prompt(profile):
@@ -140,8 +153,15 @@ def call_llm(
             "缺少API key: 设置环境变量 LLM_API_KEY"
         )
 
-    body = json.dumps(
-        {
+    last_error = None
+
+    for attempt in range(retries + 1):
+
+        t0 = time.perf_counter()
+
+        # 部分厂商不支持response_format，
+        # 首次失败后自动去掉重试
+        payload = {
             "model": model,
             "messages": [
                 {
@@ -156,22 +176,20 @@ def call_llm(
                 },
             ],
             "temperature": 0.8,
-            "response_format": {
-                "type": "json_object"
-            },
         }
-    ).encode("utf-8")
 
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {key}",
-    }
+        if attempt == 0:
 
-    last_error = None
+            payload["response_format"] = {
+                "type": "json_object"
+            }
 
-    for attempt in range(retries + 1):
+        body = json.dumps(payload).encode("utf-8")
 
-        t0 = time.perf_counter()
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {key}",
+        }
 
         try:
 
