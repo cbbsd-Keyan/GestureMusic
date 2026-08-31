@@ -1,0 +1,10 @@
+{
+  "subject_id": "s02",
+  "scene": "gentle",
+  "mount_version": "ruler_v1",
+  "started_at": "2026-08-31 19:18:40",
+  "samples": 1111,
+  "duration_s": 11.1,
+  "hz_estimate": 100.0,
+  "notes": ""
+}

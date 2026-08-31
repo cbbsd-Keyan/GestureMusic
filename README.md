@@ -16,9 +16,15 @@
 
 - `firmware/` ESP32 固件
 - `src/` 正式程序
-- `experiments/` 实验和历史版本
-- `models/` 手势识别模型
+  - `main.py` 实时演奏模式
+  - `record.py` 连续录制工具（R 开始 / S 保存 / Q 退出）
+  - `features/` 动作统计画像（开发中）
+  - `llm/` 大模型作曲接口（规划中）
+- `experiments/` 实验和历史版本（冻结只读）
+- `models/` 手势识别模型（随旧方案封存）
 - `logs/` 测试数据
+- `data/` 数据集与采集规范（见 data/README.md）
+- `archive/` 已归档的祖先项目（只读）
 
 ## Environment
 

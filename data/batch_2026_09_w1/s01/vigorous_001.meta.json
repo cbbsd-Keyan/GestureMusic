@@ -1,0 +1,10 @@
+{
+  "subject_id": "s01",
+  "scene": "vigorous",
+  "mount_version": "ruler_v1",
+  "started_at": "2026-08-31 18:42:13",
+  "samples": 1337,
+  "duration_s": 13.36,
+  "hz_estimate": 100.0,
+  "notes": ""
+}

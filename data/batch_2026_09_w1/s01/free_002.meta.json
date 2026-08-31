@@ -1,0 +1,10 @@
+{
+  "subject_id": "s01",
+  "scene": "free",
+  "mount_version": "ruler_v1",
+  "started_at": "2026-08-31 18:45:16",
+  "samples": 1370,
+  "duration_s": 13.69,
+  "hz_estimate": 100.0,
+  "notes": ""
+}

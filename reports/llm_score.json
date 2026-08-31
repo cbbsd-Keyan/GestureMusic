@@ -1,0 +1,251 @@
+{
+  "bpm": 96,
+  "key": "C",
+  "bars": 8,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "C"
+    },
+    {
+      "bar": 1,
+      "symbol": "Am"
+    },
+    {
+      "bar": 2,
+      "symbol": "F"
+    },
+    {
+      "bar": 3,
+      "symbol": "G"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 60,
+      "start": 0,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 0,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 0,
+      "note": 67,
+      "start": 8,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 0,
+      "note": 72,
+      "start": 12,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 0,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 1,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 1,
+      "note": 67,
+      "start": 8,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 1,
+      "note": 72,
+      "start": 12,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 2,
+      "note": 60,
+      "start": 0,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 2,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 2,
+      "note": 67,
+      "start": 8,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 2,
+      "note": 72,
+      "start": 12,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 3,
+      "note": 60,
+      "start": 0,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 3,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 3,
+      "note": 67,
+      "start": 8,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 3,
+      "note": 72,
+      "start": 12,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 4,
+      "note": 60,
+      "start": 0,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 4,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 4,
+      "note": 67,
+      "start": 8,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 4,
+      "note": 72,
+      "start": 12,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 5,
+      "note": 60,
+      "start": 0,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 5,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 5,
+      "note": 67,
+      "start": 8,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 5,
+      "note": 72,
+      "start": 12,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 6,
+      "note": 60,
+      "start": 0,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 6,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 6,
+      "note": 67,
+      "start": 8,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 6,
+      "note": 72,
+      "start": 12,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 7,
+      "note": 60,
+      "start": 0,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 7,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 7,
+      "note": 67,
+      "start": 8,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 7,
+      "note": 72,
+      "start": 12,
+      "dur": 2,
+      "velocity": 70
+    }
+  ],
+  "title": "测试曲",
+  "description": "离线mock输出，用于链路自检。"
+}
