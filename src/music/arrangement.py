@@ -45,6 +45,46 @@ def energy_tier(energy):
 
 
 # =========================
+# 能量 -> 感知强度映射
+# 前三杠杆: 速度/音区/力度
+# =========================
+
+def tempo_factor(energy, base_bpm):
+
+    """
+    energy 0->0.85x, 1->1.2x
+    快曲封顶防失控
+    """
+
+    f = 0.85 + 0.35 * energy
+
+    if base_bpm >= 130:
+        f = min(f, 1.08)
+
+    elif base_bpm >= 110:
+        f = min(f, 1.12)
+
+    return f
+
+
+def octave_shift(energy):
+
+    """
+    高能量旋律上移八度(更亮更激动)
+    """
+
+    if energy > 0.7:
+        return 12
+
+    return 0
+
+
+def velocity_scale(energy):
+
+    return 0.85 + 0.30 * energy
+
+
+# =========================
 # 鼓型（小节内十六分格位）
 # =========================
 
@@ -53,19 +93,25 @@ DRUMS = {
     "neutral": [
         (0, 36),
         (0, 42),
+        (4, 42),
         (8, 36),
         (8, 42),
+        (12, 42),
     ],
     "intense": [
         (0, 36),
         (0, 42),
+        (2, 42),
         (4, 38),
         (4, 42),
-        (8, 36),
+        (6, 42),
         (8, 36),
         (8, 42),
+        (10, 36),
+        (10, 42),
         (12, 38),
         (12, 42),
+        (14, 42),
     ],
 }
 
@@ -111,16 +157,22 @@ def build_arranged_events(score, energy):
 
     """
     乐谱JSON + energy -> 统一事件流。
+    energy 驱动: 播放速度 / 旋律音区 / 整体力度 / 配器密度
     事件: (时间秒, 类型, 数据, 力度)
-    类型命名保证同刻 off 排在 on 前。
     """
 
-    bpm = score["bpm"]
+    base_bpm = score["bpm"]
     bars = score["bars"]
+
+    bpm = base_bpm * tempo_factor(energy, base_bpm)
 
     grid = 60.0 / bpm / 4.0
 
     tier = energy_tier(energy)
+
+    vscale = velocity_scale(energy)
+
+    octave = octave_shift(energy)
 
     events = []
 
@@ -129,7 +181,7 @@ def build_arranged_events(score, energy):
         return (bar * 16 + pos) * grid
 
     # -------------------------
-    # 旋律（含强拍重音）
+    # 旋律（音区偏移 + 强拍重音 + 力度缩放）
     # -------------------------
 
     for item in score.get("melody", []):
@@ -137,12 +189,20 @@ def build_arranged_events(score, energy):
         bar = item["bar"]
         start = item["start"]
         dur = item["dur"]
-        note = item["note"]
+        note = item["note"] + octave
+
+        if note > 96:
+            note -= 12
 
         vel = item.get("velocity", 80)
 
         if start in (0, 8):
-            vel = min(110, vel + ACCENT[tier])
+            vel = vel + ACCENT[tier]
+
+        vel = min(
+            120,
+            int(vel * vscale),
+        )
 
         t0 = beat_time(bar, start)
         t1 = t0 + dur * grid
@@ -156,7 +216,10 @@ def build_arranged_events(score, energy):
 
     chords = score.get("chords", [])
 
-    chord_vel = CHORD_VELOCITY[tier]
+    chord_vel = min(
+        110,
+        int(CHORD_VELOCITY[tier] * vscale),
+    )
 
     for i, item in enumerate(chords):
 
@@ -185,6 +248,11 @@ def build_arranged_events(score, energy):
     # 贝斯（根音律动）
     # -------------------------
 
+    bass_vel = min(
+        110,
+        int(78 * vscale),
+    )
+
     for item in chords:
 
         symbol = item["symbol"]
@@ -194,33 +262,48 @@ def build_arranged_events(score, energy):
         if root is None:
             continue
 
+        fifth = root + 7
+
         for pos, dur in BASS[tier]:
+
+            # 第三拍用五度增加行进感
+            note = fifth if pos == 8 else root
 
             t0 = beat_time(item["bar"], pos)
             t1 = t0 + dur * grid
 
-            events.append((t0, "bass_on", root, 78))
-            events.append((t1, "bass_off", root, 0))
+            events.append((t0, "bass_on", note, bass_vel))
+            events.append((t1, "bass_off", note, 0))
 
     # -------------------------
     # 鼓
     # -------------------------
+
+    drum_vel = min(
+        115,
+        int(100 * vscale),
+    )
 
     for bar in range(bars):
 
         for pos, drum_note in DRUMS[tier]:
 
             events.append(
-                (beat_time(bar, pos), "drum", drum_note, 100)
+                (beat_time(bar, pos), "drum", drum_note, drum_vel)
             )
 
     events.sort(key=lambda x: x[0])
 
-    return events, tier
+    return events, tier, bpm
 
 
-def total_duration(score):
+def total_duration(score, energy):
 
-    grid = 60.0 / score["bpm"] / 4.0
+    bpm = score["bpm"] * tempo_factor(
+        energy,
+        score["bpm"],
+    )
+
+    grid = 60.0 / bpm / 4.0
 
     return score["bars"] * 16 * grid + 1.0

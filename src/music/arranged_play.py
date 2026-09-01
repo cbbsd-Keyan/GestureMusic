@@ -170,7 +170,7 @@ def main():
 
     tier = energy_tier(energy)
 
-    events, _ = build_arranged_events(
+    events, _, play_bpm = build_arranged_events(
         score,
         energy,
     )
@@ -183,17 +183,21 @@ def main():
 
         counts[key] = counts.get(key, 0) + 1
 
-    duration = total_duration(score)
+    duration = total_duration(score, energy)
 
     tier_desc = {
-        "calm": "无鼓 | 根音长音 | 轻",
-        "neutral": "轻鼓(hihat+kick) | 每拍贝斯 | 中",
-        "intense": "全套鼓(kick/snare/hihat) | 八分贝斯 | 强重音",
+        "calm": "无鼓 | 根音长音 | 原速偏慢 | 力度收",
+        "neutral": "四分踩镲+kick | 每拍贝斯 | 中速",
+        "intense": "全套鼓+切分kick | 八分贝斯+五度 | 提速+上八度+强力度",
     }
 
     print(
         f"[配器] {tier}档 | energy={energy:.2f} "
         f"| 来源:{source}"
+    )
+
+    print(
+        f"       BPM {score['bpm']} -> {play_bpm:.0f}"
     )
 
     print(f"       {tier_desc[tier]}")
