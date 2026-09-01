@@ -26,7 +26,7 @@ MODEL = os.environ.get(
     "glm-4-flash",
 )
 
-TIMEOUT_S = 60.0
+TIMEOUT_S = 90.0
 
 RETRIES = 1
 
