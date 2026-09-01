@@ -231,6 +231,20 @@ def estimate_tempo(uniform, hz=100.0):
         hz,
     )
 
+    # ---------- 贴底自首 ----------
+
+    # 估计值贴着最低BPM说明自相关峰落在
+    # 最大滞后边界上，多为伪峰
+    FLOOR_BPM = 40.0
+
+    if ac_bpm is not None and ac_bpm < FLOOR_BPM:
+        ac_bpm = None
+        strength = min(strength, 0.2)
+
+    if pk_bpm is not None and pk_bpm < FLOOR_BPM:
+        pk_bpm = None
+        regularity = 0.0
+
     # ---------- 决策 ----------
 
     agree = (
