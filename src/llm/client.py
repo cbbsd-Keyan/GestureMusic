@@ -1,15 +1,10 @@
 import json
+import os
+import random
 import re
 import time
 import urllib.request
 import urllib.error
-
-
-# =========================
-# 配置（环境变量可覆盖）
-# =========================
-
-import os
 
 API_KEY = os.environ.get(
     "LLM_API_KEY",
@@ -44,29 +39,45 @@ SYSTEM_PROMPT = """你是一个严格遵守乐理规则的作曲引擎。用户�
 "melody":[{"bar":小节号,"note":MIDI音高,"start":小节内0到15,"dur":1到4,"velocity":30到110}], \
 "title":"中文曲名", "description":"50字内，必须提到动作特征"}
 
-作曲规则（全部必须遵守）：
+乐理规则：
 1. 音阶白名单：key="C"时 note 只能取自
    [48,50,52,53,55,57,59,60,62,64,65,67,69,71,72,74,76,79,81]；
    key="Am"时 note 只能取自
    [45,47,48,50,52,53,55,57,59,60,62,64,65,67,69,71,72,74,76,77,79,81]。
    白名单之外的音一个都不能出现。
-2. 和弦进行从以下模板选一套，按小节循环填写 chords：
-   [C,G,Am,F] / [Am,F,C,G] / [C,Am,F,G] / [F,G,Em,Am]
-3. 强拍和弦音：start=0 或 start=8 的音符必须是当小节和弦的和弦音
-   （C=[60,64,67]类推，可低/高八度）
-4. 禁止大跳：相邻两个旋律音相差不超过7个半音；
-   每小节最多允许一次超过4个半音的跳进，其余用级进
-5. 收束：每4小节乐句的末音用和弦音；全曲最后一个音必须落主音
+2. 强拍和弦音：start=0 或 start=8 的音符必须是当小节和弦的和弦音
+3. 相邻旋律音不超过7个半音；每小节最多一次超过4半音的跳进
+4. 每4小节一乐句，句末音落和弦音；全曲最后一个音落主音
    （key="C"用60/72/48，key="Am"用57/69）
-6. 乐句结构：以4小节为一乐句，后一乐句的节奏型是前一乐句的
-   重复或微变，不要每小节都换节奏
-7. 画像映射：bpm用画像tempo.bpm（null或confidence=low时用90）；
-   energy高的画像每小节6~10个音、力度70~110；
-   energy低每小节2~4个音、力度45~75
-8. 曲名和description必须与画像数值一致（剧烈动作不得配舒缓文案）"""
+5. bpm用画像tempo.bpm；null或confidence=low时用90
+6. 曲名和description必须与画像数值一致（剧烈动作不得配舒缓文案）
+
+反同质化规则（与乐理同等优先）：
+7. 第一个旋律音不得是主音；前四音不得构成主和弦分解
+   （禁止do-mi-sol式开头）
+8. 严格使用用户指定的和弦模板与调性，不得自行更换
+9. 相邻乐句的旋律轮廓方向要有变化（升/降/拱形交替），
+   不得通篇只用一种节奏型
+10. 每小节音符数2~8自由安排，乐句之间允许疏密对比"""
 
 
-def build_user_prompt(profile):
+TEMPLATES = [
+    "C-G-Am-F",
+    "Am-F-C-G",
+    "C-Am-F-G",
+    "F-G-Em-Am",
+]
+
+
+def build_user_prompt(profile, variation):
+
+    template = TEMPLATES[variation % len(TEMPLATES)]
+
+    key = (
+        "C"
+        if (variation // len(TEMPLATES)) % 2 == 0
+        else "Am"
+    )
 
     return (
         "动作画像：\n"
@@ -74,7 +85,11 @@ def build_user_prompt(profile):
             profile,
             ensure_ascii=False,
         )
-        + "\n\n请作曲，只输出JSON。"
+        + "\n\n本次指定：和弦模板 "
+        + template
+        + "；调性 "
+        + key
+        + "。\n请作曲，只输出JSON。"
     )
 
 
@@ -131,6 +146,7 @@ def extract_json(text):
 
 def call_llm(
     profile,
+    variation=None,
     timeout=TIMEOUT_S,
     retries=RETRIES,
     api_key=None,
@@ -140,13 +156,17 @@ def call_llm(
 
     """
     画像 -> 乐谱JSON。
-    返回 (score, meta)；失败抛 RuntimeError，
-    meta.error 标明错误类别。
+    variation: 变奏种子，决定和弦模板与调性轮换；
+    None时自动随机。
+    返回 (score, meta)；失败抛 RuntimeError。
     """
 
     key = api_key or API_KEY
     url = base_url or BASE_URL
     model = model or MODEL
+
+    if variation is None:
+        variation = random.randrange(64)
 
     if not key:
         raise RuntimeError(
@@ -171,7 +191,8 @@ def call_llm(
                 {
                     "role": "user",
                     "content": build_user_prompt(
-                        profile
+                        profile,
+                        variation,
                     ),
                 },
             ],
