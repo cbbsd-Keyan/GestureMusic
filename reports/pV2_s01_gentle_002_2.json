@@ -1,0 +1,297 @@
+{
+  "bpm": 90,
+  "key": "C",
+  "bars": 12,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "C"
+    },
+    {
+      "bar": 1,
+      "symbol": "G"
+    },
+    {
+      "bar": 2,
+      "symbol": "Am"
+    },
+    {
+      "bar": 3,
+      "symbol": "F"
+    },
+    {
+      "bar": 4,
+      "symbol": "C"
+    },
+    {
+      "bar": 5,
+      "symbol": "G"
+    },
+    {
+      "bar": 6,
+      "symbol": "Am"
+    },
+    {
+      "bar": 7,
+      "symbol": "F"
+    },
+    {
+      "bar": 8,
+      "symbol": "C"
+    },
+    {
+      "bar": 9,
+      "symbol": "G"
+    },
+    {
+      "bar": 10,
+      "symbol": "Am"
+    },
+    {
+      "bar": 11,
+      "symbol": "F"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 0,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 80
+    },
+    {
+      "bar": 0,
+      "note": 67,
+      "start": 6,
+      "dur": 2,
+      "velocity": 82
+    },
+    {
+      "bar": 1,
+      "note": 67,
+      "start": 0,
+      "dur": 4,
+      "velocity": 88
+    },
+    {
+      "bar": 1,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 84
+    },
+    {
+      "bar": 1,
+      "note": 62,
+      "start": 6,
+      "dur": 2,
+      "velocity": 86
+    },
+    {
+      "bar": 2,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 83
+    },
+    {
+      "bar": 2,
+      "note": 57,
+      "start": 4,
+      "dur": 2,
+      "velocity": 81
+    },
+    {
+      "bar": 2,
+      "note": 55,
+      "start": 6,
+      "dur": 2,
+      "velocity": 79
+    },
+    {
+      "bar": 3,
+      "note": 53,
+      "start": 0,
+      "dur": 4,
+      "velocity": 77
+    },
+    {
+      "bar": 3,
+      "note": 55,
+      "start": 4,
+      "dur": 2,
+      "velocity": 75
+    },
+    {
+      "bar": 3,
+      "note": 60,
+      "start": 6,
+      "dur": 2,
+      "velocity": 78
+    },
+    {
+      "bar": 4,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 86
+    },
+    {
+      "bar": 4,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 82
+    },
+    {
+      "bar": 4,
+      "note": 67,
+      "start": 6,
+      "dur": 2,
+      "velocity": 84
+    },
+    {
+      "bar": 5,
+      "note": 67,
+      "start": 0,
+      "dur": 4,
+      "velocity": 89
+    },
+    {
+      "bar": 5,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 5,
+      "note": 62,
+      "start": 6,
+      "dur": 2,
+      "velocity": 87
+    },
+    {
+      "bar": 6,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 84
+    },
+    {
+      "bar": 6,
+      "note": 57,
+      "start": 4,
+      "dur": 2,
+      "velocity": 82
+    },
+    {
+      "bar": 6,
+      "note": 55,
+      "start": 6,
+      "dur": 2,
+      "velocity": 80
+    },
+    {
+      "bar": 7,
+      "note": 53,
+      "start": 0,
+      "dur": 4,
+      "velocity": 78
+    },
+    {
+      "bar": 7,
+      "note": 55,
+      "start": 4,
+      "dur": 2,
+      "velocity": 76
+    },
+    {
+      "bar": 7,
+      "note": 60,
+      "start": 6,
+      "dur": 2,
+      "velocity": 79
+    },
+    {
+      "bar": 8,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 87
+    },
+    {
+      "bar": 8,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 83
+    },
+    {
+      "bar": 8,
+      "note": 67,
+      "start": 6,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 9,
+      "note": 67,
+      "start": 0,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 9,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 86
+    },
+    {
+      "bar": 9,
+      "note": 62,
+      "start": 6,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 10,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 10,
+      "note": 57,
+      "start": 4,
+      "dur": 2,
+      "velocity": 83
+    },
+    {
+      "bar": 10,
+      "note": 55,
+      "start": 6,
+      "dur": 2,
+      "velocity": 81
+    },
+    {
+      "bar": 11,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 92
+    }
+  ],
+  "title": "中速律动的平衡姿态",
+  "description": "基于中等能量与50%活跃率，旋律稳健推进，呼应身体小幅持续运动与稳定体态"
+}
