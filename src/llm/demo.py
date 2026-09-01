@@ -6,6 +6,19 @@ from pathlib import Path
 from client import call_llm
 from validator import validate_and_fix
 
+MUSIC_DIR = (
+    Path(__file__)
+    .resolve()
+    .parent.parent
+    / "music"
+)
+
+sys.path.insert(
+    0,
+    str(MUSIC_DIR)
+)
+
+from score_player import play_score
 
 MOCK_SCORE = {
     "bpm": 96,
@@ -41,6 +54,22 @@ def main():
 
     use_mock = "--mock" in args
 
+    device_id = 1
+
+    if "--device" in args:
+
+        i = args.index("--device")
+
+        try:
+            device_id = int(args[i + 1])
+
+        except (IndexError, ValueError):
+
+            print("[参数错误] --device 后需要设备编号")
+            sys.exit(1)
+
+        del args[i:i + 2]
+
     paths = [
         a for a in args if not a.startswith("--")
     ]
@@ -48,7 +77,7 @@ def main():
     if not paths:
 
         print(
-            "用法: demo.py <画像.json> [--mock]"
+            "用法: demo.py <画像.json> [--mock] [--device ID]"
         )
 
         sys.exit(1)
@@ -153,6 +182,19 @@ def main():
         print(f"[修复] {len(fixes)}处: {fixes[:5]}")
 
     print(f"[已保存] {out}")
+
+    print(f"[开始播放] MIDI设备 {device_id}")
+
+    try:
+
+        play_score(
+            score,
+            device_id=device_id
+        )
+
+    except Exception as e:
+
+        print(f"[播放失败] {e}")
 
 
 if __name__ == "__main__":
