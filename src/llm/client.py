@@ -147,6 +147,7 @@ def extract_json(text):
 def call_llm(
     profile,
     variation=None,
+    temperature=0.8,
     timeout=TIMEOUT_S,
     retries=RETRIES,
     api_key=None,
@@ -196,7 +197,7 @@ def call_llm(
                     ),
                 },
             ],
-            "temperature": 0.8,
+            "temperature": temperature,
         }
 
         if attempt == 0:
