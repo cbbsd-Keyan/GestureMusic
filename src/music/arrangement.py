@@ -2,26 +2,80 @@ import math
 
 
 # =========================
-# 和弦根音（低音区）
+# 和弦：低音区 + 声部连接
 # =========================
+
+TRIAD_PCS = {
+    "C": (0, 4, 7),
+    "Dm": (2, 5, 9),
+    "Em": (4, 7, 11),
+    "E": (4, 8, 11),
+    "F": (5, 9, 0),
+    "G": (7, 11, 2),
+    "Am": (9, 0, 4),
+}
 
 ROOTS = {
     "C": 36,
     "Dm": 38,
     "Em": 40,
+    "E": 40,
     "F": 41,
     "G": 43,
     "Am": 45,
 }
 
-CHORD_NOTES = {
-    "C": [60, 64, 67],
-    "Dm": [62, 65, 69],
-    "Em": [64, 67, 71],
-    "F": [65, 69, 72],
-    "G": [67, 71, 74],
-    "Am": [69, 72, 76],
-}
+VOICE_LO = 48
+VOICE_HI = 67
+
+
+def voice_chord(pcs, prev_voicing):
+
+    """
+    为三和弦选最近转位（最小声部移动），
+    音区限制在 48~67，避免与旋律打架。
+    """
+
+    candidates = []
+
+    for a in range(VOICE_LO, VOICE_HI + 1):
+
+        if a % 12 != pcs[0]:
+            continue
+
+        for b in range(a + 1, VOICE_HI + 1):
+
+            if b % 12 != pcs[1]:
+                continue
+
+            for c in range(b + 1, VOICE_HI + 1):
+
+                if c % 12 != pcs[2]:
+                    continue
+
+                candidates.append((a, b, c))
+
+    if not candidates:
+        return list(pcs)
+
+    if prev_voicing is None:
+
+        return list(
+            min(
+                candidates,
+                key=lambda v: sum(v),
+            )
+        )
+
+    best = min(
+        candidates,
+        key=lambda v: sum(
+            abs(x - y)
+            for x, y in zip(v, prev_voicing)
+        ),
+    )
+
+    return list(best)
 
 
 # =========================
@@ -181,10 +235,15 @@ def build_arranged_events(score, energy):
         return (bar * 16 + pos) * grid
 
     # -------------------------
-    # 旋律（音区偏移 + 强拍重音 + 力度缩放）
+    # 旋律（音区偏移 + 强拍重音 + 力度缩放 + 连音填充）
     # -------------------------
 
-    for item in score.get("melody", []):
+    melody = sorted(
+        score.get("melody", []),
+        key=lambda x: (x["bar"], x["start"]),
+    )
+
+    for idx, item in enumerate(melody):
 
         bar = item["bar"]
         start = item["start"]
@@ -205,7 +264,28 @@ def build_arranged_events(score, energy):
         )
 
         t0 = beat_time(bar, start)
-        t1 = t0 + dur * grid
+
+        # 连音填充：延长到下一个旋律音出现，
+        # 消灭乐句内的空洞（封顶8格）
+        end_pos = bar * 16 + start + dur
+
+        if idx + 1 < len(melody):
+
+            nxt = melody[idx + 1]
+
+            next_pos = (
+                nxt["bar"] * 16 + nxt["start"]
+            )
+
+            end_pos = min(
+                next_pos,
+                end_pos + 8,
+            )
+
+        t1 = beat_time(
+            end_pos // 16,
+            end_pos % 16,
+        )
 
         events.append((t0, "melody_on", note, vel))
         events.append((t1, "melody_off", note, 0))
@@ -221,14 +301,20 @@ def build_arranged_events(score, energy):
         int(CHORD_VELOCITY[tier] * vscale),
     )
 
+    prev_voicing = None
+
     for i, item in enumerate(chords):
 
         symbol = item["symbol"]
 
-        notes = CHORD_NOTES.get(symbol)
+        pcs = TRIAD_PCS.get(symbol)
 
-        if notes is None:
+        if pcs is None:
             continue
+
+        notes = voice_chord(pcs, prev_voicing)
+
+        prev_voicing = notes
 
         bar = item["bar"]
 

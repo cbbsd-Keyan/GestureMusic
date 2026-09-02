@@ -1,0 +1,311 @@
+{
+  "bpm": 90,
+  "key": "Am",
+  "bars": 12,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "Am"
+    },
+    {
+      "bar": 1,
+      "symbol": "Am"
+    },
+    {
+      "bar": 2,
+      "symbol": "F"
+    },
+    {
+      "bar": 3,
+      "symbol": "G"
+    },
+    {
+      "bar": 4,
+      "symbol": "Am"
+    },
+    {
+      "bar": 5,
+      "symbol": "Am"
+    },
+    {
+      "bar": 6,
+      "symbol": "F"
+    },
+    {
+      "bar": 7,
+      "symbol": "G"
+    },
+    {
+      "bar": 8,
+      "symbol": "Am"
+    },
+    {
+      "bar": 9,
+      "symbol": "Am"
+    },
+    {
+      "bar": 10,
+      "symbol": "F"
+    },
+    {
+      "bar": 11,
+      "symbol": "G"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 50,
+      "start": 0,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 0,
+      "note": 57,
+      "start": 4,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 0,
+      "note": 55,
+      "start": 6,
+      "dur": 2,
+      "velocity": 78
+    },
+    {
+      "bar": 1,
+      "note": 59,
+      "start": 0,
+      "dur": 3,
+      "velocity": 96
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 3,
+      "dur": 1,
+      "velocity": 72
+    },
+    {
+      "bar": 1,
+      "note": 57,
+      "start": 8,
+      "dur": 4,
+      "velocity": 88
+    },
+    {
+      "bar": 2,
+      "note": 62,
+      "start": 0,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 2,
+      "note": 60,
+      "start": 2,
+      "dur": 2,
+      "velocity": 82
+    },
+    {
+      "bar": 2,
+      "note": 57,
+      "start": 8,
+      "dur": 4,
+      "velocity": 84
+    },
+    {
+      "bar": 3,
+      "note": 64,
+      "start": 0,
+      "dur": 3,
+      "velocity": 94
+    },
+    {
+      "bar": 3,
+      "note": 62,
+      "start": 3,
+      "dur": 1,
+      "velocity": 76
+    },
+    {
+      "bar": 3,
+      "note": 59,
+      "start": 8,
+      "dur": 4,
+      "velocity": 86
+    },
+    {
+      "bar": 4,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 4,
+      "note": 55,
+      "start": 4,
+      "dur": 2,
+      "velocity": 80
+    },
+    {
+      "bar": 4,
+      "note": 53,
+      "start": 6,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 5,
+      "note": 52,
+      "start": 0,
+      "dur": 3,
+      "velocity": 88
+    },
+    {
+      "bar": 5,
+      "note": 50,
+      "start": 3,
+      "dur": 1,
+      "velocity": 70
+    },
+    {
+      "bar": 5,
+      "note": 57,
+      "start": 8,
+      "dur": 4,
+      "velocity": 82
+    },
+    {
+      "bar": 6,
+      "note": 60,
+      "start": 0,
+      "dur": 2,
+      "velocity": 92
+    },
+    {
+      "bar": 6,
+      "note": 59,
+      "start": 2,
+      "dur": 2,
+      "velocity": 84
+    },
+    {
+      "bar": 6,
+      "note": 57,
+      "start": 8,
+      "dur": 4,
+      "velocity": 86
+    },
+    {
+      "bar": 7,
+      "note": 62,
+      "start": 0,
+      "dur": 3,
+      "velocity": 96
+    },
+    {
+      "bar": 7,
+      "note": 60,
+      "start": 3,
+      "dur": 1,
+      "velocity": 78
+    },
+    {
+      "bar": 7,
+      "note": 59,
+      "start": 8,
+      "dur": 4,
+      "velocity": 84
+    },
+    {
+      "bar": 8,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 8,
+      "note": 55,
+      "start": 4,
+      "dur": 2,
+      "velocity": 80
+    },
+    {
+      "bar": 8,
+      "note": 53,
+      "start": 6,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 9,
+      "note": 52,
+      "start": 0,
+      "dur": 3,
+      "velocity": 88
+    },
+    {
+      "bar": 9,
+      "note": 50,
+      "start": 3,
+      "dur": 1,
+      "velocity": 70
+    },
+    {
+      "bar": 9,
+      "note": 57,
+      "start": 8,
+      "dur": 4,
+      "velocity": 82
+    },
+    {
+      "bar": 10,
+      "note": 60,
+      "start": 0,
+      "dur": 2,
+      "velocity": 92
+    },
+    {
+      "bar": 10,
+      "note": 59,
+      "start": 2,
+      "dur": 2,
+      "velocity": 84
+    },
+    {
+      "bar": 10,
+      "note": 57,
+      "start": 8,
+      "dur": 4,
+      "velocity": 86
+    },
+    {
+      "bar": 11,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 11,
+      "note": 50,
+      "start": 4,
+      "dur": 2,
+      "velocity": 82
+    },
+    {
+      "bar": 11,
+      "note": 45,
+      "start": 8,
+      "dur": 4,
+      "velocity": 90
+    }
+  ],
+  "title": "疾旋跃动",
+  "description": "高陀螺峰值与加速度标准差，配合62.8%活跃率，呈现紧凑跃动感"
+}
