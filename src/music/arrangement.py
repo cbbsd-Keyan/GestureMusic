@@ -207,11 +207,16 @@ ACCENT = {
 # 事件构建
 # =========================
 
-def build_arranged_events(score, energy):
+def build_arranged_events(
+    score,
+    energy,
+    legato=False,
+):
 
     """
     乐谱JSON + energy -> 统一事件流。
     energy 驱动: 播放速度 / 旋律音区 / 整体力度 / 配器密度
+    legato: 旋律连音填充(延长到下一音)，默认关闭
     事件: (时间秒, 类型, 数据, 力度)
     """
 
@@ -265,11 +270,11 @@ def build_arranged_events(score, energy):
 
         t0 = beat_time(bar, start)
 
-        # 连音填充：延长到下一个旋律音出现，
-        # 消灭乐句内的空洞（封顶8格）
+        # 连音填充(可选)：延长到下一个旋律音出现，
+        # 消灭乐句内空洞（封顶8格）
         end_pos = bar * 16 + start + dur
 
-        if idx + 1 < len(melody):
+        if legato and idx + 1 < len(melody):
 
             nxt = melody[idx + 1]
 
@@ -277,10 +282,12 @@ def build_arranged_events(score, energy):
                 nxt["bar"] * 16 + nxt["start"]
             )
 
-            end_pos = min(
-                next_pos,
-                end_pos + 8,
-            )
+            if next_pos > end_pos:
+
+                end_pos = min(
+                    next_pos,
+                    end_pos + 8,
+                )
 
         t1 = beat_time(
             end_pos // 16,

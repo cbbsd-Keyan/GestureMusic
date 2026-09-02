@@ -116,6 +116,12 @@ def main():
     )
 
     parser.add_argument(
+        "--legato",
+        action="store_true",
+        help="旋律连音填充(延长到下一音,消灭空洞)",
+    )
+
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="只打印配器方案不播放",
@@ -173,6 +179,7 @@ def main():
     events, _, play_bpm = build_arranged_events(
         score,
         energy,
+        legato=args.legato,
     )
 
     counts = {}

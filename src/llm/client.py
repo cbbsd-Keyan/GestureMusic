@@ -70,16 +70,22 @@ TEMPLATES = [
     "Am-G-F-E",
 ]
 
+# 调性必须跟随模板：下标奇数=Am模板(含E属和弦,需G#)
+# 绝不允许独立轮换，否则产生白名单自相矛盾
+
+
+def template_key(index):
+
+    return "Am" if index % 2 == 1 else "C"
+
 
 def build_user_prompt(profile, variation):
 
-    template = TEMPLATES[variation % len(TEMPLATES)]
+    idx = variation % len(TEMPLATES)
 
-    key = (
-        "C"
-        if (variation // len(TEMPLATES)) % 2 == 0
-        else "Am"
-    )
+    template = TEMPLATES[idx]
+
+    key = template_key(idx)
 
     return (
         "动作画像：\n"
