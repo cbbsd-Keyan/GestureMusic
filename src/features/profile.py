@@ -216,6 +216,45 @@ def build_profile_json(result, subject_id, mount_version):
     """
     输出符合 llm/schema.py PROFILE_SCHEMA v1 的画像。
     """
+    normalized = None
+
+    baseline_path = (
+        Path(result["file"]).parent / "baseline.json"
+    )
+
+    if baseline_path.exists():
+        try:
+            with open(
+                baseline_path,
+                "r",
+                encoding="utf-8",
+            ) as f:
+                baseline = json.load(f)
+
+            anchor_rms = float(
+                baseline["anchor_rms"]
+            )
+
+            if anchor_rms > 0:
+                normalized = round(
+                    max(
+                        0.0,
+                        min(
+                            result["gyro_rms"]
+                            / anchor_rms,
+                            1.0,
+                        ),
+                    ),
+                    3,
+                )
+
+        except (
+            KeyError,
+            ValueError,
+            TypeError,
+            json.JSONDecodeError,
+        ):
+            normalized = None
 
     return {
         "version": "1.0",
@@ -229,7 +268,7 @@ def build_profile_json(result, subject_id, mount_version):
             "gyro_rms": result["gyro_rms"],
             "accel_std": result["accel_std"],
             "gyro_peak": result["gyro_peak"],
-            "normalized": None,
+            "normalized":normalized,
         },
         "activity": {
             "active_ratio": result["active_ratio"],

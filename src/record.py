@@ -37,6 +37,7 @@ SCENES = {
     "1": "vigorous",
     "2": "gentle",
     "3": "free",
+    "4":"calibration",
 }
 
 
