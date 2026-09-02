@@ -152,6 +152,7 @@ def call_llm(
     api_key=None,
     base_url=None,
     model=None,
+    temperature=0.8,
 ):
 
     """
@@ -196,7 +197,7 @@ def call_llm(
                     ),
                 },
             ],
-            "temperature": 0.8,
+            "temperature": temperature,
         }
 
         if attempt == 0:

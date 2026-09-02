@@ -157,6 +157,13 @@ def main():
     )
 
     parser.add_argument(
+    "--temperature",
+    type=float,
+    default=0.8,
+    help="LLM采样温度（默认0.8）",
+    )
+
+    parser.add_argument(
         "--mock",
         action="store_true",
         help="离线模式：用规则作曲器代替LLM",
@@ -238,6 +245,7 @@ def main():
                     score, meta = call_llm(
                         profile,
                         variation=variation,
+                        temperature=args.temperature,
                     )
 
                 except RuntimeError as e:
