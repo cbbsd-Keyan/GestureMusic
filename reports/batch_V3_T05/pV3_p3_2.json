@@ -1,0 +1,460 @@
+{
+  "bpm": 146,
+  "key": "Am",
+  "bars": 16,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "Am"
+    },
+    {
+      "bar": 1,
+      "symbol": "F"
+    },
+    {
+      "bar": 2,
+      "symbol": "C"
+    },
+    {
+      "bar": 3,
+      "symbol": "G"
+    },
+    {
+      "bar": 4,
+      "symbol": "Am"
+    },
+    {
+      "bar": 5,
+      "symbol": "F"
+    },
+    {
+      "bar": 6,
+      "symbol": "C"
+    },
+    {
+      "bar": 7,
+      "symbol": "G"
+    },
+    {
+      "bar": 8,
+      "symbol": "Am"
+    },
+    {
+      "bar": 9,
+      "symbol": "F"
+    },
+    {
+      "bar": 10,
+      "symbol": "C"
+    },
+    {
+      "bar": 11,
+      "symbol": "G"
+    },
+    {
+      "bar": 12,
+      "symbol": "Am"
+    },
+    {
+      "bar": 13,
+      "symbol": "F"
+    },
+    {
+      "bar": 14,
+      "symbol": "C"
+    },
+    {
+      "bar": 15,
+      "symbol": "G"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 59,
+      "start": 0,
+      "dur": 2,
+      "velocity": 95
+    },
+    {
+      "bar": 0,
+      "note": 62,
+      "start": 2,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 0,
+      "note": 65,
+      "start": 4,
+      "dur": 2,
+      "velocity": 92
+    },
+    {
+      "bar": 0,
+      "note": 67,
+      "start": 6,
+      "dur": 2,
+      "velocity": 100
+    },
+    {
+      "bar": 1,
+      "note": 65,
+      "start": 0,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 1,
+      "note": 62,
+      "start": 4,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 6,
+      "dur": 2,
+      "velocity": 93
+    },
+    {
+      "bar": 2,
+      "note": 64,
+      "start": 0,
+      "dur": 2,
+      "velocity": 96
+    },
+    {
+      "bar": 2,
+      "note": 62,
+      "start": 2,
+      "dur": 2,
+      "velocity": 87
+    },
+    {
+      "bar": 2,
+      "note": 60,
+      "start": 4,
+      "dur": 2,
+      "velocity": 91
+    },
+    {
+      "bar": 2,
+      "note": 59,
+      "start": 6,
+      "dur": 2,
+      "velocity": 98
+    },
+    {
+      "bar": 3,
+      "note": 62,
+      "start": 0,
+      "dur": 4,
+      "velocity": 102
+    },
+    {
+      "bar": 3,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 94
+    },
+    {
+      "bar": 3,
+      "note": 65,
+      "start": 6,
+      "dur": 2,
+      "velocity": 105
+    },
+    {
+      "bar": 4,
+      "note": 67,
+      "start": 0,
+      "dur": 2,
+      "velocity": 97
+    },
+    {
+      "bar": 4,
+      "note": 65,
+      "start": 2,
+      "dur": 2,
+      "velocity": 89
+    },
+    {
+      "bar": 4,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 93
+    },
+    {
+      "bar": 4,
+      "note": 62,
+      "start": 6,
+      "dur": 2,
+      "velocity": 99
+    },
+    {
+      "bar": 5,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 91
+    },
+    {
+      "bar": 5,
+      "note": 59,
+      "start": 4,
+      "dur": 2,
+      "velocity": 86
+    },
+    {
+      "bar": 5,
+      "note": 57,
+      "start": 6,
+      "dur": 2,
+      "velocity": 103
+    },
+    {
+      "bar": 6,
+      "note": 60,
+      "start": 0,
+      "dur": 2,
+      "velocity": 95
+    },
+    {
+      "bar": 6,
+      "note": 62,
+      "start": 2,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 6,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 92
+    },
+    {
+      "bar": 6,
+      "note": 65,
+      "start": 6,
+      "dur": 2,
+      "velocity": 100
+    },
+    {
+      "bar": 7,
+      "note": 67,
+      "start": 0,
+      "dur": 4,
+      "velocity": 104
+    },
+    {
+      "bar": 7,
+      "note": 65,
+      "start": 4,
+      "dur": 2,
+      "velocity": 96
+    },
+    {
+      "bar": 7,
+      "note": 64,
+      "start": 6,
+      "dur": 2,
+      "velocity": 107
+    },
+    {
+      "bar": 8,
+      "note": 62,
+      "start": 0,
+      "dur": 2,
+      "velocity": 98
+    },
+    {
+      "bar": 8,
+      "note": 60,
+      "start": 2,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 8,
+      "note": 59,
+      "start": 4,
+      "dur": 2,
+      "velocity": 94
+    },
+    {
+      "bar": 8,
+      "note": 57,
+      "start": 6,
+      "dur": 2,
+      "velocity": 101
+    },
+    {
+      "bar": 9,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 93
+    },
+    {
+      "bar": 9,
+      "note": 59,
+      "start": 4,
+      "dur": 2,
+      "velocity": 87
+    },
+    {
+      "bar": 9,
+      "note": 57,
+      "start": 6,
+      "dur": 2,
+      "velocity": 105
+    },
+    {
+      "bar": 10,
+      "note": 62,
+      "start": 0,
+      "dur": 2,
+      "velocity": 97
+    },
+    {
+      "bar": 10,
+      "note": 64,
+      "start": 2,
+      "dur": 2,
+      "velocity": 89
+    },
+    {
+      "bar": 10,
+      "note": 65,
+      "start": 4,
+      "dur": 2,
+      "velocity": 92
+    },
+    {
+      "bar": 10,
+      "note": 67,
+      "start": 6,
+      "dur": 2,
+      "velocity": 100
+    },
+    {
+      "bar": 11,
+      "note": 69,
+      "start": 0,
+      "dur": 4,
+      "velocity": 106
+    },
+    {
+      "bar": 11,
+      "note": 67,
+      "start": 4,
+      "dur": 2,
+      "velocity": 98
+    },
+    {
+      "bar": 11,
+      "note": 65,
+      "start": 6,
+      "dur": 2,
+      "velocity": 109
+    },
+    {
+      "bar": 12,
+      "note": 64,
+      "start": 0,
+      "dur": 2,
+      "velocity": 99
+    },
+    {
+      "bar": 12,
+      "note": 62,
+      "start": 2,
+      "dur": 2,
+      "velocity": 91
+    },
+    {
+      "bar": 12,
+      "note": 60,
+      "start": 4,
+      "dur": 2,
+      "velocity": 95
+    },
+    {
+      "bar": 12,
+      "note": 59,
+      "start": 6,
+      "dur": 2,
+      "velocity": 102
+    },
+    {
+      "bar": 13,
+      "note": 62,
+      "start": 0,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 13,
+      "note": 60,
+      "start": 4,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 13,
+      "note": 57,
+      "start": 6,
+      "dur": 2,
+      "velocity": 107
+    },
+    {
+      "bar": 14,
+      "note": 60,
+      "start": 0,
+      "dur": 2,
+      "velocity": 96
+    },
+    {
+      "bar": 14,
+      "note": 62,
+      "start": 2,
+      "dur": 2,
+      "velocity": 89
+    },
+    {
+      "bar": 14,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 93
+    },
+    {
+      "bar": 14,
+      "note": 65,
+      "start": 6,
+      "dur": 2,
+      "velocity": 100
+    },
+    {
+      "bar": 15,
+      "note": 69,
+      "start": 0,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 15,
+      "note": 57,
+      "start": 8,
+      "dur": 4,
+      "velocity": 110
+    }
+  ],
+  "title": "疾旋十四度",
+  "description": "高活跃率、大滚转范围与剧烈陀螺峰值驱动的急促钢琴曲，强节奏推进感"
+}

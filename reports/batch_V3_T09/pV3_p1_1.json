@@ -1,0 +1,297 @@
+{
+  "bpm": 86,
+  "key": "C",
+  "bars": 12,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "C"
+    },
+    {
+      "bar": 1,
+      "symbol": "G"
+    },
+    {
+      "bar": 2,
+      "symbol": "Am"
+    },
+    {
+      "bar": 3,
+      "symbol": "F"
+    },
+    {
+      "bar": 4,
+      "symbol": "C"
+    },
+    {
+      "bar": 5,
+      "symbol": "G"
+    },
+    {
+      "bar": 6,
+      "symbol": "Am"
+    },
+    {
+      "bar": 7,
+      "symbol": "F"
+    },
+    {
+      "bar": 8,
+      "symbol": "C"
+    },
+    {
+      "bar": 9,
+      "symbol": "G"
+    },
+    {
+      "bar": 10,
+      "symbol": "Am"
+    },
+    {
+      "bar": 11,
+      "symbol": "F"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 52,
+      "start": 0,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 0,
+      "note": 55,
+      "start": 4,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 0,
+      "note": 57,
+      "start": 6,
+      "dur": 2,
+      "velocity": 80
+    },
+    {
+      "bar": 1,
+      "note": 59,
+      "start": 0,
+      "dur": 4,
+      "velocity": 95
+    },
+    {
+      "bar": 1,
+      "note": 62,
+      "start": 4,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 6,
+      "dur": 2,
+      "velocity": 83
+    },
+    {
+      "bar": 2,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 2,
+      "note": 55,
+      "start": 4,
+      "dur": 2,
+      "velocity": 82
+    },
+    {
+      "bar": 2,
+      "note": 53,
+      "start": 6,
+      "dur": 2,
+      "velocity": 78
+    },
+    {
+      "bar": 3,
+      "note": 52,
+      "start": 0,
+      "dur": 4,
+      "velocity": 93
+    },
+    {
+      "bar": 3,
+      "note": 50,
+      "start": 4,
+      "dur": 2,
+      "velocity": 84
+    },
+    {
+      "bar": 3,
+      "note": 48,
+      "start": 6,
+      "dur": 2,
+      "velocity": 76
+    },
+    {
+      "bar": 4,
+      "note": 52,
+      "start": 0,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 4,
+      "note": 55,
+      "start": 4,
+      "dur": 2,
+      "velocity": 86
+    },
+    {
+      "bar": 4,
+      "note": 57,
+      "start": 6,
+      "dur": 2,
+      "velocity": 81
+    },
+    {
+      "bar": 5,
+      "note": 59,
+      "start": 0,
+      "dur": 4,
+      "velocity": 96
+    },
+    {
+      "bar": 5,
+      "note": 62,
+      "start": 4,
+      "dur": 2,
+      "velocity": 87
+    },
+    {
+      "bar": 5,
+      "note": 60,
+      "start": 6,
+      "dur": 2,
+      "velocity": 82
+    },
+    {
+      "bar": 6,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 91
+    },
+    {
+      "bar": 6,
+      "note": 55,
+      "start": 4,
+      "dur": 2,
+      "velocity": 83
+    },
+    {
+      "bar": 6,
+      "note": 53,
+      "start": 6,
+      "dur": 2,
+      "velocity": 79
+    },
+    {
+      "bar": 7,
+      "note": 52,
+      "start": 0,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 7,
+      "note": 50,
+      "start": 4,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 7,
+      "note": 48,
+      "start": 6,
+      "dur": 2,
+      "velocity": 77
+    },
+    {
+      "bar": 8,
+      "note": 52,
+      "start": 0,
+      "dur": 4,
+      "velocity": 95
+    },
+    {
+      "bar": 8,
+      "note": 55,
+      "start": 4,
+      "dur": 2,
+      "velocity": 87
+    },
+    {
+      "bar": 8,
+      "note": 57,
+      "start": 6,
+      "dur": 2,
+      "velocity": 82
+    },
+    {
+      "bar": 9,
+      "note": 59,
+      "start": 0,
+      "dur": 4,
+      "velocity": 97
+    },
+    {
+      "bar": 9,
+      "note": 62,
+      "start": 4,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 9,
+      "note": 60,
+      "start": 6,
+      "dur": 2,
+      "velocity": 83
+    },
+    {
+      "bar": 10,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 10,
+      "note": 55,
+      "start": 4,
+      "dur": 2,
+      "velocity": 84
+    },
+    {
+      "bar": 10,
+      "note": 53,
+      "start": 6,
+      "dur": 2,
+      "velocity": 79
+    },
+    {
+      "bar": 11,
+      "note": 48,
+      "start": 0,
+      "dur": 4,
+      "velocity": 90
+    }
+  ],
+  "title": "高活跃度旋转律动",
+  "description": "基于94.8%高活跃率与30.2°体态摆幅设计的紧凑型钢琴律动"
+}

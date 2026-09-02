@@ -1,0 +1,297 @@
+{
+  "bpm": 90,
+  "key": "Am",
+  "bars": 12,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "F"
+    },
+    {
+      "bar": 1,
+      "symbol": "G"
+    },
+    {
+      "bar": 2,
+      "symbol": "Em"
+    },
+    {
+      "bar": 3,
+      "symbol": "Am"
+    },
+    {
+      "bar": 4,
+      "symbol": "F"
+    },
+    {
+      "bar": 5,
+      "symbol": "G"
+    },
+    {
+      "bar": 6,
+      "symbol": "Em"
+    },
+    {
+      "bar": 7,
+      "symbol": "Am"
+    },
+    {
+      "bar": 8,
+      "symbol": "F"
+    },
+    {
+      "bar": 9,
+      "symbol": "G"
+    },
+    {
+      "bar": 10,
+      "symbol": "Em"
+    },
+    {
+      "bar": 11,
+      "symbol": "Am"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 55,
+      "start": 0,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 0,
+      "note": 57,
+      "start": 4,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 0,
+      "note": 52,
+      "start": 6,
+      "dur": 2,
+      "velocity": 78
+    },
+    {
+      "bar": 1,
+      "note": 59,
+      "start": 0,
+      "dur": 4,
+      "velocity": 96
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 4,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 1,
+      "note": 57,
+      "start": 6,
+      "dur": 2,
+      "velocity": 82
+    },
+    {
+      "bar": 2,
+      "note": 55,
+      "start": 0,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 2,
+      "note": 52,
+      "start": 4,
+      "dur": 2,
+      "velocity": 84
+    },
+    {
+      "bar": 2,
+      "note": 48,
+      "start": 6,
+      "dur": 2,
+      "velocity": 76
+    },
+    {
+      "bar": 3,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 3,
+      "note": 55,
+      "start": 4,
+      "dur": 2,
+      "velocity": 86
+    },
+    {
+      "bar": 3,
+      "note": 52,
+      "start": 6,
+      "dur": 2,
+      "velocity": 79
+    },
+    {
+      "bar": 4,
+      "note": 50,
+      "start": 0,
+      "dur": 4,
+      "velocity": 91
+    },
+    {
+      "bar": 4,
+      "note": 52,
+      "start": 4,
+      "dur": 2,
+      "velocity": 83
+    },
+    {
+      "bar": 4,
+      "note": 55,
+      "start": 6,
+      "dur": 2,
+      "velocity": 77
+    },
+    {
+      "bar": 5,
+      "note": 59,
+      "start": 0,
+      "dur": 4,
+      "velocity": 95
+    },
+    {
+      "bar": 5,
+      "note": 57,
+      "start": 4,
+      "dur": 2,
+      "velocity": 87
+    },
+    {
+      "bar": 5,
+      "note": 55,
+      "start": 6,
+      "dur": 2,
+      "velocity": 80
+    },
+    {
+      "bar": 6,
+      "note": 52,
+      "start": 0,
+      "dur": 4,
+      "velocity": 89
+    },
+    {
+      "bar": 6,
+      "note": 50,
+      "start": 4,
+      "dur": 2,
+      "velocity": 82
+    },
+    {
+      "bar": 6,
+      "note": 48,
+      "start": 6,
+      "dur": 2,
+      "velocity": 75
+    },
+    {
+      "bar": 7,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 93
+    },
+    {
+      "bar": 7,
+      "note": 55,
+      "start": 4,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 7,
+      "note": 52,
+      "start": 6,
+      "dur": 2,
+      "velocity": 78
+    },
+    {
+      "bar": 8,
+      "note": 50,
+      "start": 0,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 8,
+      "note": 52,
+      "start": 4,
+      "dur": 2,
+      "velocity": 84
+    },
+    {
+      "bar": 8,
+      "note": 55,
+      "start": 6,
+      "dur": 2,
+      "velocity": 76
+    },
+    {
+      "bar": 9,
+      "note": 59,
+      "start": 0,
+      "dur": 4,
+      "velocity": 96
+    },
+    {
+      "bar": 9,
+      "note": 57,
+      "start": 4,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 9,
+      "note": 55,
+      "start": 6,
+      "dur": 2,
+      "velocity": 81
+    },
+    {
+      "bar": 10,
+      "note": 52,
+      "start": 0,
+      "dur": 4,
+      "velocity": 89
+    },
+    {
+      "bar": 10,
+      "note": 50,
+      "start": 4,
+      "dur": 2,
+      "velocity": 83
+    },
+    {
+      "bar": 10,
+      "note": 48,
+      "start": 6,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 11,
+      "note": 69,
+      "start": 0,
+      "dur": 4,
+      "velocity": 102
+    }
+  ],
+  "title": "急促旋摆十二拍",
+  "description": "高能量旋转与俯仰动作，节奏急促，旋律呈拱形-下降-拱形三乐句交替"
+}
