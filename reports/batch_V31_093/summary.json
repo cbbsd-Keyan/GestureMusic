@@ -1,0 +1,102 @@
+[
+  {
+    "file": "pV3_p1_1.json",
+    "profile": "p1",
+    "variation": 0,
+    "temperature": 0.8,
+    "template": "C-G-Am-F",
+    "key": "C",
+    "latency_s": 47.86,
+    "fixes": 2
+  },
+  {
+    "file": "pV3_p1_2.json",
+    "profile": "p1",
+    "variation": 1,
+    "temperature": 0.8,
+    "template": "Am-Dm-E-Am",
+    "key": "Am",
+    "latency_s": 57.16,
+    "fixes": 0
+  },
+  {
+    "file": "pV3_p2_1.json",
+    "profile": "p2",
+    "variation": 2,
+    "temperature": 0.8,
+    "template": "C-Am-F-G",
+    "key": "C",
+    "latency_s": 37.28,
+    "fixes": 0
+  },
+  {
+    "file": "pV3_p2_2.json",
+    "profile": "p2",
+    "variation": 3,
+    "temperature": 0.8,
+    "template": "Am-G-F-E",
+    "key": "Am",
+    "latency_s": 74.44,
+    "fixes": 1
+  },
+  {
+    "file": "pV3_p3_1.json",
+    "profile": "p3",
+    "variation": 4,
+    "temperature": 0.8,
+    "template": "C-G-Am-F",
+    "key": "C",
+    "latency_s": 65.88,
+    "fixes": 0
+  },
+  {
+    "file": "pV3_p3_2.json",
+    "profile": "p3",
+    "variation": 5,
+    "temperature": 0.8,
+    "template": "Am-Dm-E-Am",
+    "key": "Am",
+    "latency_s": 74.0,
+    "fixes": 1
+  },
+  {
+    "file": "pV3_p4_1.json",
+    "profile": "p4",
+    "variation": 6,
+    "temperature": 0.8,
+    "template": "C-Am-F-G",
+    "key": "C",
+    "latency_s": 39.49,
+    "fixes": 1
+  },
+  {
+    "file": "pV3_p4_2.json",
+    "profile": "p4",
+    "variation": 7,
+    "temperature": 0.8,
+    "template": "Am-G-F-E",
+    "key": "Am",
+    "latency_s": 54.78,
+    "fixes": 0
+  },
+  {
+    "file": "pV3_p5_1.json",
+    "profile": "p5",
+    "variation": 8,
+    "temperature": 0.8,
+    "template": "C-G-Am-F",
+    "key": "C",
+    "latency_s": 48.15,
+    "fixes": 0
+  },
+  {
+    "file": "pV3_p5_2.json",
+    "profile": "p5",
+    "variation": 9,
+    "temperature": 0.8,
+    "template": "Am-Dm-E-Am",
+    "key": "Am",
+    "latency_s": 49.15,
+    "fixes": 0
+  }
+]

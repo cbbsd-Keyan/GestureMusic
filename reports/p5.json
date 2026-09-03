@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "duration_s": 10.87,
+  "tempo": {
+    "bpm": 116.4,
+    "confidence": "high",
+    "method": "autocorr"
+  },
+  "energy": {
+    "gyro_rms": 8.978,
+    "accel_std": 19.775,
+    "gyro_peak": 17.849,
+    "normalized": null
+  },
+  "activity": {
+    "active_ratio": 0.976
+  },
+  "posture": {
+    "available": false,
+    "roll_median": null,
+    "roll_range": null,
+    "pitch_median": null
+  },
+  "structure": {
+    "change_points": null
+  },
+  "subject_id": "s00",
+  "mount_version": "ruler_v1"
+}
