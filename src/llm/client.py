@@ -87,10 +87,12 @@ def build_user_prompt(profile, variation):
 
     key = template_key(idx)
 
-    # 开头形态轮换(P1裁决a)：以4为周期，
-    # 与模板周期(4)错开，避免某种开头
-    # 永远绑定某种模板
-    arp_allowed = (variation // 4) % 2 == 0
+    # 开头形态轮换(P1裁决a)：
+    # 周期设计保证同一画像连续4首恰好2允许2禁止，
+    # 且任一模板都不会被绑死单一形态
+    arp_allowed = (
+        (idx // 2) + (variation // 4)
+    ) % 2 == 0
 
     opening = (
         "自由（允许主和弦琶音开头）"
