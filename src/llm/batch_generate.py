@@ -164,6 +164,12 @@ def main():
     )
 
     parser.add_argument(
+        "--extra",
+        default=None,
+        help="实验条款文本(追加在冻结规则后,仅用于试验)",
+    )
+
+    parser.add_argument(
         "--mock",
         action="store_true",
         help="离线模式：用规则作曲器代替LLM",
@@ -246,6 +252,7 @@ def main():
                         profile,
                         variation=variation,
                         temperature=args.temperature,
+                        extra_rules=args.extra,
                     )
 
                 except RuntimeError as e:
@@ -282,6 +289,8 @@ def main():
 
             name = (
                 f"pV3_{pp.stem}_{i+1}.json"
+                if not args.extra
+                else f"pEXPERIMENT_{pp.stem}_{i+1}.json"
             )
 
             path = out_dir / name

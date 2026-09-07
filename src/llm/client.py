@@ -172,6 +172,7 @@ def call_llm(
     profile,
     variation=None,
     temperature=0.8,
+    extra_rules=None,
     timeout=TIMEOUT_S,
     retries=RETRIES,
     api_key=None,
@@ -181,8 +182,9 @@ def call_llm(
 
     """
     画像 -> 乐谱JSON。
-    variation: 变奏种子，决定和弦模板与调性轮换；
+    variation: 变奏种子，决定和弦模板/调性/开头形态轮换；
     None时自动随机。
+    extra_rules: 实验条款(追加在冻结规则后)，生产不传。
     返回 (score, meta)；失败抛 RuntimeError。
     """
 
@@ -192,6 +194,16 @@ def call_llm(
 
     if variation is None:
         variation = random.randrange(64)
+
+    system = SYSTEM_PROMPT
+
+    if extra_rules:
+
+        system = (
+            system
+            + "\n\n【实验条款（优先级等同于上述规则）】\n"
+            + extra_rules
+        )
 
     if not key:
         raise RuntimeError(
@@ -211,7 +223,7 @@ def call_llm(
             "messages": [
                 {
                     "role": "system",
-                    "content": SYSTEM_PROMPT,
+                    "content": system,
                 },
                 {
                     "role": "user",

@@ -300,10 +300,14 @@ def build_arranged_events(
         key=lambda x: (x["bar"], x["start"]),
     )
 
-    # 引子: 第一小节旋律静音(plain模式除外)
+    # 引子: 前两拍旋律静音(半小节晚进)
     if not plain:
         melody = [
-            x for x in melody if x["bar"] > 0
+            x
+            for x in melody
+            if not (
+                x["bar"] == 0 and x["start"] < 8
+            )
         ]
 
     total_pos = max(1, bars * 16)
