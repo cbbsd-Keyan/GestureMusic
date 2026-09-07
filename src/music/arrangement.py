@@ -202,6 +202,55 @@ ACCENT = {
     "intense": 18,
 }
 
+# 伴奏pattern: (格位, 时值格)
+# calm=每拍单音琶音 neutral=八分琶音
+# intense=强拍重击+抢拍
+ACCOMP_PATTERN = {
+    "calm": [(0, 4), (4, 4), (8, 4), (12, 4)],
+    "neutral": [
+        (0, 2), (2, 2), (4, 2), (6, 2),
+        (8, 2), (10, 2), (12, 2), (14, 2),
+    ],
+    "intense": [(0, 2), (8, 2), (14, 2)],
+}
+
+# 琶音音序(在voicing三音上的索引)
+ARP_ORDER = [0, 1, 2, 1]
+
+# 力度弧线锚点: (曲子位置, 乘数)
+ARC_ANCHORS = [
+    (0.0, 0.90),
+    (0.15, 0.95),
+    (0.60, 1.05),
+    (1.0, 0.85),
+]
+
+
+def arc_factor(pos):
+
+    """
+    曲子位置(0~1) -> 力度乘数。
+    先渐强到黄金点，再收束。
+    """
+
+    pos = max(0.0, min(1.0, pos))
+
+    for (x0, y0), (x1, y1) in zip(
+        ARC_ANCHORS,
+        ARC_ANCHORS[1:],
+    ):
+
+        if pos <= x1:
+
+            if x1 <= x0:
+                return y1
+
+            a = (pos - x0) / (x1 - x0)
+
+            return y0 + a * (y1 - y0)
+
+    return ARC_ANCHORS[-1][1]
+
 
 # =========================
 # 事件构建
@@ -211,12 +260,14 @@ def build_arranged_events(
     score,
     energy,
     legato=False,
+    plain=False,
 ):
 
     """
     乐谱JSON + energy -> 统一事件流。
     energy 驱动: 播放速度 / 旋律音区 / 整体力度 / 配器密度
     legato: 旋律连音填充(延长到下一音)，默认关闭
+    plain: 旧版渲染(长音和弦/无引子尾声/无力度弧线)
     事件: (时间秒, 类型, 数据, 力度)
     """
 
@@ -248,6 +299,14 @@ def build_arranged_events(
         key=lambda x: (x["bar"], x["start"]),
     )
 
+    # 引子: 第一小节旋律静音(plain模式除外)
+    if not plain:
+        melody = [
+            x for x in melody if x["bar"] > 0
+        ]
+
+    total_pos = max(1, bars * 16)
+
     for idx, item in enumerate(melody):
 
         bar = item["bar"]
@@ -263,10 +322,21 @@ def build_arranged_events(
         if start in (0, 8):
             vel = vel + ACCENT[tier]
 
-        vel = min(
-            120,
-            int(vel * vscale),
-        )
+        vel = int(vel * vscale)
+
+        # 力度弧线 + 后半曲抬升
+        if not plain:
+
+            pos = (
+                bar * 16 + start
+            ) / total_pos
+
+            vel = int(vel * arc_factor(pos))
+
+            if bar >= bars / 2:
+                vel = vel + 6
+
+        vel = min(120, vel)
 
         t0 = beat_time(bar, start)
 
@@ -310,6 +380,8 @@ def build_arranged_events(
 
     prev_voicing = None
 
+    last_symbol = None
+
     for i, item in enumerate(chords):
 
         symbol = item["symbol"]
@@ -323,6 +395,8 @@ def build_arranged_events(
 
         prev_voicing = notes
 
+        last_symbol = symbol
+
         bar = item["bar"]
 
         next_bar = (
@@ -331,11 +405,68 @@ def build_arranged_events(
             else bars
         )
 
-        t0 = beat_time(bar, 0)
-        t1 = beat_time(next_bar, 0)
+        if plain:
 
-        events.append((t0, "chord_on", notes, chord_vel))
-        events.append((t1, "chord_off", notes, 0))
+            # 旧版: 整段长音
+            t0 = beat_time(bar, 0)
+            t1 = beat_time(next_bar, 0)
+
+            events.append((t0, "chord_on", notes, chord_vel))
+            events.append((t1, "chord_off", notes, 0))
+
+            continue
+
+        # 新版: 逐小节伴奏pattern
+        for b in range(bar, next_bar):
+
+            bpos = (
+                b * 16 + 8
+            ) / total_pos
+
+            arc = 1 + (
+                arc_factor(bpos) - 1
+            ) * 0.5
+
+            base_vel = min(
+                110,
+                int(chord_vel * arc),
+            )
+
+            if tier == "intense":
+
+                # 强拍重击 + 抢拍
+                for pos, dur in ACCOMP_PATTERN[tier]:
+
+                    v = base_vel if pos != 14 else int(base_vel * 0.8)
+
+                    t0 = beat_time(b, pos)
+                    t1 = t0 + dur * grid
+
+                    events.append((t0, "chord_on", notes, v))
+                    events.append((t1, "chord_off", notes, 0))
+
+            else:
+
+                # 流动琶音
+                for k, (pos, dur) in enumerate(
+                    ACCOMP_PATTERN[tier]
+                ):
+
+                    note = notes[
+                        ARP_ORDER[
+                            k % len(ARP_ORDER)
+                        ]
+                    ]
+
+                    t0 = beat_time(b, pos)
+                    t1 = t0 + dur * grid
+
+                    events.append(
+                        (t0, "chord_on", [note], int(base_vel * 0.85))
+                    )
+                    events.append(
+                        (t1, "chord_off", [note], 0)
+                    )
 
     # -------------------------
     # 贝斯（根音律动）
@@ -385,12 +516,57 @@ def build_arranged_events(
                 (beat_time(bar, pos), "drum", drum_note, drum_vel)
             )
 
+    # -------------------------
+    # 尾声: 主和弦延长收束(plain除外)
+    # -------------------------
+
+    if not plain and last_symbol is not None:
+
+        pcs = TRIAD_PCS.get(last_symbol)
+
+        root = ROOTS.get(last_symbol)
+
+        if pcs is not None and root is not None:
+
+            final_voicing = voice_chord(
+                pcs,
+                prev_voicing,
+            )
+
+            t0 = beat_time(bars, 0)
+
+            events.append(
+                (
+                    t0,
+                    "chord_on",
+                    final_voicing,
+                    int(chord_vel * 0.9),
+                )
+            )
+
+            events.append(
+                (
+                    t0 + 12 * grid,
+                    "chord_off",
+                    final_voicing,
+                    0,
+                )
+            )
+
+            events.append(
+                (t0, "bass_on", root, int(bass_vel * 0.9))
+            )
+
+            events.append(
+                (t0 + 16 * grid, "bass_off", root, 0)
+            )
+
     events.sort(key=lambda x: x[0])
 
     return events, tier, bpm
 
 
-def total_duration(score, energy):
+def total_duration(score, energy, plain=False):
 
     bpm = score["bpm"] * tempo_factor(
         energy,
@@ -399,4 +575,6 @@ def total_duration(score, energy):
 
     grid = 60.0 / bpm / 4.0
 
-    return score["bars"] * 16 * grid + 1.0
+    extra = 0 if plain else 16 * grid
+
+    return score["bars"] * 16 * grid + extra + 1.0

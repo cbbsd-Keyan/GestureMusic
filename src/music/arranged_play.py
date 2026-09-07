@@ -122,6 +122,12 @@ def main():
     )
 
     parser.add_argument(
+        "--plain",
+        action="store_true",
+        help="旧版渲染: 长音和弦/无引子尾声/无力度弧线",
+    )
+
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="只打印配器方案不播放",
@@ -180,6 +186,7 @@ def main():
         score,
         energy,
         legato=args.legato,
+        plain=args.plain,
     )
 
     counts = {}
@@ -190,7 +197,7 @@ def main():
 
         counts[key] = counts.get(key, 0) + 1
 
-    duration = total_duration(score, energy)
+    duration = total_duration(score, energy, plain=args.plain)
 
     tier_desc = {
         "calm": "无鼓 | 根音长音 | 原速偏慢 | 力度收",
