@@ -1,0 +1,747 @@
+{
+  "bpm": 105,
+  "key": "Am",
+  "bars": 16,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "Am"
+    },
+    {
+      "bar": 1,
+      "symbol": "Dm"
+    },
+    {
+      "bar": 2,
+      "symbol": "E"
+    },
+    {
+      "bar": 3,
+      "symbol": "Am"
+    },
+    {
+      "bar": 4,
+      "symbol": "Am"
+    },
+    {
+      "bar": 5,
+      "symbol": "Dm"
+    },
+    {
+      "bar": 6,
+      "symbol": "E"
+    },
+    {
+      "bar": 7,
+      "symbol": "Am"
+    },
+    {
+      "bar": 8,
+      "symbol": "Am"
+    },
+    {
+      "bar": 9,
+      "symbol": "Dm"
+    },
+    {
+      "bar": 10,
+      "symbol": "E"
+    },
+    {
+      "bar": 11,
+      "symbol": "Am"
+    },
+    {
+      "bar": 12,
+      "symbol": "Am"
+    },
+    {
+      "bar": 13,
+      "symbol": "Dm"
+    },
+    {
+      "bar": 14,
+      "symbol": "E"
+    },
+    {
+      "bar": 15,
+      "symbol": "Am"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 57,
+      "start": 0,
+      "dur": 3,
+      "velocity": 95
+    },
+    {
+      "bar": 0,
+      "note": 62,
+      "start": 3,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 0,
+      "note": 64,
+      "start": 5,
+      "dur": 2,
+      "velocity": 82
+    },
+    {
+      "bar": 0,
+      "note": 60,
+      "start": 7,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 0,
+      "note": 62,
+      "start": 9,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 0,
+      "note": 57,
+      "start": 11,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 0,
+      "dur": 3,
+      "velocity": 94
+    },
+    {
+      "bar": 1,
+      "note": 62,
+      "start": 3,
+      "dur": 2,
+      "velocity": 87
+    },
+    {
+      "bar": 1,
+      "note": 65,
+      "start": 5,
+      "dur": 2,
+      "velocity": 83
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 7,
+      "dur": 2,
+      "velocity": 89
+    },
+    {
+      "bar": 1,
+      "note": 62,
+      "start": 9,
+      "dur": 2,
+      "velocity": 84
+    },
+    {
+      "bar": 1,
+      "note": 59,
+      "start": 11,
+      "dur": 4,
+      "velocity": 91
+    },
+    {
+      "bar": 2,
+      "note": 64,
+      "start": 0,
+      "dur": 3,
+      "velocity": 98
+    },
+    {
+      "bar": 2,
+      "note": 68,
+      "start": 3,
+      "dur": 2,
+      "velocity": 93
+    },
+    {
+      "bar": 2,
+      "note": 69,
+      "start": 5,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 2,
+      "note": 64,
+      "start": 7,
+      "dur": 2,
+      "velocity": 92
+    },
+    {
+      "bar": 2,
+      "note": 68,
+      "start": 9,
+      "dur": 2,
+      "velocity": 91
+    },
+    {
+      "bar": 2,
+      "note": 64,
+      "start": 11,
+      "dur": 4,
+      "velocity": 96
+    },
+    {
+      "bar": 3,
+      "note": 60,
+      "start": 0,
+      "dur": 3,
+      "velocity": 93
+    },
+    {
+      "bar": 3,
+      "note": 57,
+      "start": 3,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 3,
+      "note": 60,
+      "start": 5,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 3,
+      "note": 62,
+      "start": 7,
+      "dur": 2,
+      "velocity": 87
+    },
+    {
+      "bar": 3,
+      "note": 64,
+      "start": 9,
+      "dur": 2,
+      "velocity": 84
+    },
+    {
+      "bar": 3,
+      "note": 57,
+      "start": 11,
+      "dur": 4,
+      "velocity": 95
+    },
+    {
+      "bar": 4,
+      "note": 57,
+      "start": 0,
+      "dur": 3,
+      "velocity": 94
+    },
+    {
+      "bar": 4,
+      "note": 62,
+      "start": 3,
+      "dur": 2,
+      "velocity": 89
+    },
+    {
+      "bar": 4,
+      "note": 64,
+      "start": 5,
+      "dur": 2,
+      "velocity": 86
+    },
+    {
+      "bar": 4,
+      "note": 60,
+      "start": 7,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 4,
+      "note": 62,
+      "start": 9,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 4,
+      "note": 57,
+      "start": 11,
+      "dur": 4,
+      "velocity": 93
+    },
+    {
+      "bar": 5,
+      "note": 60,
+      "start": 0,
+      "dur": 3,
+      "velocity": 95
+    },
+    {
+      "bar": 5,
+      "note": 62,
+      "start": 3,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 5,
+      "note": 65,
+      "start": 5,
+      "dur": 2,
+      "velocity": 84
+    },
+    {
+      "bar": 5,
+      "note": 60,
+      "start": 7,
+      "dur": 2,
+      "velocity": 89
+    },
+    {
+      "bar": 5,
+      "note": 62,
+      "start": 9,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 5,
+      "note": 59,
+      "start": 11,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 6,
+      "note": 64,
+      "start": 0,
+      "dur": 3,
+      "velocity": 99
+    },
+    {
+      "bar": 6,
+      "note": 68,
+      "start": 3,
+      "dur": 2,
+      "velocity": 94
+    },
+    {
+      "bar": 6,
+      "note": 69,
+      "start": 5,
+      "dur": 2,
+      "velocity": 91
+    },
+    {
+      "bar": 6,
+      "note": 64,
+      "start": 7,
+      "dur": 2,
+      "velocity": 93
+    },
+    {
+      "bar": 6,
+      "note": 68,
+      "start": 9,
+      "dur": 2,
+      "velocity": 92
+    },
+    {
+      "bar": 6,
+      "note": 64,
+      "start": 11,
+      "dur": 4,
+      "velocity": 97
+    },
+    {
+      "bar": 7,
+      "note": 60,
+      "start": 0,
+      "dur": 3,
+      "velocity": 94
+    },
+    {
+      "bar": 7,
+      "note": 57,
+      "start": 3,
+      "dur": 2,
+      "velocity": 89
+    },
+    {
+      "bar": 7,
+      "note": 60,
+      "start": 5,
+      "dur": 2,
+      "velocity": 86
+    },
+    {
+      "bar": 7,
+      "note": 62,
+      "start": 7,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 7,
+      "note": 64,
+      "start": 9,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 7,
+      "note": 57,
+      "start": 11,
+      "dur": 4,
+      "velocity": 96
+    },
+    {
+      "bar": 8,
+      "note": 57,
+      "start": 0,
+      "dur": 3,
+      "velocity": 95
+    },
+    {
+      "bar": 8,
+      "note": 62,
+      "start": 3,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 8,
+      "note": 64,
+      "start": 5,
+      "dur": 2,
+      "velocity": 87
+    },
+    {
+      "bar": 8,
+      "note": 60,
+      "start": 7,
+      "dur": 2,
+      "velocity": 91
+    },
+    {
+      "bar": 8,
+      "note": 62,
+      "start": 9,
+      "dur": 2,
+      "velocity": 86
+    },
+    {
+      "bar": 8,
+      "note": 57,
+      "start": 11,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 9,
+      "note": 60,
+      "start": 0,
+      "dur": 3,
+      "velocity": 96
+    },
+    {
+      "bar": 9,
+      "note": 62,
+      "start": 3,
+      "dur": 2,
+      "velocity": 89
+    },
+    {
+      "bar": 9,
+      "note": 65,
+      "start": 5,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 9,
+      "note": 60,
+      "start": 7,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 9,
+      "note": 62,
+      "start": 9,
+      "dur": 2,
+      "velocity": 86
+    },
+    {
+      "bar": 9,
+      "note": 59,
+      "start": 11,
+      "dur": 4,
+      "velocity": 93
+    },
+    {
+      "bar": 10,
+      "note": 64,
+      "start": 0,
+      "dur": 3,
+      "velocity": 100
+    },
+    {
+      "bar": 10,
+      "note": 68,
+      "start": 3,
+      "dur": 2,
+      "velocity": 95
+    },
+    {
+      "bar": 10,
+      "note": 69,
+      "start": 5,
+      "dur": 2,
+      "velocity": 92
+    },
+    {
+      "bar": 10,
+      "note": 64,
+      "start": 7,
+      "dur": 2,
+      "velocity": 94
+    },
+    {
+      "bar": 10,
+      "note": 68,
+      "start": 9,
+      "dur": 2,
+      "velocity": 93
+    },
+    {
+      "bar": 10,
+      "note": 64,
+      "start": 11,
+      "dur": 4,
+      "velocity": 98
+    },
+    {
+      "bar": 11,
+      "note": 60,
+      "start": 0,
+      "dur": 3,
+      "velocity": 95
+    },
+    {
+      "bar": 11,
+      "note": 57,
+      "start": 3,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 11,
+      "note": 60,
+      "start": 5,
+      "dur": 2,
+      "velocity": 87
+    },
+    {
+      "bar": 11,
+      "note": 62,
+      "start": 7,
+      "dur": 2,
+      "velocity": 89
+    },
+    {
+      "bar": 11,
+      "note": 64,
+      "start": 9,
+      "dur": 2,
+      "velocity": 86
+    },
+    {
+      "bar": 11,
+      "note": 57,
+      "start": 11,
+      "dur": 4,
+      "velocity": 97
+    },
+    {
+      "bar": 12,
+      "note": 57,
+      "start": 0,
+      "dur": 3,
+      "velocity": 96
+    },
+    {
+      "bar": 12,
+      "note": 62,
+      "start": 3,
+      "dur": 2,
+      "velocity": 91
+    },
+    {
+      "bar": 12,
+      "note": 64,
+      "start": 5,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 12,
+      "note": 60,
+      "start": 7,
+      "dur": 2,
+      "velocity": 92
+    },
+    {
+      "bar": 12,
+      "note": 62,
+      "start": 9,
+      "dur": 2,
+      "velocity": 87
+    },
+    {
+      "bar": 12,
+      "note": 57,
+      "start": 11,
+      "dur": 4,
+      "velocity": 95
+    },
+    {
+      "bar": 13,
+      "note": 60,
+      "start": 0,
+      "dur": 3,
+      "velocity": 97
+    },
+    {
+      "bar": 13,
+      "note": 62,
+      "start": 3,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 13,
+      "note": 65,
+      "start": 5,
+      "dur": 2,
+      "velocity": 86
+    },
+    {
+      "bar": 13,
+      "note": 60,
+      "start": 7,
+      "dur": 2,
+      "velocity": 91
+    },
+    {
+      "bar": 13,
+      "note": 62,
+      "start": 9,
+      "dur": 2,
+      "velocity": 87
+    },
+    {
+      "bar": 13,
+      "note": 59,
+      "start": 11,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 14,
+      "note": 64,
+      "start": 0,
+      "dur": 3,
+      "velocity": 101
+    },
+    {
+      "bar": 14,
+      "note": 68,
+      "start": 3,
+      "dur": 2,
+      "velocity": 96
+    },
+    {
+      "bar": 14,
+      "note": 69,
+      "start": 5,
+      "dur": 2,
+      "velocity": 93
+    },
+    {
+      "bar": 14,
+      "note": 64,
+      "start": 7,
+      "dur": 2,
+      "velocity": 95
+    },
+    {
+      "bar": 14,
+      "note": 68,
+      "start": 9,
+      "dur": 2,
+      "velocity": 94
+    },
+    {
+      "bar": 14,
+      "note": 64,
+      "start": 11,
+      "dur": 4,
+      "velocity": 99
+    },
+    {
+      "bar": 15,
+      "note": 57,
+      "start": 0,
+      "dur": 3,
+      "velocity": 100
+    },
+    {
+      "bar": 15,
+      "note": 60,
+      "start": 3,
+      "dur": 2,
+      "velocity": 93
+    },
+    {
+      "bar": 15,
+      "note": 57,
+      "start": 5,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 15,
+      "note": 60,
+      "start": 7,
+      "dur": 2,
+      "velocity": 92
+    },
+    {
+      "bar": 15,
+      "note": 57,
+      "start": 9,
+      "dur": 2,
+      "velocity": 88
+    },
+    {
+      "bar": 15,
+      "note": 57,
+      "start": 11,
+      "dur": 4,
+      "velocity": 102
+    }
+  ],
+  "title": "疾旋之影",
+  "description": "高活跃率、大滚转幅度与强陀螺仪峰值驱动的激烈旋转律动"
+}
