@@ -128,6 +128,12 @@ def main():
     )
 
     parser.add_argument(
+        "--noavoid",
+        action="store_true",
+        help="关闭同刻碰撞规避(对比用)",
+    )
+
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="只打印配器方案不播放",
@@ -187,6 +193,7 @@ def main():
         energy,
         legato=args.legato,
         plain=args.plain,
+        avoid=not args.noavoid,
     )
 
     counts = {}

@@ -25,8 +25,8 @@ ROOTS = {
     "Am": 45,
 }
 
-VOICE_LO = 48
-VOICE_HI = 67
+VOICE_LO = 43
+VOICE_HI = 62
 
 
 def voice_chord(pcs, prev_voicing):
@@ -261,14 +261,15 @@ def build_arranged_events(
     energy,
     legato=False,
     plain=False,
+    avoid=True,
 ):
 
     """
     乐谱JSON + energy -> 统一事件流。
     energy 驱动: 播放速度 / 旋律音区 / 整体力度 / 配器密度
-    legato: 旋律连音填充(延长到下一音)，默认关闭
+    legato: 旋律连音填充(默认关)
     plain: 旧版渲染(长音和弦/无引子尾声/无力度弧线)
-    事件: (时间秒, 类型, 数据, 力度)
+    avoid: 同刻碰撞规避(≤2半音跳过/八度软化/其余保留)
     """
 
     base_bpm = score["bpm"]
@@ -306,6 +307,11 @@ def build_arranged_events(
         ]
 
     total_pos = max(1, bars * 16)
+
+    # 旋律占位: (起格, 止格, 音高) 与 每小节起音位置
+    melody_spans = []
+
+    onsets_by_bar = {}
 
     for idx, item in enumerate(melody):
 
@@ -364,8 +370,42 @@ def build_arranged_events(
             end_pos % 16,
         )
 
+        melody_spans.append(
+            (bar * 16 + start, end_pos, note)
+        )
+
+        onsets_by_bar.setdefault(
+            bar,
+            [],
+        ).append(start)
+
         events.append((t0, "melody_on", note, vel))
         events.append((t1, "melody_off", note, 0))
+
+    # -------------------------
+    # 碰撞判定(只作用于同刻)
+    # -------------------------
+
+    def collision_adjust(pitch, t_pos):
+
+        """
+        返回 (是否保留, 力度乘数)。
+        ≤2半音=糊刺 跳过；八度=厚 软化；其余=合法对位 保留。
+        """
+
+        for s, e, m_note in melody_spans:
+
+            if s <= t_pos < e:
+
+                d = abs(pitch - m_note)
+
+                if d <= 2:
+                    return False, 1.0
+
+                if d == 12:
+                    return True, 0.7
+
+        return True, 1.0
 
     # -------------------------
     # 和弦（持续铺底）
@@ -432,25 +472,83 @@ def build_arranged_events(
                 int(chord_vel * arc),
             )
 
+            # 密度自适应: 旋律密的小节伴奏减半
+            pattern = ACCOMP_PATTERN[tier]
+
+            mel_count = len(
+                onsets_by_bar.get(b, [])
+            )
+
+            if not plain and mel_count >= 5:
+
+                pattern = [
+                    p
+                    for p in pattern
+                    if p[0] in (0, 8)
+                ]
+
+            # 抢拍让路: 旋律在12~15格有音则去掉14格
+            if (
+                not plain
+                and tier == "intense"
+                and any(
+                    12 <= p <= 15
+                    for p in onsets_by_bar.get(b, [])
+                )
+            ):
+
+                pattern = [
+                    p
+                    for p in pattern
+                    if p[0] != 14
+                ]
+
             if tier == "intense":
 
-                # 强拍重击 + 抢拍
-                for pos, dur in ACCOMP_PATTERN[tier]:
+                # 强拍重击(逐音过碰撞规则)
+                for pos, dur in pattern:
 
                     v = base_vel if pos != 14 else int(base_vel * 0.8)
+
+                    t_pos = b * 16 + pos
+
+                    kept = []
+
+                    soft = False
+
+                    for n in notes:
+
+                        if avoid and not plain:
+
+                            keep, scale = collision_adjust(
+                                n,
+                                t_pos,
+                            )
+
+                            if not keep:
+                                continue
+
+                            if scale < 1.0:
+                                soft = True
+
+                        kept.append(n)
+
+                    if not kept:
+                        continue
+
+                    if soft:
+                        v = int(v * 0.7)
 
                     t0 = beat_time(b, pos)
                     t1 = t0 + dur * grid
 
-                    events.append((t0, "chord_on", notes, v))
-                    events.append((t1, "chord_off", notes, 0))
+                    events.append((t0, "chord_on", kept, v))
+                    events.append((t1, "chord_off", kept, 0))
 
             else:
 
-                # 流动琶音
-                for k, (pos, dur) in enumerate(
-                    ACCOMP_PATTERN[tier]
-                ):
+                # 流动琶音(逐音过碰撞规则)
+                for k, (pos, dur) in enumerate(pattern):
 
                     note = notes[
                         ARP_ORDER[
@@ -458,11 +556,25 @@ def build_arranged_events(
                         ]
                     ]
 
+                    v = int(base_vel * 0.85)
+
+                    if avoid and not plain:
+
+                        keep, scale = collision_adjust(
+                            note,
+                            b * 16 + pos,
+                        )
+
+                        if not keep:
+                            continue
+
+                        v = int(v * scale)
+
                     t0 = beat_time(b, pos)
                     t1 = t0 + dur * grid
 
                     events.append(
-                        (t0, "chord_on", [note], int(base_vel * 0.85))
+                        (t0, "chord_on", [note], v)
                     )
                     events.append(
                         (t1, "chord_off", [note], 0)
