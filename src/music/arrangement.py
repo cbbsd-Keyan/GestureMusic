@@ -300,16 +300,6 @@ def build_arranged_events(
         key=lambda x: (x["bar"], x["start"]),
     )
 
-    # 引子: 前两拍旋律静音(半小节晚进)
-    if not plain:
-        melody = [
-            x
-            for x in melody
-            if not (
-                x["bar"] == 0 and x["start"] < 8
-            )
-        ]
-
     total_pos = max(1, bars * 16)
 
     # 旋律占位: (起格, 止格, 音高) 与 每小节起音位置
@@ -677,6 +667,78 @@ def build_arranged_events(
                 (t0 + 16 * grid, "bass_off", root, 0)
             )
 
+    # -------------------------
+    # 前奏: 整小节纯伴奏(不占旋律乐句)
+    # 全部内容后移一小节, 原时隙放伴奏
+    # -------------------------
+
+    if not plain and last_symbol is not None:
+
+        intro_grid = 16 * grid
+
+        events = [
+            (t + intro_grid, etype, data, vel)
+            for t, etype, data, vel in events
+        ]
+
+        first_pcs = TRIAD_PCS.get(
+            score.get("chords", [{}])[0].get(
+                "symbol"
+            )
+        )
+
+        if first_pcs is not None:
+
+            intro_notes = voice_chord(
+                first_pcs,
+                None,
+            )
+
+            intro_vel = min(
+                110,
+                int(
+                    CHORD_VELOCITY[tier]
+                    * vscale
+                    * arc_factor(0.0)
+                ),
+            )
+
+            for k, (pos, dur) in enumerate(
+                ACCOMP_PATTERN[tier]
+            ):
+
+                if tier == "intense":
+
+                    note_group = intro_notes
+
+                    v = (
+                        intro_vel
+                        if pos != 14
+                        else int(intro_vel * 0.8)
+                    )
+
+                else:
+
+                    note_group = [
+                        intro_notes[
+                            ARP_ORDER[
+                                k % len(ARP_ORDER)
+                            ]
+                        ]
+                    ]
+
+                    v = int(intro_vel * 0.85)
+
+                t0 = pos * grid
+                t1 = t0 + dur * grid
+
+                events.append(
+                    (t0, "chord_on", note_group, v)
+                )
+                events.append(
+                    (t1, "chord_off", note_group, 0)
+                )
+
     events.sort(key=lambda x: x[0])
 
     return events, tier, bpm
@@ -691,6 +753,6 @@ def total_duration(score, energy, plain=False):
 
     grid = 60.0 / bpm / 4.0
 
-    extra = 0 if plain else 16 * grid
+    extra = 0 if plain else 32 * grid
 
     return score["bars"] * 16 * grid + extra + 1.0
