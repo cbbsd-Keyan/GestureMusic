@@ -1,0 +1,395 @@
+{
+  "bpm": 90,
+  "key": "C",
+  "bars": 12,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "C"
+    },
+    {
+      "bar": 1,
+      "symbol": "Am"
+    },
+    {
+      "bar": 2,
+      "symbol": "F"
+    },
+    {
+      "bar": 3,
+      "symbol": "G"
+    },
+    {
+      "bar": 4,
+      "symbol": "C"
+    },
+    {
+      "bar": 5,
+      "symbol": "Am"
+    },
+    {
+      "bar": 6,
+      "symbol": "F"
+    },
+    {
+      "bar": 7,
+      "symbol": "G"
+    },
+    {
+      "bar": 8,
+      "symbol": "C"
+    },
+    {
+      "bar": 9,
+      "symbol": "Am"
+    },
+    {
+      "bar": 10,
+      "symbol": "F"
+    },
+    {
+      "bar": 11,
+      "symbol": "G"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 95
+    },
+    {
+      "bar": 0,
+      "note": 64,
+      "start": 4,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 0,
+      "note": 67,
+      "start": 8,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 0,
+      "note": 72,
+      "start": 12,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 1,
+      "note": 57,
+      "start": 4,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 8,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 1,
+      "note": 64,
+      "start": 12,
+      "dur": 4,
+      "velocity": 75
+    },
+    {
+      "bar": 2,
+      "note": 65,
+      "start": 0,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 2,
+      "note": 62,
+      "start": 4,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 2,
+      "note": 60,
+      "start": 8,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 2,
+      "note": 65,
+      "start": 12,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 3,
+      "note": 67,
+      "start": 0,
+      "dur": 4,
+      "velocity": 95
+    },
+    {
+      "bar": 3,
+      "note": 71,
+      "start": 4,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 3,
+      "note": 72,
+      "start": 8,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 3,
+      "note": 67,
+      "start": 12,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 4,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 95
+    },
+    {
+      "bar": 4,
+      "note": 64,
+      "start": 4,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 4,
+      "note": 67,
+      "start": 8,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 4,
+      "note": 72,
+      "start": 12,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 5,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 5,
+      "note": 60,
+      "start": 4,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 5,
+      "note": 64,
+      "start": 8,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 5,
+      "note": 67,
+      "start": 12,
+      "dur": 4,
+      "velocity": 75
+    },
+    {
+      "bar": 6,
+      "note": 65,
+      "start": 0,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 6,
+      "note": 62,
+      "start": 4,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 6,
+      "note": 60,
+      "start": 8,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 6,
+      "note": 65,
+      "start": 12,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 7,
+      "note": 67,
+      "start": 0,
+      "dur": 4,
+      "velocity": 95
+    },
+    {
+      "bar": 7,
+      "note": 71,
+      "start": 4,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 7,
+      "note": 72,
+      "start": 8,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 7,
+      "note": 67,
+      "start": 12,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 8,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 95
+    },
+    {
+      "bar": 8,
+      "note": 64,
+      "start": 4,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 8,
+      "note": 67,
+      "start": 8,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 8,
+      "note": 72,
+      "start": 12,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 9,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 9,
+      "note": 60,
+      "start": 4,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 9,
+      "note": 64,
+      "start": 8,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 9,
+      "note": 67,
+      "start": 12,
+      "dur": 4,
+      "velocity": 75
+    },
+    {
+      "bar": 10,
+      "note": 65,
+      "start": 0,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 10,
+      "note": 62,
+      "start": 4,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 10,
+      "note": 60,
+      "start": 8,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 10,
+      "note": 65,
+      "start": 12,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 11,
+      "note": 67,
+      "start": 0,
+      "dur": 4,
+      "velocity": 95
+    },
+    {
+      "bar": 11,
+      "note": 71,
+      "start": 4,
+      "dur": 4,
+      "velocity": 85
+    },
+    {
+      "bar": 11,
+      "note": 72,
+      "start": 8,
+      "dur": 4,
+      "velocity": 90
+    },
+    {
+      "bar": 11,
+      "note": 60,
+      "start": 12,
+      "dur": 4,
+      "velocity": 100
+    }
+  ],
+  "title": "律动回旋",
+  "description": "高能量肢体动作（gyro_peak=24.8）驱动的明快C大调回旋旋律，节奏紧凑、音域跃动"
+}

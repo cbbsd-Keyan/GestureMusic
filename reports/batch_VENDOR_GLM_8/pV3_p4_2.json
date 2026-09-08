@@ -1,0 +1,99 @@
+{
+  "bpm": 90,
+  "key": "Am",
+  "bars": 8,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "Am"
+    },
+    {
+      "bar": 1,
+      "symbol": "G"
+    },
+    {
+      "bar": 2,
+      "symbol": "F"
+    },
+    {
+      "bar": 3,
+      "symbol": "E"
+    },
+    {
+      "bar": 4,
+      "symbol": "Am"
+    },
+    {
+      "bar": 5,
+      "symbol": "G"
+    },
+    {
+      "bar": 6,
+      "symbol": "F"
+    },
+    {
+      "bar": 7,
+      "symbol": "E"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 1,
+      "note": 59,
+      "start": 4,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 2,
+      "note": 60,
+      "start": 8,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 3,
+      "note": 62,
+      "start": 12,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 4,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 5,
+      "note": 59,
+      "start": 4,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 6,
+      "note": 60,
+      "start": 8,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 7,
+      "note": 62,
+      "start": 12,
+      "dur": 4,
+      "velocity": 80
+    }
+  ],
+  "title": "动作之韵",
+  "description": "以肢体动作的韵律谱写而成，展现活力与动感。"
+}

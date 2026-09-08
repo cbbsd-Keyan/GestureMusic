@@ -1,0 +1,215 @@
+{
+  "bpm": 85,
+  "key": "Am",
+  "bars": 16,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "Am"
+    },
+    {
+      "bar": 2,
+      "symbol": "Dm"
+    },
+    {
+      "bar": 4,
+      "symbol": "E"
+    },
+    {
+      "bar": 6,
+      "symbol": "Am"
+    },
+    {
+      "bar": 8,
+      "symbol": "Dm"
+    },
+    {
+      "bar": 10,
+      "symbol": "E"
+    },
+    {
+      "bar": 12,
+      "symbol": "Am"
+    },
+    {
+      "bar": 14,
+      "symbol": "Dm"
+    },
+    {
+      "bar": 16,
+      "symbol": "E"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 0,
+      "note": 60,
+      "start": 2,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 0,
+      "note": 64,
+      "start": 4,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 2,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 2,
+      "note": 60,
+      "start": 2,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 2,
+      "note": 64,
+      "start": 4,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 4,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 4,
+      "note": 60,
+      "start": 2,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 4,
+      "note": 64,
+      "start": 4,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 6,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 6,
+      "note": 60,
+      "start": 2,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 6,
+      "note": 64,
+      "start": 4,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 8,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 8,
+      "note": 60,
+      "start": 2,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 8,
+      "note": 64,
+      "start": 4,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 10,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 10,
+      "note": 60,
+      "start": 2,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 10,
+      "note": 64,
+      "start": 4,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 12,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 12,
+      "note": 60,
+      "start": 2,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 12,
+      "note": 64,
+      "start": 4,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 14,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 14,
+      "note": 60,
+      "start": 2,
+      "dur": 4,
+      "velocity": 80
+    },
+    {
+      "bar": 14,
+      "note": 64,
+      "start": 4,
+      "dur": 4,
+      "velocity": 80
+    }
+  ],
+  "title": "动作旋律",
+  "description": "根据动作特征创作的钢琴曲，旋律活泼，节奏明快。"
+}
