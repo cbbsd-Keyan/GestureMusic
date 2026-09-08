@@ -18,7 +18,7 @@ BASE_URL = os.environ.get(
 
 MODEL = os.environ.get(
     "LLM_MODEL",
-    "glm-4-flash",
+    "glm-5.3-flash",
 )
 
 TIMEOUT_S = 90.0
@@ -241,6 +241,15 @@ def call_llm(
             payload["response_format"] = {
                 "type": "json_object"
             }
+
+        # GLM-5.x强制思考, 指定最低档减少延迟
+        if str(model).startswith("glm-5"):
+
+            payload["thinking"] = {
+                "type": "enabled"
+            }
+
+            payload["reasoning_effort"] = "low"
 
         body = json.dumps(payload).encode("utf-8")
 
