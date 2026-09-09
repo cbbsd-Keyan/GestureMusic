@@ -13,7 +13,12 @@ sys.path.insert(0, str(BASE / "input"))
 from udp_reader import UDPReader
 from recorder import Recorder
 
-from profile import analyze, build_profile_json
+from profile import (
+    analyze,
+    build_profile_json,
+    load_rows,
+    resample,
+)
 
 
 # =========================
@@ -168,6 +173,262 @@ def resolve_energy(profile_json, csv_path, subject):
     energy = max(0.0, min(1.0, (raw - 1.0) / 5.0))
 
     return energy, "保底换算"
+
+
+def show_motion_chart(
+    csv_path,
+    profile,
+    energy,
+    energy_src,
+    out_png,
+    interactive=True,
+):
+
+    """
+    录制结束立即生成"刚才你怎么挥的"图,
+    播放期间常驻, 让动作->音乐的因果可见。
+    """
+
+    import math
+    import statistics
+
+    import matplotlib
+
+    if not interactive:
+        matplotlib.use("Agg")
+
+    matplotlib.rcParams["font.sans-serif"] = [
+        "Microsoft YaHei",
+        "SimHei",
+        "sans-serif",
+    ]
+
+    import matplotlib.pyplot as plt
+
+    from tempo import gyro_mag
+
+    rows = load_rows(csv_path)
+
+    if len(rows) < 2:
+        return
+
+    uniform = resample(rows)
+
+    mags = [gyro_mag(v) for v in uniform]
+
+    hz = 100.0
+
+    # 1秒滚动RMS(步进0.1s)
+    win = int(hz)
+
+    times = []
+    roll = []
+
+    for i in range(0, len(mags) - win + 1, int(hz * 0.1)):
+
+        seg = mags[i : i + win]
+
+        times.append((i + win / 2) / hz)
+
+        roll.append(
+            math.sqrt(
+                statistics.fmean(
+                    x * x for x in seg
+                )
+            )
+        )
+
+    # 节拍标记: 平滑后局部峰
+    sm = []
+
+    half = 5
+
+    for i in range(len(mags)):
+
+        lo = max(0, i - half)
+        hi = min(len(mags), i + half + 1)
+
+        sm.append(
+            statistics.fmean(mags[lo:hi])
+        )
+
+    mean = statistics.fmean(sm)
+    std = statistics.pstdev(sm)
+
+    thr = mean + 0.5 * std
+
+    min_gap = int(hz * 60 / 180)
+
+    peaks = []
+
+    last = -10 * min_gap
+
+    for i in range(1, len(sm) - 1):
+
+        if (
+            sm[i] >= sm[i - 1]
+            and sm[i] > sm[i + 1]
+            and sm[i] > thr
+            and i - last >= min_gap
+        ):
+
+            peaks.append(i / hz)
+
+            last = i
+
+    # 档位线(raw单位)
+    if "校准" in energy_src:
+
+        anchor_path = (
+            Path(csv_path).parent / "baseline.json"
+        )
+
+        with open(
+            anchor_path,
+            encoding="utf-8",
+        ) as f:
+
+            anchor = json.load(f)["anchor_rms"]
+
+        tier_lo = 0.33 * anchor
+        tier_hi = 0.70 * anchor
+
+        tier_note = "按你的校准"
+
+    else:
+
+        tier_lo = 1.0 + 5.0 * 0.33
+        tier_hi = 1.0 + 5.0 * 0.70
+
+        tier_note = "保底换算"
+
+    bpm = profile["tempo"]["bpm"]
+
+    fig, (ax1, ax2) = plt.subplots(
+        2,
+        1,
+        figsize=(9, 5.5),
+        gridspec_kw={
+            "height_ratios": [3, 1]
+        },
+    )
+
+    ax1.plot(
+        times,
+        roll,
+        color="#1f77b4",
+        linewidth=1.8,
+    )
+
+    peak_vals = []
+
+    for t in peaks:
+
+        idx = min(
+            int(t * 10),
+            len(roll) - 1,
+        )
+
+        peak_vals.append(roll[idx])
+
+    ax1.scatter(
+        peaks,
+        peak_vals,
+        color="#d62728",
+        s=18,
+        zorder=3,
+        label=f"检测到的挥动 ({len(peaks)}下)",
+    )
+
+    ax1.axhline(
+        tier_lo,
+        color="green",
+        linestyle="--",
+        alpha=0.7,
+    )
+
+    ax1.axhline(
+        tier_hi,
+        color="red",
+        linestyle="--",
+        alpha=0.7,
+    )
+
+    ax1.text(
+        times[-1],
+        tier_lo,
+        " 中档线",
+        color="green",
+        va="bottom",
+    )
+
+    ax1.text(
+        times[-1],
+        tier_hi,
+        " 激烈线",
+        color="red",
+        va="bottom",
+    )
+
+    ax1.set_ylabel("挥动强度")
+
+    ax1.set_title(
+        f"你刚才的挥动 ({tier_note})"
+    )
+
+    ax1.legend(loc="upper left")
+
+    bpm_text = (
+        f"{bpm:.0f}"
+        if bpm
+        else "未检出(用90)"
+    )
+
+    tier_name = (
+        "轻柔档"
+        if energy < 0.33
+        else "激烈档"
+        if energy > 0.7
+        else "中档"
+    )
+
+    ax2.axis("off")
+
+    ax2.text(
+        0.02,
+        0.72,
+        f"节奏 {bpm_text} → 曲速   "
+        f"强度 {energy*100:.0f}% → {tier_name}   "
+        f"时长 {profile['duration_s']:.0f}秒 → 曲长",
+        fontsize=13,
+    )
+
+    ax2.text(
+        0.02,
+        0.22,
+        "曲线跨过虚线 = 音乐换档；红点 = 系统数出来的拍子",
+        fontsize=10,
+        color="gray",
+    )
+
+    fig.tight_layout()
+
+    fig.savefig(
+        out_png,
+        dpi=120,
+    )
+
+    if interactive:
+
+        try:
+
+            plt.show(block=False)
+
+            plt.pause(0.5)
+
+        except Exception:
+
+            pass
 
 
 def main():
@@ -405,6 +666,27 @@ def main():
         )
 
     print(f"[存档] {out_dir}")
+
+    # -------------------------
+    # 4.5 挥动曲线图(播放期间常驻)
+    # -------------------------
+
+    try:
+
+        show_motion_chart(
+            csv_path,
+            profile,
+            energy,
+            energy_src,
+            out_dir / "motion.png",
+            interactive=not args.dry_run,
+        )
+
+        print("[曲线] 已生成挥动曲线图")
+
+    except Exception as e:
+
+        print(f"[曲线] 生成失败(不影响音乐): {e}")
 
     # -------------------------
     # 5. 播放
