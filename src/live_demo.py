@@ -464,6 +464,12 @@ def main():
     )
 
     parser.add_argument(
+        "--events",
+        action="store_true",
+        help="下挥落音试验模式(挥动时刻直接变音符)",
+    )
+
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="只跑流程不出声(测试用)",
@@ -585,7 +591,33 @@ def main():
 
     engine_name = "规则作曲"
 
-    if args.llm:
+    if args.events:
+
+        from composer_events import compose_events
+
+        ev_score, ev_info = compose_events(
+            csv_path,
+            profile,
+        )
+
+        if ev_score is not None:
+
+            score = ev_score
+
+            engine_name = (
+                f"下挥落音(试验) | "
+                f"轻{ev_info['轻']} 中{ev_info['中']} "
+                f"重{ev_info['重']}"
+            )
+
+        else:
+
+            print(
+                f"[下挥落音不可用] {ev_info}, "
+                "自动用规则作曲"
+            )
+
+    if args.llm and score is None:
 
         try:
 
