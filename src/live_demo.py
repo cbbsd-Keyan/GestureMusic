@@ -297,6 +297,8 @@ def show_motion_chart(
     energy_src,
     out_png,
     interactive=True,
+    register_times=None,
+    register_mode=None,
 ):
 
     """
@@ -419,14 +421,33 @@ def show_motion_chart(
 
     bpm = profile["tempo"]["bpm"]
 
-    fig, (ax1, ax2) = plt.subplots(
-        2,
-        1,
-        figsize=(9, 5.5),
-        gridspec_kw={
-            "height_ratios": [3, 1]
-        },
+    show_reg = (
+        register_times
+        and register_mode in ("posture", "vision")
+        and len(register_times) > 0
     )
+
+    if show_reg:
+
+        fig, (ax1, axR, ax2) = plt.subplots(
+            3,
+            1,
+            figsize=(9, 6.5),
+            gridspec_kw={
+                "height_ratios": [3, 1.3, 1]
+            },
+        )
+
+    else:
+
+        fig, (ax1, ax2) = plt.subplots(
+            2,
+            1,
+            figsize=(9, 5.5),
+            gridspec_kw={
+                "height_ratios": [3, 1]
+            },
+        )
 
     ax1.plot(
         times,
@@ -492,6 +513,41 @@ def show_motion_chart(
     )
 
     ax1.legend(loc="upper left")
+
+    if show_reg:
+
+        reg_label = (
+            "视觉音区(摄像头)"
+            if register_mode == "vision"
+            else "俯仰角音区(试验)"
+        )
+
+        reg_xs = [t for t, _ in register_times]
+        reg_ys = [v for _, v in register_times]
+
+        axR.step(
+            reg_xs,
+            reg_ys,
+            where="post",
+            color="#9467bd",
+            linewidth=1.8,
+        )
+
+        axR.scatter(
+            reg_xs,
+            reg_ys,
+            color="#9467bd",
+            s=16,
+            zorder=3,
+        )
+
+        axR.set_yticks([-1, 0, 1])
+        axR.set_yticklabels(["低", "中", "高"])
+        axR.set_ylim(-1.5, 1.5)
+        axR.set_ylabel("音区")
+        axR.set_title(
+            f"每次挥动实际生效的音区 | {reg_label}"
+        )
 
     bpm_text = (
         f"{bpm:.0f}"
@@ -708,6 +764,8 @@ def main():
 
             score = ev_score
             counts = ev_info["counts"]
+            register_times = ev_info.get("register_times")
+            register_mode = ev_info.get("register_mode")
 
             engine_name = (
                 f"下挥落音(试验) | "
@@ -760,8 +818,6 @@ def main():
             )
 
             print("[自动切换规则作曲]")
-
-            score = None
 
     if score is None:
 
@@ -840,6 +896,8 @@ def main():
             energy_src,
             out_dir / "motion.png",
             interactive=not args.dry_run,
+            register_times=register_times,
+            register_mode=register_mode,
         )
 
         print("[曲线] 已生成挥动曲线图")

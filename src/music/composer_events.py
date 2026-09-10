@@ -347,6 +347,14 @@ def compose_events(
                 }
             )
 
+    register_times = [
+        (
+            events[i][0],
+            register_of.get(i, 0) // 12,
+        )
+        for i in range(len(events))
+    ]
+
     return {
         "bpm": bpm,
         "key": "C",
@@ -367,4 +375,5 @@ def compose_events(
             "vision" if vision_levels is not None
             else "posture" if use_posture else "none"
         ),
+        "register_times": register_times,
     }
