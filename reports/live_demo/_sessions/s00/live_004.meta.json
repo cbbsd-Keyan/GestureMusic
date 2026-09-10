@@ -1,0 +1,10 @@
+{
+  "subject_id": "s00",
+  "scene": "live",
+  "mount_version": "ruler_v1",
+  "started_at": "2026-09-09 21:41:43",
+  "samples": 1670,
+  "duration_s": 16.69,
+  "hz_estimate": 100.0,
+  "notes": ""
+}

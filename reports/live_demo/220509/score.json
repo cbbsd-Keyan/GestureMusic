@@ -1,0 +1,227 @@
+{
+  "bpm": 168,
+  "key": "C",
+  "bars": 12,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "C"
+    },
+    {
+      "bar": 1,
+      "symbol": "Am"
+    },
+    {
+      "bar": 2,
+      "symbol": "F"
+    },
+    {
+      "bar": 3,
+      "symbol": "G"
+    },
+    {
+      "bar": 4,
+      "symbol": "C"
+    },
+    {
+      "bar": 5,
+      "symbol": "Am"
+    },
+    {
+      "bar": 6,
+      "symbol": "F"
+    },
+    {
+      "bar": 7,
+      "symbol": "G"
+    },
+    {
+      "bar": 8,
+      "symbol": "C"
+    },
+    {
+      "bar": 9,
+      "symbol": "Am"
+    },
+    {
+      "bar": 10,
+      "symbol": "F"
+    },
+    {
+      "bar": 11,
+      "symbol": "G"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 67,
+      "start": 6,
+      "dur": 4,
+      "velocity": 62
+    },
+    {
+      "bar": 0,
+      "note": 64,
+      "start": 8,
+      "dur": 4,
+      "velocity": 73
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 66
+    },
+    {
+      "bar": 1,
+      "note": 57,
+      "start": 14,
+      "dur": 4,
+      "velocity": 72
+    },
+    {
+      "bar": 2,
+      "note": 57,
+      "start": 4,
+      "dur": 4,
+      "velocity": 64
+    },
+    {
+      "bar": 2,
+      "note": 57,
+      "start": 10,
+      "dur": 4,
+      "velocity": 61
+    },
+    {
+      "bar": 3,
+      "note": 59,
+      "start": 0,
+      "dur": 4,
+      "velocity": 61
+    },
+    {
+      "bar": 3,
+      "note": 62,
+      "start": 4,
+      "dur": 4,
+      "velocity": 76
+    },
+    {
+      "bar": 4,
+      "note": 64,
+      "start": 0,
+      "dur": 4,
+      "velocity": 67
+    },
+    {
+      "bar": 4,
+      "note": 67,
+      "start": 10,
+      "dur": 4,
+      "velocity": 67
+    },
+    {
+      "bar": 5,
+      "note": 64,
+      "start": 6,
+      "dur": 4,
+      "velocity": 62
+    },
+    {
+      "bar": 5,
+      "note": 60,
+      "start": 14,
+      "dur": 4,
+      "velocity": 62
+    },
+    {
+      "bar": 6,
+      "note": 57,
+      "start": 0,
+      "dur": 4,
+      "velocity": 63
+    },
+    {
+      "bar": 6,
+      "note": 53,
+      "start": 10,
+      "dur": 4,
+      "velocity": 61
+    },
+    {
+      "bar": 7,
+      "note": 55,
+      "start": 10,
+      "dur": 4,
+      "velocity": 67
+    },
+    {
+      "bar": 7,
+      "note": 59,
+      "start": 14,
+      "dur": 4,
+      "velocity": 72
+    },
+    {
+      "bar": 8,
+      "note": 64,
+      "start": 0,
+      "dur": 4,
+      "velocity": 73
+    },
+    {
+      "bar": 8,
+      "note": 60,
+      "start": 8,
+      "dur": 4,
+      "velocity": 66
+    },
+    {
+      "bar": 9,
+      "note": 60,
+      "start": 2,
+      "dur": 4,
+      "velocity": 67
+    },
+    {
+      "bar": 9,
+      "note": 57,
+      "start": 8,
+      "dur": 4,
+      "velocity": 69
+    },
+    {
+      "bar": 10,
+      "note": 53,
+      "start": 6,
+      "dur": 4,
+      "velocity": 74
+    },
+    {
+      "bar": 10,
+      "note": 60,
+      "start": 12,
+      "dur": 4,
+      "velocity": 77
+    },
+    {
+      "bar": 11,
+      "note": 59,
+      "start": 4,
+      "dur": 4,
+      "velocity": 73
+    },
+    {
+      "bar": 11,
+      "note": 62,
+      "start": 10,
+      "dur": 4,
+      "velocity": 63
+    }
+  ],
+  "title": "舒缓的挥动",
+  "description": "基于18秒动作生成:能量0.28,节奏168BPM,音区中。"
+}

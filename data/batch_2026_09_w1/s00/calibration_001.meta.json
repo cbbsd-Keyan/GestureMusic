@@ -1,0 +1,10 @@
+{
+  "subject_id": "s00",
+  "scene": "calibration",
+  "mount_version": "ruler_v1",
+  "started_at": "2026-09-09 21:20:06",
+  "samples": 1108,
+  "duration_s": 11.07,
+  "hz_estimate": 100.0,
+  "notes": ""
+}

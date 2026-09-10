@@ -1,0 +1,159 @@
+{
+  "bpm": 159,
+  "key": "C",
+  "bars": 9,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "C"
+    },
+    {
+      "bar": 1,
+      "symbol": "Am"
+    },
+    {
+      "bar": 2,
+      "symbol": "F"
+    },
+    {
+      "bar": 3,
+      "symbol": "G"
+    },
+    {
+      "bar": 4,
+      "symbol": "C"
+    },
+    {
+      "bar": 5,
+      "symbol": "Am"
+    },
+    {
+      "bar": 6,
+      "symbol": "F"
+    },
+    {
+      "bar": 7,
+      "symbol": "G"
+    },
+    {
+      "bar": 8,
+      "symbol": "C"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 72,
+      "start": 10,
+      "dur": 2,
+      "velocity": 52
+    },
+    {
+      "bar": 0,
+      "note": 60,
+      "start": 12,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 0,
+      "note": 64,
+      "start": 12,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 0,
+      "note": 67,
+      "start": 12,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 0,
+      "note": 76,
+      "start": 12,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 1,
+      "note": 64,
+      "start": 4,
+      "dur": 2,
+      "velocity": 72
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 4,
+      "dur": 2,
+      "velocity": 72
+    },
+    {
+      "bar": 1,
+      "note": 69,
+      "start": 9,
+      "dur": 2,
+      "velocity": 52
+    },
+    {
+      "bar": 1,
+      "note": 57,
+      "start": 12,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 12,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 1,
+      "note": 64,
+      "start": 12,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 1,
+      "note": 72,
+      "start": 12,
+      "dur": 4,
+      "velocity": 92
+    },
+    {
+      "bar": 2,
+      "note": 72,
+      "start": 12,
+      "dur": 2,
+      "velocity": 52
+    },
+    {
+      "bar": 4,
+      "note": 60,
+      "start": 12,
+      "dur": 2,
+      "velocity": 72
+    },
+    {
+      "bar": 4,
+      "note": 67,
+      "start": 12,
+      "dur": 2,
+      "velocity": 72
+    },
+    {
+      "bar": 7,
+      "note": 71,
+      "start": 12,
+      "dur": 2,
+      "velocity": 52
+    }
+  ],
+  "title": "下挥落音",
+  "description": "你的8次挥动逐一落音: 轻4、中2、重2。"
+}

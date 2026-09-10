@@ -1,0 +1,267 @@
+{
+  "bpm": 86,
+  "key": "C",
+  "bars": 8,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "Am"
+    },
+    {
+      "bar": 1,
+      "symbol": "F"
+    },
+    {
+      "bar": 2,
+      "symbol": "C"
+    },
+    {
+      "bar": 3,
+      "symbol": "G"
+    },
+    {
+      "bar": 4,
+      "symbol": "Am"
+    },
+    {
+      "bar": 5,
+      "symbol": "F"
+    },
+    {
+      "bar": 6,
+      "symbol": "C"
+    },
+    {
+      "bar": 7,
+      "symbol": "G"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 57,
+      "start": 0,
+      "dur": 2,
+      "velocity": 66
+    },
+    {
+      "bar": 0,
+      "note": 57,
+      "start": 2,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 0,
+      "note": 57,
+      "start": 8,
+      "dur": 2,
+      "velocity": 68
+    },
+    {
+      "bar": 0,
+      "note": 60,
+      "start": 12,
+      "dur": 2,
+      "velocity": 75
+    },
+    {
+      "bar": 1,
+      "note": 53,
+      "start": 2,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 8,
+      "dur": 2,
+      "velocity": 66
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 12,
+      "dur": 2,
+      "velocity": 81
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 14,
+      "dur": 2,
+      "velocity": 69
+    },
+    {
+      "bar": 2,
+      "note": 67,
+      "start": 4,
+      "dur": 2,
+      "velocity": 67
+    },
+    {
+      "bar": 2,
+      "note": 64,
+      "start": 6,
+      "dur": 2,
+      "velocity": 80
+    },
+    {
+      "bar": 2,
+      "note": 60,
+      "start": 10,
+      "dur": 2,
+      "velocity": 76
+    },
+    {
+      "bar": 2,
+      "note": 60,
+      "start": 14,
+      "dur": 2,
+      "velocity": 75
+    },
+    {
+      "bar": 3,
+      "note": 62,
+      "start": 0,
+      "dur": 2,
+      "velocity": 67
+    },
+    {
+      "bar": 3,
+      "note": 62,
+      "start": 8,
+      "dur": 2,
+      "velocity": 78
+    },
+    {
+      "bar": 3,
+      "note": 62,
+      "start": 10,
+      "dur": 2,
+      "velocity": 73
+    },
+    {
+      "bar": 3,
+      "note": 59,
+      "start": 12,
+      "dur": 2,
+      "velocity": 79
+    },
+    {
+      "bar": 4,
+      "note": 60,
+      "start": 2,
+      "dur": 2,
+      "velocity": 71
+    },
+    {
+      "bar": 4,
+      "note": 57,
+      "start": 8,
+      "dur": 2,
+      "velocity": 82
+    },
+    {
+      "bar": 4,
+      "note": 60,
+      "start": 10,
+      "dur": 2,
+      "velocity": 77
+    },
+    {
+      "bar": 4,
+      "note": 60,
+      "start": 14,
+      "dur": 2,
+      "velocity": 73
+    },
+    {
+      "bar": 5,
+      "note": 57,
+      "start": 4,
+      "dur": 2,
+      "velocity": 70
+    },
+    {
+      "bar": 5,
+      "note": 57,
+      "start": 6,
+      "dur": 2,
+      "velocity": 82
+    },
+    {
+      "bar": 5,
+      "note": 53,
+      "start": 8,
+      "dur": 2,
+      "velocity": 67
+    },
+    {
+      "bar": 5,
+      "note": 53,
+      "start": 12,
+      "dur": 2,
+      "velocity": 80
+    },
+    {
+      "bar": 6,
+      "note": 64,
+      "start": 6,
+      "dur": 2,
+      "velocity": 68
+    },
+    {
+      "bar": 6,
+      "note": 60,
+      "start": 8,
+      "dur": 2,
+      "velocity": 72
+    },
+    {
+      "bar": 6,
+      "note": 67,
+      "start": 10,
+      "dur": 2,
+      "velocity": 73
+    },
+    {
+      "bar": 6,
+      "note": 67,
+      "start": 12,
+      "dur": 2,
+      "velocity": 72
+    },
+    {
+      "bar": 7,
+      "note": 62,
+      "start": 2,
+      "dur": 2,
+      "velocity": 81
+    },
+    {
+      "bar": 7,
+      "note": 62,
+      "start": 4,
+      "dur": 2,
+      "velocity": 73
+    },
+    {
+      "bar": 7,
+      "note": 59,
+      "start": 8,
+      "dur": 2,
+      "velocity": 79
+    },
+    {
+      "bar": 7,
+      "note": 55,
+      "start": 12,
+      "dur": 2,
+      "velocity": 74
+    }
+  ],
+  "title": "平稳的挥动",
+  "description": "基于12秒动作生成:能量0.38,节奏86BPM,音区中。"
+}
