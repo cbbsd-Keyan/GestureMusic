@@ -1,7 +1,10 @@
 import argparse
+import hashlib
 import json
+import math
 import sys
 import time
+from datetime import datetime
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent
@@ -12,6 +15,7 @@ sys.path.insert(0, str(BASE / "input"))
 
 from udp_reader import UDPReader
 from recorder import Recorder
+from session_clock import SessionClock
 
 from profile import (
     analyze,
@@ -81,9 +85,17 @@ def check_board(reader, wait_s=3.0):
     return True
 
 
-def record_swing(reader, seconds):
+def record_swing(reader, seconds, timing=None):
+
+    # 等待用户和校准时UDP持续到达，先丢弃旧包，避免与当前视频错配。
+    for _ in range(10000):
+        if reader.read() is None:
+            break
+    else:
+        raise RuntimeError("UDP积压无法清空，请重新录制")
 
     rows = []
+    clock = SessionClock()
 
     t0 = time.monotonic()
 
@@ -92,6 +104,7 @@ def record_swing(reader, seconds):
     while time.monotonic() - t0 < seconds:
 
         line = reader.read()
+        received_at = time.monotonic()
 
         if line is None:
             time.sleep(0.001)
@@ -106,10 +119,14 @@ def record_swing(reader, seconds):
 
             values = [float(x) for x in parts]
 
-            rows.append(values)
-
         except ValueError:
             continue
+
+        if not all(math.isfinite(value) for value in values):
+            continue
+        if not clock.observe(values[0], received_at):
+            continue
+        rows.append(values)
 
         elapsed = time.monotonic() - t0
 
@@ -122,7 +139,105 @@ def record_swing(reader, seconds):
                 f"({len(rows)} 点)"
             )
 
+    if timing is not None:
+        timing.update(clock.summary())
     return rows
+
+
+def capture_session(args):
+    """现场采集；所有退出路径均停止视频并关闭UDP。"""
+    reader = UDPReader(port=4210)
+    tracker = None
+    tracker_stopped = False
+    vision = None
+    try:
+        if not check_board(reader):
+            sys.exit(1)
+
+        if args.vision:
+            from beacon_tracker import BeaconTracker
+            tracker = BeaconTracker(beacon=args.beacon, camera_id=args.camera, mirror=args.mirror)
+            vision = {"version": 1, "time_reference": "csv_start",
+                      "levels": [], "beacon": args.beacon,
+                      "camera": args.camera, "error": None}
+            try:
+                calibrated = tracker.calibrate()
+            except Exception as exc:
+                calibrated = False
+                tracker.error = str(exc)
+            if not calibrated:
+                vision["error"] = tracker.error or "校准失败"
+                print(f"[视觉不可用] {vision['error']}；使用默认音区")
+
+        input("自由挥动 15 秒, 按回车开始...")
+        if tracker is not None and vision["error"] is None:
+            if not tracker.start():
+                vision["error"] = tracker.error or "采集启动失败"
+                print(f"[视觉不可用] {vision['error']}；使用默认音区")
+
+        print("[录制中]")
+        timing = {}
+        try:
+            rows = record_swing(reader, RECORD_SECONDS, timing=timing)
+        except (ValueError, RuntimeError) as exc:
+            print(f"[录制失败] {exc}")
+            sys.exit(1)
+
+        if tracker is not None:
+            tracker.stop()
+            tracker_stopped = True
+            if tracker.error:
+                vision["error"] = tracker.error
+            vision["sync"] = timing
+            if vision["error"] is None and timing.get("samples", 0):
+                vision["levels"] = tracker.levels(
+                    origin=timing["host_origin_monotonic"],
+                    duration=timing["duration_s"],
+                )
+                print(
+                    f"[视觉对齐] 有效样本{len(vision['levels'])} "
+                    f"接收偏移跨度{timing['receive_offset_span_s'] * 1000:.1f}ms"
+                )
+            if vision["error"]:
+                print(f"[视觉不可用] {vision['error']}；使用默认音区")
+
+        if len(rows) < 300:
+            print(f"[数据太少] 只录到{len(rows)}点，请检查板子后重试")
+            sys.exit(1)
+
+        recorder = Recorder(out_dir=LIVE_DIR / "_sessions", subject_id=args.subject)
+        recorder.start()
+        for row in rows:
+            recorder.feed(row)
+        recorder.stop()
+        csv_path = recorder.save(scene="live")["csv"]
+        return csv_path, vision
+    finally:
+        try:
+            if tracker is not None and not tracker_stopped:
+                tracker.stop()
+        finally:
+            reader.close()
+
+
+def load_vision(csv_path):
+    """只复用与当前CSV配套的视觉记录，避免不同会话误配。"""
+    path = csv_path.with_name("vision.json")
+    with path.open(encoding="utf-8") as f:
+        vision = json.load(f)
+    if (vision.get("version") != 1 or vision.get("time_reference") != "csv_start"
+            or vision.get("csv_sha256") != hashlib.sha256(csv_path.read_bytes()).hexdigest()):
+        raise ValueError("视觉记录的版本、时间基准或配套CSV不匹配")
+    if not isinstance(vision.get("levels"), list):
+        raise ValueError("视觉记录缺少样本列表")
+    # 作曲端还会检查每个样本的值；此处用于入口的明确报错。
+    import math
+    for sample in vision["levels"]:
+        if (not isinstance(sample, list) or len(sample) != 2
+                or not isinstance(sample[0], (int, float))
+                or not math.isfinite(sample[0]) or sample[1] not in (-1, 0, 1)):
+            raise ValueError("视觉样本需为[有限秒数, -1/0/+1音区]")
+    return vision
 
 
 def resolve_energy(profile_json, csv_path, subject):
@@ -469,6 +584,22 @@ def main():
         help="下挥落音试验模式(挥动时刻直接变音符)",
     )
 
+    register_mode = parser.add_mutually_exclusive_group()
+    register_mode.add_argument(
+        "--posture",
+        action="store_true",
+        help="姿态控音区试验(按相对俯仰角分音区;需--events)",
+    )
+
+    register_mode.add_argument(
+        "--vision", action="store_true",
+        help="摄像头控音区试验(需--events；CSV复测需同目录vision.json)",
+    )
+    parser.add_argument("--camera", type=int, default=0, help="视觉模式摄像头编号")
+    parser.add_argument("--mirror", action="store_true", help="水平镜像(摄像头画面左右反了就加)")
+    parser.add_argument("--beacon", choices=("bright", "green"), default="bright",
+                        help="视觉信标：bright亮点 / green绿色亮点")
+
     parser.add_argument(
         "--dry-run",
         action="store_true",
@@ -477,6 +608,11 @@ def main():
 
     args = parser.parse_args()
 
+    if args.posture and not args.events:
+        parser.error("--posture 需要同时使用 --events")
+    if args.vision and not args.events:
+        parser.error("--vision 需要同时使用 --events")
+
     print("===== 挥棒出声 · 完整流程 =====")
     print()
 
@@ -484,55 +620,21 @@ def main():
     # 1. 板子 & 录制
     # -------------------------
 
+    vision = None
     if args.csv:
 
         csv_path = Path(args.csv)
 
         print(f"[测试模式] 使用现有数据 {csv_path}")
+        if args.vision:
+            try:
+                vision = load_vision(csv_path)
+            except (OSError, ValueError, TypeError, AttributeError) as exc:
+                parser.error(f"无法复测视觉模式: {exc}")
 
     else:
 
-        reader = UDPReader(port=4210)
-
-        if not check_board(reader):
-            sys.exit(1)
-
-        print()
-        input("自由挥动 15 秒, 按回车开始...")
-
-        print("[录制中]")
-
-        rows = record_swing(
-            reader,
-            RECORD_SECONDS,
-        )
-
-        if len(rows) < 300:
-
-            print(
-                f"[数据太少] 只录到{len(rows)}点, "
-                "请检查板子后重试"
-            )
-
-            sys.exit(1)
-
-        recorder = Recorder(
-            out_dir=LIVE_DIR / "_sessions",
-            subject_id=args.subject,
-        )
-
-        recorder.start()
-
-        for r in rows:
-            recorder.feed(r)
-
-        recorder.stop()
-
-        result = recorder.save(scene="live")
-
-        csv_path = result["csv"]
-
-        reader.close()
+        csv_path, vision = capture_session(args)
 
     # -------------------------
     # 2. 画像
@@ -598,17 +700,38 @@ def main():
         ev_score, ev_info = compose_events(
             csv_path,
             profile,
+            use_posture=args.posture,
+            vision_levels=vision["levels"] if args.vision else None,
         )
 
         if ev_score is not None:
 
             score = ev_score
+            counts = ev_info["counts"]
 
             engine_name = (
                 f"下挥落音(试验) | "
-                f"轻{ev_info['轻']} 中{ev_info['中']} "
-                f"重{ev_info['重']}"
+                f"轻{counts['轻']} 中{counts['中']} "
+                f"重{counts['重']}"
             )
+
+            if args.posture:
+                posture = ev_info["posture"]
+                if posture is None:
+                    print("[姿态音区] 挥动不足6次，使用默认音区")
+                else:
+                    print(
+                        f"[姿态音区(试验)] 低{posture['低']} "
+                        f"中{posture['中']} 高{posture['高']}"
+                    )
+
+            if args.vision:
+                counts = ev_info["vision"]
+                print(
+                    f"[视觉音区(试验)] 低{counts['低']} 中{counts['中']} "
+                    f"高{counts['高']} 未匹配{counts['未匹配']} "
+                    "(未匹配使用默认音区)"
+                )
 
         else:
 
@@ -617,7 +740,7 @@ def main():
                 "自动用规则作曲"
             )
 
-    if args.llm and score is None:
+    if args.llm and not args.events and score is None:
 
         try:
 
@@ -661,7 +784,7 @@ def main():
     # 4. 存档
     # -------------------------
 
-    stamp = time.strftime("%H%M%S")
+    stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
 
     out_dir = LIVE_DIR / stamp
 
@@ -670,6 +793,11 @@ def main():
     import shutil
 
     shutil.copy(csv_path, out_dir / "input.csv")
+
+    if vision is not None:
+        vision["csv_sha256"] = hashlib.sha256((out_dir / "input.csv").read_bytes()).hexdigest()
+        with (out_dir / "vision.json").open("w", encoding="utf-8") as f:
+            json.dump(vision, f, ensure_ascii=False, indent=2)
 
     with open(
         out_dir / "profile.json",

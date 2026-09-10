@@ -1,0 +1,3 @@
+# 仅摄像头音区实验需要；使用桌面版OpenCV。
+numpy
+opencv-python
