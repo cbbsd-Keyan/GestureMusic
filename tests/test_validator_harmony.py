@@ -19,11 +19,17 @@ def make_score(melody, chords=None):
 
 class HarmonySnapTests(unittest.TestCase):
 
-    def test_off_by_default_no_change(self):
+    def test_explicit_off_no_change(self):
         s = make_score([{"bar": 0, "note": 61, "start": 0, "dur": 2, "velocity": 70}])
-        out, fixes, _ = validate_and_fix(s)
+        out, fixes, _ = validate_and_fix(s, snap_harmony=False)
         self.assertEqual(out["melody"][0]["note"], 61)
         self.assertFalse(any("吸附" in f for f in fixes))
+
+    def test_on_by_default_snaps(self):
+        s = make_score([{"bar": 0, "note": 61, "start": 0, "dur": 2, "velocity": 70}])
+        out, fixes, _ = validate_and_fix(s)
+        self.assertEqual(out["melody"][0]["note"], 60)
+        self.assertTrue(any("和弦音吸附1处" in f for f in fixes))
 
     def test_strong_beat_snapped_to_nearest_chord_tone(self):
         # C和弦(60,64,67): 强拍 61 -> 最近 60

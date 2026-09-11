@@ -628,7 +628,7 @@ def main():
     )
     parser.add_argument("--camera", type=int, default=0, help="视觉模式摄像头编号")
     parser.add_argument("--mirror", action="store_true", help="水平镜像(摄像头画面左右反了就加)")
-    parser.add_argument("--snap-harmony", action="store_true", help="试验:强拍/长音非和弦音吸附到最近和弦音(仅LLM路径)")
+    parser.add_argument("--no-snap-harmony", action="store_true", help="关闭和声吸附(默认开启:强拍/长音非和弦音吸附到最近和弦音,仅LLM路径)")
     parser.add_argument("--beacon", choices=("bright", "green"), default="bright",
                         help="视觉信标：bright亮点 / green绿色亮点")
 
@@ -801,7 +801,7 @@ def main():
 
             score, meta = call_llm(profile)
             from validator import validate_and_fix
-            score, fixes, fatals = validate_and_fix(score, snap_harmony=args.snap_harmony)
+            score, fixes, fatals = validate_and_fix(score, snap_harmony=not args.no_snap_harmony)
             if fatals:
                 raise ValueError("；".join(fatals))
 

@@ -170,9 +170,9 @@ def main():
     )
 
     parser.add_argument(
-        "--snap-harmony",
+        "--no-snap-harmony",
         action="store_true",
-        help="试验:强拍/长音非和弦音吸附到最近和弦音",
+        help="关闭和声吸附(默认开启)",
     )
 
     parser.add_argument(
@@ -277,7 +277,7 @@ def main():
 
             score, fixes, fatals = validate_and_fix(
                 score,
-                snap_harmony=args.snap_harmony,
+                snap_harmony=not args.no_snap_harmony,
             )
 
             if fatals:

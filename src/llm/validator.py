@@ -30,12 +30,12 @@ def _snap_note_to_chord(note, pcs):
     return note
 
 
-def validate_and_fix(score, snap_harmony=False):
+def validate_and_fix(score, snap_harmony=True):
 
     """
     校验并自动修复LLM乐谱。
-    snap_harmony: 试验开关——强拍/长音的非和弦音
-    吸附到最近和弦音(默认关闭)。
+    snap_harmony: 强拍/长音的非和弦音吸附到最近和弦音
+    (默认开启, --no-snap-harmony 可关)。
     返回 (score, fixes列表, fatal错误列表)。
     fatal非空时调用方应回退规则作曲。
     """
