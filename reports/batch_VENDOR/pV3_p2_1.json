@@ -1,0 +1,299 @@
+{
+  "bpm": 105,
+  "key": "Am",
+  "bars": 16,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "Am"
+    },
+    {
+      "bar": 1,
+      "symbol": "Dm"
+    },
+    {
+      "bar": 2,
+      "symbol": "E"
+    },
+    {
+      "bar": 3,
+      "symbol": "Am"
+    },
+    {
+      "bar": 4,
+      "symbol": "Dm"
+    },
+    {
+      "bar": 5,
+      "symbol": "E"
+    },
+    {
+      "bar": 6,
+      "symbol": "Am"
+    },
+    {
+      "bar": 7,
+      "symbol": "Dm"
+    },
+    {
+      "bar": 8,
+      "symbol": "E"
+    },
+    {
+      "bar": 9,
+      "symbol": "Am"
+    },
+    {
+      "bar": 10,
+      "symbol": "Dm"
+    },
+    {
+      "bar": 11,
+      "symbol": "E"
+    },
+    {
+      "bar": 12,
+      "symbol": "Am"
+    },
+    {
+      "bar": 13,
+      "symbol": "Dm"
+    },
+    {
+      "bar": 14,
+      "symbol": "E"
+    },
+    {
+      "bar": 15,
+      "symbol": "Am"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 57,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 0,
+      "note": 60,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 1,
+      "note": 62,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 1,
+      "note": 64,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 2,
+      "note": 57,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 2,
+      "note": 60,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 3,
+      "note": 59,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 3,
+      "note": 60,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 4,
+      "note": 57,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 4,
+      "note": 60,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 5,
+      "note": 62,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 5,
+      "note": 64,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 6,
+      "note": 57,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 6,
+      "note": 60,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 7,
+      "note": 59,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 7,
+      "note": 60,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 8,
+      "note": 57,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 8,
+      "note": 60,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 9,
+      "note": 62,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 9,
+      "note": 64,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 10,
+      "note": 57,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 10,
+      "note": 60,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 11,
+      "note": 59,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 11,
+      "note": 60,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 12,
+      "note": 57,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 12,
+      "note": 60,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 13,
+      "note": 62,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 13,
+      "note": 64,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 14,
+      "note": 57,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 14,
+      "note": 60,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 15,
+      "note": 59,
+      "start": 0,
+      "dur": 1,
+      "velocity": 80
+    },
+    {
+      "bar": 15,
+      "note": 60,
+      "start": 8,
+      "dur": 1,
+      "velocity": 80
+    }
+  ],
+  "title": "动作旋律",
+  "description": "根据动作画像创作的钢琴曲，旋律充满活力，节奏明快。"
+}

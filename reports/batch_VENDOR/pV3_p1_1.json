@@ -1,0 +1,211 @@
+{
+  "bpm": 85,
+  "key": "C",
+  "bars": 8,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "C"
+    },
+    {
+      "bar": 1,
+      "symbol": "G"
+    },
+    {
+      "bar": 2,
+      "symbol": "Am"
+    },
+    {
+      "bar": 3,
+      "symbol": "F"
+    },
+    {
+      "bar": 4,
+      "symbol": "C"
+    },
+    {
+      "bar": 5,
+      "symbol": "G"
+    },
+    {
+      "bar": 6,
+      "symbol": "Am"
+    },
+    {
+      "bar": 7,
+      "symbol": "F"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 60,
+      "start": 0,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 0,
+      "note": 64,
+      "start": 1,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 0,
+      "note": 67,
+      "start": 2,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 1,
+      "note": 67,
+      "start": 0,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 1,
+      "note": 71,
+      "start": 1,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 1,
+      "note": 74,
+      "start": 2,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 2,
+      "note": 57,
+      "start": 0,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 2,
+      "note": 60,
+      "start": 1,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 2,
+      "note": 64,
+      "start": 2,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 3,
+      "note": 64,
+      "start": 0,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 3,
+      "note": 67,
+      "start": 1,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 3,
+      "note": 71,
+      "start": 2,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 4,
+      "note": 60,
+      "start": 0,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 4,
+      "note": 64,
+      "start": 1,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 4,
+      "note": 67,
+      "start": 2,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 5,
+      "note": 67,
+      "start": 0,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 5,
+      "note": 71,
+      "start": 1,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 5,
+      "note": 74,
+      "start": 2,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 6,
+      "note": 57,
+      "start": 0,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 6,
+      "note": 60,
+      "start": 1,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 6,
+      "note": 64,
+      "start": 2,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 7,
+      "note": 64,
+      "start": 0,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 7,
+      "note": 67,
+      "start": 1,
+      "dur": 1,
+      "velocity": 90
+    },
+    {
+      "bar": 7,
+      "note": 71,
+      "start": 2,
+      "dur": 1,
+      "velocity": 90
+    }
+  ],
+  "title": "肢体动作之韵",
+  "description": "根据肢体动作画像，谱写出的充满活力的钢琴曲，旋律充满跳动感，和弦富有变化。"
+}

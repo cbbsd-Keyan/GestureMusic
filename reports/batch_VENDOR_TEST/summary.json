@@ -1,0 +1,12 @@
+[
+  {
+    "file": "pV3_p1_1.json",
+    "profile": "p1",
+    "variation": 0,
+    "temperature": 0.8,
+    "template": "C-G-Am-F",
+    "key": "C",
+    "latency_s": 31.43,
+    "fixes": 0
+  }
+]
