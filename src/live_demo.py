@@ -207,6 +207,15 @@ def capture_session(args):
             sys.exit(1)
 
         recorder = Recorder(out_dir=LIVE_DIR / "_sessions", subject_id=args.subject)
+
+        # 把个人校准锚值带到会话目录，两条能量路径才能找到
+        import shutil as _shutil
+        _anchor_src = BASE.parent / "data" / "batch_2026_09_w1" / args.subject / "baseline.json"
+        _anchor_dst = LIVE_DIR / "_sessions" / args.subject / "baseline.json"
+        if _anchor_src.exists() and not _anchor_dst.exists():
+            _shutil.copy(_anchor_src, _anchor_dst)
+            print(f"[校准] 已带入个人锚值: {_anchor_src.parent.name}")
+
         recorder.start()
         for row in rows:
             recorder.feed(row)
