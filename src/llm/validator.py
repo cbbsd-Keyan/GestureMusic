@@ -1,11 +1,41 @@
 NOTE_MIN = 36
 NOTE_MAX = 84
 
+CHORD_PCS = {
+    "C": (0, 4, 7),
+    "Dm": (2, 5, 9),
+    "Em": (4, 7, 11),
+    "E": (4, 8, 11),
+    "F": (5, 9, 0),
+    "G": (7, 11, 2),
+    "Am": (9, 0, 4),
+}
 
-def validate_and_fix(score):
+
+def _snap_note_to_chord(note, pcs):
+
+    """
+    吸附到最近和弦音(半音距离最近, 平局向下)。
+    吸附后越界则放弃。
+    """
+
+    for delta in (0, -1, 1, -2, 2, -3, 3, -4, 4):
+
+        snapped = note + delta
+
+        if snapped % 12 in pcs and NOTE_MIN <= snapped <= NOTE_MAX:
+
+            return snapped
+
+    return note
+
+
+def validate_and_fix(score, snap_harmony=False):
 
     """
     校验并自动修复LLM乐谱。
+    snap_harmony: 试验开关——强拍/长音的非和弦音
+    吸附到最近和弦音(默认关闭)。
     返回 (score, fixes列表, fatal错误列表)。
     fatal非空时调用方应回退规则作曲。
     """
@@ -125,5 +155,60 @@ def validate_and_fix(score):
     score.setdefault("description", "")
     score.setdefault("key", "C")
     score.setdefault("chords", [])
+
+    # -------------------------
+    # 和声吸附(试验开关)
+    # -------------------------
+
+    if snap_harmony and score["chords"]:
+
+        chord_by_bar = {}
+
+        for c in score["chords"]:
+
+            try:
+
+                chord_by_bar[int(c["bar"])] = str(
+                    c.get("symbol", "")
+                )
+
+            except (
+                KeyError,
+                ValueError,
+                TypeError,
+            ):
+                continue
+
+        snap_count = 0
+
+        for m in score["melody"]:
+
+            pcs = CHORD_PCS.get(
+                chord_by_bar.get(m["bar"])
+            )
+
+            if pcs is None:
+                continue
+
+            if m["start"] in (0, 8) or m["dur"] >= 4:
+
+                if m["note"] % 12 not in pcs:
+
+                    snapped = _snap_note_to_chord(
+                        m["note"],
+                        pcs,
+                    )
+
+                    if snapped != m["note"]:
+
+                        m["note"] = snapped
+
+                        snap_count += 1
+
+        if snap_count:
+
+            fixes.append(
+                f"和弦音吸附{snap_count}处"
+            )
 
     return score, fixes, fatals

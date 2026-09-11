@@ -170,6 +170,12 @@ def main():
     )
 
     parser.add_argument(
+        "--snap-harmony",
+        action="store_true",
+        help="试验:强拍/长音非和弦音吸附到最近和弦音",
+    )
+
+    parser.add_argument(
         "--mock",
         action="store_true",
         help="离线模式：用规则作曲器代替LLM",
@@ -270,7 +276,8 @@ def main():
                     continue
 
             score, fixes, fatals = validate_and_fix(
-                score
+                score,
+                snap_harmony=args.snap_harmony,
             )
 
             if fatals:
