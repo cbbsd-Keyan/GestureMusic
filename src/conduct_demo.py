@@ -32,8 +32,8 @@ PAUSE_DELAY = 0.5           # 暂停前的等待时间
 FADE_TIME = 0.4             # 淡入淡出时间(秒)
 GAIN_FLOOR = 0.15           # 活跃时最低音量
 GAIN_CEIL = 1.0             # 最大音量
-TEMPO_MIN = 0.7             # 最慢播放速度
-TEMPO_MAX = 1.3             # 最快播放速度
+TEMPO_MIN = 1.0             # 最慢播放速度(暂时锁定1.0, 变速有音质问题)
+TEMPO_MAX = 1.0             # 最快播放速度(暂时锁定1.0)
 TEMPO_REF_RATE = 1.5        # 参考挥动频率(次/秒, 约90BPM)
 
 SAMPLE_RATE = 44100
