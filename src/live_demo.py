@@ -212,6 +212,39 @@ def capture_session(args):
         import shutil as _shutil
         _anchor_src = BASE.parent / "data" / "batch_2026_09_w1" / args.subject / "baseline.json"
         _anchor_dst = LIVE_DIR / "_sessions" / args.subject / "baseline.json"
+
+        if not _anchor_src.exists():
+            # 没有 baseline：从 vigorous 录制自动推导锚值
+            _vig_dir = BASE.parent / "data" / "batch_2026_09_w1" / args.subject
+            _max_rms = 0.0
+            for _vf in sorted(_vig_dir.glob("vigorous_*.csv")):
+                try:
+                    _rows = load_rows(_vf)
+                    if len(_rows) < 50:
+                        continue
+                    _uni = resample(_rows)
+                    _mags = [(v[3]**2 + v[4]**2 + v[5]**2)**0.5 for v in _uni]
+                    _win = 100  # 1秒窗
+                    for _i in range(0, len(_mags) - _win + 1, _win):
+                        _seg = _mags[_i:_i+_win]
+                        _r = (sum(m*m for m in _seg) / len(_seg))**0.5
+                        if _r > _max_rms:
+                            _max_rms = _r
+                except Exception:
+                    continue
+            if _max_rms > 2.0:
+                import json as _json
+                from datetime import datetime, timezone as _tz
+                _anchor_dst.parent.mkdir(parents=True, exist_ok=True)
+                _anchor_dst.write_text(_json.dumps({
+                    "subject_id": args.subject,
+                    "anchor_rms": round(_max_rms, 3),
+                    "created_at": datetime.now(_tz.utc).isoformat(),
+                }, ensure_ascii=False, indent=2), encoding="utf-8")
+                print(f"[校准] 自动校准完成：从vigorous录制推导锚值 {_max_rms:.1f}（{args.subject}）")
+            else:
+                print(f"[校准] 未找到个人锚值（{args.subject} 无baseline且vigorous数据不足）")
+
         if _anchor_src.exists() and not _anchor_dst.exists():
             _shutil.copy(_anchor_src, _anchor_dst)
             print(f"[校准] 已带入个人锚值: {_anchor_src.parent.name}")
