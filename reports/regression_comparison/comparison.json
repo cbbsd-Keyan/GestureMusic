@@ -1,0 +1,910 @@
+[
+  {
+    "session": "20260911_022612_712156",
+    "mode": "song",
+    "rms": 2.454,
+    "energy": 0.29080000000000006,
+    "level": "calm",
+    "anchor": null,
+    "old_melody": 18,
+    "new_melody": 18,
+    "tiers": {
+      "calm": 7,
+      "neutral": 2
+    },
+    "variants": {
+      "old_full": {
+        "bpm": 87.564,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 38,
+          "chord_off": 38,
+          "melody_on": 18,
+          "bass_on": 10,
+          "melody_off": 18,
+          "bass_off": 10
+        },
+        "melody_velocity": 64.39
+      },
+      "new_composer_old_arranger": {
+        "bpm": 87.564,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 38,
+          "chord_off": 38,
+          "melody_on": 18,
+          "bass_on": 10,
+          "melody_off": 18,
+          "bass_off": 10
+        },
+        "melody_velocity": 64.39
+      },
+      "current_static": {
+        "bpm": 87.564,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 38,
+          "chord_off": 38,
+          "melody_on": 18,
+          "bass_on": 10,
+          "melody_off": 18,
+          "bass_off": 10
+        },
+        "melody_velocity": 64.39
+      },
+      "current_dynamic": {
+        "bpm": 92,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 45,
+          "chord_off": 45,
+          "melody_on": 18,
+          "bass_on": 16,
+          "melody_off": 18,
+          "bass_off": 16,
+          "drum": 12
+        },
+        "melody_velocity": 47.56
+      }
+    }
+  },
+  {
+    "session": "20260911_022612_712156",
+    "mode": "events",
+    "rms": 2.454,
+    "energy": 0.29080000000000006,
+    "level": "calm",
+    "anchor": null,
+    "old_melody": 42,
+    "new_melody": 42,
+    "tiers": {
+      "calm": 8
+    },
+    "variants": {
+      "old_full": {
+        "bpm": 87.564,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 27,
+          "chord_off": 27,
+          "bass_on": 9,
+          "melody_on": 42,
+          "melody_off": 42,
+          "bass_off": 9
+        },
+        "melody_velocity": 77.88
+      },
+      "new_composer_old_arranger": {
+        "bpm": 87.564,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 27,
+          "chord_off": 27,
+          "bass_on": 9,
+          "melody_on": 42,
+          "melody_off": 42,
+          "bass_off": 9
+        },
+        "melody_velocity": 77.88
+      },
+      "current_static": {
+        "bpm": 87.564,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 27,
+          "chord_off": 27,
+          "bass_on": 9,
+          "melody_on": 42,
+          "melody_off": 42,
+          "bass_off": 9
+        },
+        "melody_velocity": 77.88
+      },
+      "current_dynamic": {
+        "bpm": 92,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 19,
+          "chord_off": 19,
+          "bass_on": 7,
+          "melody_on": 42,
+          "melody_off": 42,
+          "bass_off": 7
+        },
+        "melody_velocity": 59.43
+      }
+    }
+  },
+  {
+    "session": "20260911_023726_869508",
+    "mode": "song",
+    "rms": 2.59,
+    "energy": 0.31799999999999995,
+    "level": "calm",
+    "anchor": null,
+    "old_melody": 18,
+    "new_melody": 18,
+    "tiers": {
+      "calm": 8,
+      "neutral": 1
+    },
+    "variants": {
+      "old_full": {
+        "bpm": 86.517,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 38,
+          "chord_off": 38,
+          "melody_on": 18,
+          "bass_on": 10,
+          "melody_off": 18,
+          "bass_off": 10
+        },
+        "melody_velocity": 65.94
+      },
+      "new_composer_old_arranger": {
+        "bpm": 86.517,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 38,
+          "chord_off": 38,
+          "melody_on": 18,
+          "bass_on": 10,
+          "melody_off": 18,
+          "bass_off": 10
+        },
+        "melody_velocity": 65.94
+      },
+      "current_static": {
+        "bpm": 86.517,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 38,
+          "chord_off": 38,
+          "melody_on": 18,
+          "bass_on": 10,
+          "melody_off": 18,
+          "bass_off": 10
+        },
+        "melody_velocity": 65.94
+      },
+      "current_dynamic": {
+        "bpm": 90,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 42,
+          "chord_off": 42,
+          "melody_on": 18,
+          "bass_on": 13,
+          "melody_off": 18,
+          "bass_off": 13,
+          "drum": 6
+        },
+        "melody_velocity": 51.28
+      }
+    }
+  },
+  {
+    "session": "20260911_023726_869508",
+    "mode": "events",
+    "rms": 2.59,
+    "energy": 0.31799999999999995,
+    "level": "calm",
+    "anchor": null,
+    "old_melody": 34,
+    "new_melody": 34,
+    "tiers": {
+      "calm": 8
+    },
+    "variants": {
+      "old_full": {
+        "bpm": 86.517,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 27,
+          "chord_off": 27,
+          "bass_on": 9,
+          "melody_on": 34,
+          "melody_off": 34,
+          "bass_off": 9
+        },
+        "melody_velocity": 79.06
+      },
+      "new_composer_old_arranger": {
+        "bpm": 86.517,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 27,
+          "chord_off": 27,
+          "bass_on": 9,
+          "melody_on": 34,
+          "melody_off": 34,
+          "bass_off": 9
+        },
+        "melody_velocity": 78.91
+      },
+      "current_static": {
+        "bpm": 86.517,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 27,
+          "chord_off": 27,
+          "bass_on": 9,
+          "melody_on": 34,
+          "melody_off": 34,
+          "bass_off": 9
+        },
+        "melody_velocity": 78.91
+      },
+      "current_dynamic": {
+        "bpm": 90,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 19,
+          "chord_off": 19,
+          "bass_on": 7,
+          "melody_on": 34,
+          "melody_off": 34,
+          "bass_off": 7
+        },
+        "melody_velocity": 62.85
+      }
+    }
+  },
+  {
+    "session": "20260911_130645_966222",
+    "mode": "song",
+    "rms": 6.693,
+    "energy": 1.0,
+    "level": "intense",
+    "anchor": null,
+    "old_melody": 72,
+    "new_melody": 72,
+    "tiers": {
+      "intense": 9
+    },
+    "variants": {
+      "old_full": {
+        "bpm": 199.8,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 18,
+          "chord_off": 18,
+          "melody_on": 72,
+          "bass_on": 57,
+          "drum": 117,
+          "melody_off": 72,
+          "bass_off": 57
+        },
+        "melody_velocity": 116.79
+      },
+      "new_composer_old_arranger": {
+        "bpm": 199.8,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 18,
+          "chord_off": 18,
+          "melody_on": 72,
+          "bass_on": 57,
+          "drum": 117,
+          "melody_off": 72,
+          "bass_off": 57
+        },
+        "melody_velocity": 116.79
+      },
+      "current_static": {
+        "bpm": 199.8,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 22,
+          "chord_off": 22,
+          "melody_on": 72,
+          "bass_on": 73,
+          "drum": 117,
+          "melody_off": 72,
+          "bass_off": 73
+        },
+        "melody_velocity": 116.79
+      },
+      "current_dynamic": {
+        "bpm": 185,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 22,
+          "chord_off": 22,
+          "melody_on": 72,
+          "bass_on": 73,
+          "drum": 117,
+          "melody_off": 72,
+          "bass_off": 73
+        },
+        "melody_velocity": 113.83
+      }
+    }
+  },
+  {
+    "session": "20260911_130645_966222",
+    "mode": "events",
+    "rms": 6.693,
+    "energy": 1.0,
+    "level": "intense",
+    "anchor": null,
+    "old_melody": 29,
+    "new_melody": 32,
+    "tiers": {
+      "neutral": 2,
+      "intense": 10
+    },
+    "variants": {
+      "old_full": {
+        "bpm": 199.8,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 28,
+          "chord_off": 28,
+          "bass_on": 73,
+          "drum": 156,
+          "bass_off": 73,
+          "melody_on": 29,
+          "melody_off": 29
+        },
+        "melody_velocity": 106.38
+      },
+      "new_composer_old_arranger": {
+        "bpm": 199.8,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 27,
+          "chord_off": 27,
+          "bass_on": 73,
+          "drum": 156,
+          "bass_off": 73,
+          "melody_on": 32,
+          "melody_off": 32
+        },
+        "melody_velocity": 108.72
+      },
+      "current_static": {
+        "bpm": 199.8,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 35,
+          "chord_off": 35,
+          "bass_on": 97,
+          "drum": 156,
+          "bass_off": 97,
+          "melody_on": 32,
+          "melody_off": 32
+        },
+        "melody_velocity": 108.72
+      },
+      "current_dynamic": {
+        "bpm": 185,
+        "initial_tier": "neutral",
+        "counts": {
+          "chord_on": 48,
+          "chord_off": 48,
+          "bass_on": 88,
+          "drum": 141,
+          "bass_off": 88,
+          "melody_on": 32,
+          "melody_off": 32
+        },
+        "melody_velocity": 107.62
+      }
+    }
+  },
+  {
+    "session": "20260911_130817_413311",
+    "mode": "song",
+    "rms": 10.452,
+    "energy": 1.0,
+    "level": "intense",
+    "anchor": null,
+    "old_melody": 72,
+    "new_melody": 72,
+    "tiers": {
+      "intense": 8,
+      "neutral": 1
+    },
+    "variants": {
+      "old_full": {
+        "bpm": 184.68,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 18,
+          "chord_off": 18,
+          "melody_on": 72,
+          "bass_on": 57,
+          "drum": 117,
+          "melody_off": 72,
+          "bass_off": 57
+        },
+        "melody_velocity": 116.79
+      },
+      "new_composer_old_arranger": {
+        "bpm": 184.68,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 18,
+          "chord_off": 18,
+          "melody_on": 72,
+          "bass_on": 57,
+          "drum": 117,
+          "melody_off": 72,
+          "bass_off": 57
+        },
+        "melody_velocity": 116.79
+      },
+      "current_static": {
+        "bpm": 184.68,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 22,
+          "chord_off": 22,
+          "melody_on": 72,
+          "bass_on": 73,
+          "drum": 117,
+          "melody_off": 72,
+          "bass_off": 73
+        },
+        "melody_velocity": 116.79
+      },
+      "current_dynamic": {
+        "bpm": 171,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 21,
+          "chord_off": 21,
+          "melody_on": 72,
+          "bass_on": 69,
+          "drum": 110,
+          "melody_off": 72,
+          "bass_off": 69
+        },
+        "melody_velocity": 113.06
+      }
+    }
+  },
+  {
+    "session": "20260911_130817_413311",
+    "mode": "events",
+    "rms": 10.452,
+    "energy": 1.0,
+    "level": "intense",
+    "anchor": null,
+    "old_melody": 23,
+    "new_melody": 24,
+    "tiers": {
+      "intense": 10,
+      "neutral": 1
+    },
+    "variants": {
+      "old_full": {
+        "bpm": 184.68,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 28,
+          "chord_off": 28,
+          "bass_on": 73,
+          "drum": 143,
+          "bass_off": 73,
+          "melody_on": 23,
+          "melody_off": 23
+        },
+        "melody_velocity": 110.87
+      },
+      "new_composer_old_arranger": {
+        "bpm": 184.68,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 27,
+          "chord_off": 27,
+          "bass_on": 73,
+          "drum": 143,
+          "bass_off": 73,
+          "melody_on": 24,
+          "melody_off": 24
+        },
+        "melody_velocity": 107.12
+      },
+      "current_static": {
+        "bpm": 184.68,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 32,
+          "chord_off": 32,
+          "bass_on": 89,
+          "drum": 143,
+          "bass_off": 89,
+          "melody_on": 24,
+          "melody_off": 24
+        },
+        "melody_velocity": 107.12
+      },
+      "current_dynamic": {
+        "bpm": 171,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 35,
+          "chord_off": 35,
+          "bass_on": 83,
+          "drum": 133,
+          "bass_off": 83,
+          "melody_on": 24,
+          "melody_off": 24
+        },
+        "melody_velocity": 106.08
+      }
+    }
+  },
+  {
+    "session": "20260911_140222_681851",
+    "mode": "song",
+    "rms": 6.701,
+    "energy": 0.7370215574131104,
+    "level": "intense",
+    "anchor": 9.092,
+    "old_melody": 72,
+    "new_melody": 72,
+    "tiers": {
+      "intense": 6,
+      "neutral": 3
+    },
+    "variants": {
+      "old_full": {
+        "bpm": 99.716,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 18,
+          "chord_off": 18,
+          "melody_on": 72,
+          "bass_on": 57,
+          "drum": 117,
+          "melody_off": 72,
+          "bass_off": 57
+        },
+        "melody_velocity": 100.5
+      },
+      "new_composer_old_arranger": {
+        "bpm": 99.716,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 18,
+          "chord_off": 18,
+          "melody_on": 72,
+          "bass_on": 57,
+          "drum": 117,
+          "melody_off": 72,
+          "bass_off": 57
+        },
+        "melody_velocity": 100.5
+      },
+      "current_static": {
+        "bpm": 99.716,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 22,
+          "chord_off": 22,
+          "melody_on": 72,
+          "bass_on": 73,
+          "drum": 117,
+          "melody_off": 72,
+          "bass_off": 73
+        },
+        "melody_velocity": 100.5
+      },
+      "current_dynamic": {
+        "bpm": 90,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 20,
+          "chord_off": 20,
+          "melody_on": 72,
+          "bass_on": 61,
+          "drum": 96,
+          "melody_off": 72,
+          "bass_off": 61
+        },
+        "melody_velocity": 93.17
+      }
+    }
+  },
+  {
+    "session": "20260911_140222_681851",
+    "mode": "events",
+    "rms": 6.701,
+    "energy": 0.7370215574131104,
+    "level": "intense",
+    "anchor": 9.092,
+    "old_melody": 43,
+    "new_melody": 26,
+    "tiers": {
+      "intense": 5,
+      "neutral": 1,
+      "calm": 2
+    },
+    "variants": {
+      "old_full": {
+        "bpm": 99.716,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 18,
+          "chord_off": 18,
+          "bass_on": 49,
+          "drum": 104,
+          "melody_on": 43,
+          "bass_off": 49,
+          "melody_off": 43
+        },
+        "melody_velocity": 93.98
+      },
+      "new_composer_old_arranger": {
+        "bpm": 99.716,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 19,
+          "chord_off": 19,
+          "bass_on": 49,
+          "drum": 104,
+          "bass_off": 49,
+          "melody_on": 26,
+          "melody_off": 26
+        },
+        "melody_velocity": 98.35
+      },
+      "current_static": {
+        "bpm": 99.716,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 24,
+          "chord_off": 24,
+          "bass_on": 65,
+          "drum": 104,
+          "bass_off": 65,
+          "melody_on": 26,
+          "melody_off": 26
+        },
+        "melody_velocity": 98.35
+      },
+      "current_dynamic": {
+        "bpm": 90,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 17,
+          "chord_off": 17,
+          "bass_on": 44,
+          "drum": 70,
+          "bass_off": 44,
+          "melody_on": 26,
+          "melody_off": 26
+        },
+        "melody_velocity": 94.31
+      }
+    }
+  },
+  {
+    "session": "20260911_140722_799225",
+    "mode": "song",
+    "rms": 5.521,
+    "energy": 0.6072371315442147,
+    "level": "neutral",
+    "anchor": 9.092,
+    "old_melody": 36,
+    "new_melody": 36,
+    "tiers": {
+      "neutral": 9
+    },
+    "variants": {
+      "old_full": {
+        "bpm": 144.504,
+        "initial_tier": "neutral",
+        "counts": {
+          "chord_on": 77,
+          "chord_off": 77,
+          "melody_on": 36,
+          "bass_on": 37,
+          "drum": 54,
+          "melody_off": 36,
+          "bass_off": 37
+        },
+        "melody_velocity": 88.75
+      },
+      "new_composer_old_arranger": {
+        "bpm": 144.504,
+        "initial_tier": "neutral",
+        "counts": {
+          "chord_on": 77,
+          "chord_off": 77,
+          "melody_on": 36,
+          "bass_on": 37,
+          "drum": 54,
+          "melody_off": 36,
+          "bass_off": 37
+        },
+        "melody_velocity": 88.75
+      },
+      "current_static": {
+        "bpm": 144.504,
+        "initial_tier": "neutral",
+        "counts": {
+          "chord_on": 77,
+          "chord_off": 77,
+          "melody_on": 36,
+          "bass_on": 37,
+          "drum": 54,
+          "melody_off": 36,
+          "bass_off": 37
+        },
+        "melody_velocity": 88.75
+      },
+      "current_dynamic": {
+        "bpm": 136,
+        "initial_tier": "neutral",
+        "counts": {
+          "chord_on": 77,
+          "chord_off": 77,
+          "melody_on": 36,
+          "bass_on": 37,
+          "drum": 54,
+          "melody_off": 36,
+          "bass_off": 37
+        },
+        "melody_velocity": 78.44
+      }
+    }
+  },
+  {
+    "session": "20260911_140722_799225",
+    "mode": "events",
+    "rms": 5.521,
+    "energy": 0.6072371315442147,
+    "level": "neutral",
+    "anchor": 9.092,
+    "old_melody": 46,
+    "new_melody": 29,
+    "tiers": {
+      "intense": 1,
+      "neutral": 7,
+      "calm": 1
+    },
+    "variants": {
+      "old_full": {
+        "bpm": 144.504,
+        "initial_tier": "neutral",
+        "counts": {
+          "chord_on": 51,
+          "chord_off": 51,
+          "bass_on": 37,
+          "drum": 54,
+          "melody_on": 46,
+          "bass_off": 37,
+          "melody_off": 46
+        },
+        "melody_velocity": 87.39
+      },
+      "new_composer_old_arranger": {
+        "bpm": 144.504,
+        "initial_tier": "neutral",
+        "counts": {
+          "chord_on": 63,
+          "chord_off": 63,
+          "bass_on": 37,
+          "drum": 54,
+          "bass_off": 37,
+          "melody_on": 29,
+          "melody_off": 29
+        },
+        "melody_velocity": 87.9
+      },
+      "current_static": {
+        "bpm": 144.504,
+        "initial_tier": "neutral",
+        "counts": {
+          "chord_on": 63,
+          "chord_off": 63,
+          "bass_on": 37,
+          "drum": 54,
+          "bass_off": 37,
+          "melody_on": 29,
+          "melody_off": 29
+        },
+        "melody_velocity": 87.9
+      },
+      "current_dynamic": {
+        "bpm": 136,
+        "initial_tier": "intense",
+        "counts": {
+          "chord_on": 52,
+          "chord_off": 52,
+          "bass_on": 38,
+          "drum": 55,
+          "bass_off": 38,
+          "melody_on": 29,
+          "melody_off": 29
+        },
+        "melody_velocity": 83.93
+      }
+    }
+  },
+  {
+    "session": "20260911_140937_742111",
+    "mode": "song",
+    "rms": 0.348,
+    "energy": 0.03827540695116585,
+    "level": "calm",
+    "anchor": 9.092,
+    "old_melody": 18,
+    "new_melody": 18,
+    "tiers": {
+      "calm": 9
+    },
+    "variants": {
+      "old_full": {
+        "bpm": 77.706,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 38,
+          "chord_off": 38,
+          "melody_on": 18,
+          "bass_on": 10,
+          "melody_off": 18,
+          "bass_off": 10
+        },
+        "melody_velocity": 48.56
+      },
+      "new_composer_old_arranger": {
+        "bpm": 77.706,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 38,
+          "chord_off": 38,
+          "melody_on": 18,
+          "bass_on": 10,
+          "melody_off": 18,
+          "bass_off": 10
+        },
+        "melody_velocity": 48.56
+      },
+      "current_static": {
+        "bpm": 77.706,
+        "initial_tier": "calm",
+        "counts": {
+          "chord_on": 38,
+          "chord_off": 38,
+          "melody_on": 18,
+          "bass_on": 10,
+          "melody_off": 18,
+          "bass_off": 10
+        },
+        "melody_velocity": 48.56
+      },
+      "current_dynamic": {
+        "bpm": 90,
+        "initial_tier": "calm",
+        "counts": {},
+        "melody_velocity": 0
+      }
+    }
+  }
+]

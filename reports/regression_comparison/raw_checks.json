@@ -1,0 +1,58 @@
+[
+  {
+    "session": "20260911_022612_712156",
+    "samples": 1500,
+    "gyro_rms": 2.454,
+    "low_rotation_samples": 215,
+    "low_rotation_accel_median": 9.302886340808426,
+    "gyro_axis_near_limit": 0
+  },
+  {
+    "session": "20260911_023726_869508",
+    "samples": 1494,
+    "gyro_rms": 2.59,
+    "low_rotation_samples": 164,
+    "low_rotation_accel_median": 9.680035553680042,
+    "gyro_axis_near_limit": 0
+  },
+  {
+    "session": "20260911_130645_966222",
+    "samples": 1491,
+    "gyro_rms": 6.693,
+    "low_rotation_samples": 0,
+    "low_rotation_accel_median": null,
+    "gyro_axis_near_limit": 10
+  },
+  {
+    "session": "20260911_130817_413311",
+    "samples": 1500,
+    "gyro_rms": 10.452,
+    "low_rotation_samples": 35,
+    "low_rotation_accel_median": 41.23417438702999,
+    "gyro_axis_near_limit": 255
+  },
+  {
+    "session": "20260911_140222_681851",
+    "samples": 1494,
+    "gyro_rms": 6.701,
+    "low_rotation_samples": 0,
+    "low_rotation_accel_median": null,
+    "gyro_axis_near_limit": 0
+  },
+  {
+    "session": "20260911_140722_799225",
+    "samples": 1495,
+    "gyro_rms": 5.521,
+    "low_rotation_samples": 1,
+    "low_rotation_accel_median": 27.100220430468827,
+    "gyro_axis_near_limit": 0
+  },
+  {
+    "session": "20260911_140937_742111",
+    "samples": 1499,
+    "gyro_rms": 0.348,
+    "low_rotation_samples": 1499,
+    "low_rotation_accel_median": 41.83164246942737,
+    "gyro_axis_near_limit": 0
+  }
+]
