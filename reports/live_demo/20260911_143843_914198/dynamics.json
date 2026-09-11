@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "mapping": "song",
+  "play_bpm": 90.0,
+  "body_start_s": 2.6666666666666665,
+  "body_duration_s": 21.333333333333332,
+  "motion_duration_s": 11.44,
+  "bar_controls": [
+    {
+      "bar": 0,
+      "energy": 0.2937546125,
+      "active_ratio": 0.96896901875,
+      "tier": "calm"
+    },
+    {
+      "bar": 1,
+      "energy": 0.26717393125,
+      "active_ratio": 0.959189315625,
+      "tier": "calm"
+    },
+    {
+      "bar": 2,
+      "energy": 0.28795908437499995,
+      "active_ratio": 0.9800742375,
+      "tier": "calm"
+    },
+    {
+      "bar": 3,
+      "energy": 0.2619144875,
+      "active_ratio": 0.959746246875,
+      "tier": "calm"
+    },
+    {
+      "bar": 4,
+      "energy": 0.296754796875,
+      "active_ratio": 0.9928217749999999,
+      "tier": "calm"
+    },
+    {
+      "bar": 5,
+      "energy": 0.314477190625,
+      "active_ratio": 0.9943378656249999,
+      "tier": "calm"
+    },
+    {
+      "bar": 6,
+      "energy": 0.3295284468749998,
+      "active_ratio": 0.99752475,
+      "tier": "calm"
+    },
+    {
+      "bar": 7,
+      "energy": 0.24727168437500008,
+      "active_ratio": 0.9140145937500004,
+      "tier": "calm"
+    }
+  ],
+  "pitch_control": "score_unchanged",
+  "tempo_control": "constant",
+  "min_tier_hold_bars": 1,
+  "inactive_ratio_threshold": 0.05,
+  "bar_mapping": [
+    {
+      "bar": 0,
+      "source_start_s": 0.0,
+      "source_end_s": 1.43,
+      "play_start_s": 2.6666666666666665,
+      "play_end_s": 5.333333333333333
+    },
+    {
+      "bar": 1,
+      "source_start_s": 1.43,
+      "source_end_s": 2.86,
+      "play_start_s": 5.333333333333333,
+      "play_end_s": 8.0
+    },
+    {
+      "bar": 2,
+      "source_start_s": 2.86,
+      "source_end_s": 4.29,
+      "play_start_s": 8.0,
+      "play_end_s": 10.666666666666666
+    },
+    {
+      "bar": 3,
+      "source_start_s": 4.29,
+      "source_end_s": 5.72,
+      "play_start_s": 10.666666666666666,
+      "play_end_s": 13.333333333333332
+    },
+    {
+      "bar": 4,
+      "source_start_s": 5.72,
+      "source_end_s": 7.1499999999999995,
+      "play_start_s": 13.333333333333332,
+      "play_end_s": 15.999999999999998
+    },
+    {
+      "bar": 5,
+      "source_start_s": 7.1499999999999995,
+      "source_end_s": 8.58,
+      "play_start_s": 15.999999999999998,
+      "play_end_s": 18.666666666666668
+    },
+    {
+      "bar": 6,
+      "source_start_s": 8.58,
+      "source_end_s": 10.01,
+      "play_start_s": 18.666666666666668,
+      "play_end_s": 21.333333333333332
+    },
+    {
+      "bar": 7,
+      "source_start_s": 10.01,
+      "source_end_s": 11.44,
+      "play_start_s": 21.333333333333332,
+      "play_end_s": 24.0
+    }
+  ]
+}

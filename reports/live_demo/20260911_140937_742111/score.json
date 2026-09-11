@@ -1,0 +1,173 @@
+{
+  "bpm": 90,
+  "key": "C",
+  "bars": 9,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "C"
+    },
+    {
+      "bar": 1,
+      "symbol": "Am"
+    },
+    {
+      "bar": 2,
+      "symbol": "F"
+    },
+    {
+      "bar": 3,
+      "symbol": "G"
+    },
+    {
+      "bar": 4,
+      "symbol": "C"
+    },
+    {
+      "bar": 5,
+      "symbol": "Am"
+    },
+    {
+      "bar": 6,
+      "symbol": "F"
+    },
+    {
+      "bar": 7,
+      "symbol": "G"
+    },
+    {
+      "bar": 8,
+      "symbol": "C"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 64,
+      "start": 8,
+      "dur": 4,
+      "velocity": 57
+    },
+    {
+      "bar": 0,
+      "note": 67,
+      "start": 14,
+      "dur": 2,
+      "velocity": 49
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 4,
+      "dur": 4,
+      "velocity": 52
+    },
+    {
+      "bar": 1,
+      "note": 64,
+      "start": 8,
+      "dur": 4,
+      "velocity": 50
+    },
+    {
+      "bar": 2,
+      "note": 57,
+      "start": 2,
+      "dur": 4,
+      "velocity": 55
+    },
+    {
+      "bar": 2,
+      "note": 53,
+      "start": 6,
+      "dur": 4,
+      "velocity": 64
+    },
+    {
+      "bar": 3,
+      "note": 55,
+      "start": 0,
+      "dur": 4,
+      "velocity": 54
+    },
+    {
+      "bar": 3,
+      "note": 59,
+      "start": 4,
+      "dur": 4,
+      "velocity": 61
+    },
+    {
+      "bar": 4,
+      "note": 60,
+      "start": 0,
+      "dur": 4,
+      "velocity": 48
+    },
+    {
+      "bar": 4,
+      "note": 60,
+      "start": 14,
+      "dur": 2,
+      "velocity": 60
+    },
+    {
+      "bar": 5,
+      "note": 57,
+      "start": 10,
+      "dur": 4,
+      "velocity": 60
+    },
+    {
+      "bar": 5,
+      "note": 64,
+      "start": 14,
+      "dur": 2,
+      "velocity": 61
+    },
+    {
+      "bar": 6,
+      "note": 60,
+      "start": 2,
+      "dur": 4,
+      "velocity": 58
+    },
+    {
+      "bar": 6,
+      "note": 60,
+      "start": 4,
+      "dur": 4,
+      "velocity": 61
+    },
+    {
+      "bar": 7,
+      "note": 55,
+      "start": 0,
+      "dur": 4,
+      "velocity": 53
+    },
+    {
+      "bar": 7,
+      "note": 59,
+      "start": 4,
+      "dur": 4,
+      "velocity": 61
+    },
+    {
+      "bar": 8,
+      "note": 64,
+      "start": 2,
+      "dur": 4,
+      "velocity": 62
+    },
+    {
+      "bar": 8,
+      "note": 60,
+      "start": 12,
+      "dur": 4,
+      "velocity": 51
+    }
+  ],
+  "title": "舒缓的挥动",
+  "description": "基于15秒动作生成:能量0.04,节奏90BPM,音区中。"
+}

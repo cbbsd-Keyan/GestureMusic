@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "mapping": "events",
+  "play_bpm": 141.0,
+  "body_start_s": 1.702127659574468,
+  "body_duration_s": 15.319148936170214,
+  "motion_duration_s": 14.99,
+  "bar_controls": [
+    {
+      "bar": 0,
+      "energy": 0.703218659574468,
+      "active_ratio": 1.0,
+      "tier": "intense"
+    },
+    {
+      "bar": 1,
+      "energy": 0.6561604042553192,
+      "active_ratio": 1.0,
+      "tier": "intense"
+    },
+    {
+      "bar": 2,
+      "energy": 0.5149457978723405,
+      "active_ratio": 1.0,
+      "tier": "neutral"
+    },
+    {
+      "bar": 3,
+      "energy": 0.6034602606382979,
+      "active_ratio": 1.0,
+      "tier": "neutral"
+    },
+    {
+      "bar": 4,
+      "energy": 0.5887085212765957,
+      "active_ratio": 1.0,
+      "tier": "neutral"
+    },
+    {
+      "bar": 5,
+      "energy": 0.5836094946808511,
+      "active_ratio": 1.0,
+      "tier": "neutral"
+    },
+    {
+      "bar": 6,
+      "energy": 0.5317853244680851,
+      "active_ratio": 0.9900990000000001,
+      "tier": "neutral"
+    },
+    {
+      "bar": 7,
+      "energy": 0.5035924787234043,
+      "active_ratio": 0.9964187872340425,
+      "tier": "neutral"
+    },
+    {
+      "bar": 8,
+      "energy": 0.39260724468085106,
+      "active_ratio": 0.75,
+      "tier": "neutral"
+    }
+  ],
+  "pitch_control": "score_unchanged",
+  "tempo_control": "constant",
+  "min_tier_hold_bars": 1,
+  "inactive_ratio_threshold": 0.05,
+  "bar_mapping": [
+    {
+      "bar": 0,
+      "source_start_s": 0.0,
+      "source_end_s": 1.702127659574468,
+      "play_start_s": 1.702127659574468,
+      "play_end_s": 3.404255319148936
+    },
+    {
+      "bar": 1,
+      "source_start_s": 1.702127659574468,
+      "source_end_s": 3.404255319148936,
+      "play_start_s": 3.404255319148936,
+      "play_end_s": 5.1063829787234045
+    },
+    {
+      "bar": 2,
+      "source_start_s": 3.404255319148936,
+      "source_end_s": 5.1063829787234045,
+      "play_start_s": 5.1063829787234045,
+      "play_end_s": 6.808510638297872
+    },
+    {
+      "bar": 3,
+      "source_start_s": 5.1063829787234045,
+      "source_end_s": 6.808510638297872,
+      "play_start_s": 6.808510638297872,
+      "play_end_s": 8.51063829787234
+    },
+    {
+      "bar": 4,
+      "source_start_s": 6.808510638297872,
+      "source_end_s": 8.51063829787234,
+      "play_start_s": 8.51063829787234,
+      "play_end_s": 10.212765957446809
+    },
+    {
+      "bar": 5,
+      "source_start_s": 8.51063829787234,
+      "source_end_s": 10.212765957446809,
+      "play_start_s": 10.212765957446809,
+      "play_end_s": 11.914893617021278
+    },
+    {
+      "bar": 6,
+      "source_start_s": 10.212765957446809,
+      "source_end_s": 11.914893617021276,
+      "play_start_s": 11.914893617021278,
+      "play_end_s": 13.617021276595745
+    },
+    {
+      "bar": 7,
+      "source_start_s": 11.914893617021276,
+      "source_end_s": 13.617021276595745,
+      "play_start_s": 13.617021276595745,
+      "play_end_s": 15.319148936170214
+    },
+    {
+      "bar": 8,
+      "source_start_s": 13.617021276595745,
+      "source_end_s": 15.319148936170214,
+      "play_start_s": 15.319148936170214,
+      "play_end_s": 17.02127659574468
+    }
+  ]
+}

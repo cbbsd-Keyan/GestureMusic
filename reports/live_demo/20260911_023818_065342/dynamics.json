@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "mapping": "events",
+  "play_bpm": 78.0,
+  "body_start_s": 3.076923076923077,
+  "body_duration_s": 24.615384615384617,
+  "motion_duration_s": 14.99,
+  "bar_controls": [
+    {
+      "bar": 0,
+      "energy": 0.18014165384615385,
+      "active_ratio": 0.9288562499999999,
+      "tier": "calm"
+    },
+    {
+      "bar": 1,
+      "energy": 0.2458061346153846,
+      "active_ratio": 1.0,
+      "tier": "calm"
+    },
+    {
+      "bar": 2,
+      "energy": 0.18565651923076926,
+      "active_ratio": 0.9851485,
+      "tier": "calm"
+    },
+    {
+      "bar": 3,
+      "energy": 0.14217048076923078,
+      "active_ratio": 0.99752475,
+      "tier": "calm"
+    },
+    {
+      "bar": 4,
+      "energy": 0.09787453846153865,
+      "active_ratio": 0.75,
+      "tier": "calm"
+    },
+    {
+      "bar": 5,
+      "energy": 0.0,
+      "active_ratio": 0.0,
+      "tier": "calm"
+    },
+    {
+      "bar": 6,
+      "energy": 0.0,
+      "active_ratio": 0.0,
+      "tier": "calm"
+    },
+    {
+      "bar": 7,
+      "energy": 0.0,
+      "active_ratio": 0.0,
+      "tier": "calm"
+    }
+  ],
+  "pitch_control": "score_unchanged",
+  "tempo_control": "constant",
+  "min_tier_hold_bars": 1,
+  "inactive_ratio_threshold": 0.05,
+  "bar_mapping": [
+    {
+      "bar": 0,
+      "source_start_s": 0.0,
+      "source_end_s": 3.076923076923077,
+      "play_start_s": 3.076923076923077,
+      "play_end_s": 6.153846153846154
+    },
+    {
+      "bar": 1,
+      "source_start_s": 3.076923076923077,
+      "source_end_s": 6.153846153846154,
+      "play_start_s": 6.153846153846154,
+      "play_end_s": 9.230769230769232
+    },
+    {
+      "bar": 2,
+      "source_start_s": 6.153846153846154,
+      "source_end_s": 9.230769230769232,
+      "play_start_s": 9.230769230769232,
+      "play_end_s": 12.307692307692308
+    },
+    {
+      "bar": 3,
+      "source_start_s": 9.230769230769232,
+      "source_end_s": 12.307692307692308,
+      "play_start_s": 12.307692307692308,
+      "play_end_s": 15.384615384615385
+    },
+    {
+      "bar": 4,
+      "source_start_s": 12.307692307692308,
+      "source_end_s": 15.384615384615385,
+      "play_start_s": 15.384615384615385,
+      "play_end_s": 18.461538461538463
+    },
+    {
+      "bar": 5,
+      "source_start_s": 15.384615384615385,
+      "source_end_s": 18.461538461538463,
+      "play_start_s": 18.461538461538463,
+      "play_end_s": 21.53846153846154
+    },
+    {
+      "bar": 6,
+      "source_start_s": 18.461538461538463,
+      "source_end_s": 21.53846153846154,
+      "play_start_s": 21.53846153846154,
+      "play_end_s": 24.615384615384617
+    },
+    {
+      "bar": 7,
+      "source_start_s": 21.53846153846154,
+      "source_end_s": 24.615384615384617,
+      "play_start_s": 24.615384615384617,
+      "play_end_s": 27.692307692307693
+    }
+  ]
+}

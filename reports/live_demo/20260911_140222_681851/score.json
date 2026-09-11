@@ -1,0 +1,225 @@
+{
+  "bpm": 90,
+  "key": "C",
+  "bars": 8,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "Em"
+    },
+    {
+      "bar": 1,
+      "symbol": "C"
+    },
+    {
+      "bar": 2,
+      "symbol": "G"
+    },
+    {
+      "bar": 3,
+      "symbol": "D"
+    },
+    {
+      "bar": 4,
+      "symbol": "Em"
+    },
+    {
+      "bar": 5,
+      "symbol": "C"
+    },
+    {
+      "bar": 6,
+      "symbol": "G"
+    },
+    {
+      "bar": 7,
+      "symbol": "D"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 64,
+      "start": 5,
+      "dur": 2,
+      "velocity": 63
+    },
+    {
+      "bar": 0,
+      "note": 55,
+      "start": 13,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 0,
+      "note": 52,
+      "start": 13,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 1,
+      "note": 55,
+      "start": 0,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 1,
+      "note": 52,
+      "start": 0,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 8,
+      "dur": 2,
+      "velocity": 63
+    },
+    {
+      "bar": 1,
+      "note": 64,
+      "start": 11,
+      "dur": 2,
+      "velocity": 63
+    },
+    {
+      "bar": 2,
+      "note": 74,
+      "start": 6,
+      "dur": 2,
+      "velocity": 63
+    },
+    {
+      "bar": 2,
+      "note": 67,
+      "start": 11,
+      "dur": 2,
+      "velocity": 63
+    },
+    {
+      "bar": 2,
+      "note": 55,
+      "start": 14,
+      "dur": 2,
+      "velocity": 105
+    },
+    {
+      "bar": 2,
+      "note": 59,
+      "start": 14,
+      "dur": 2,
+      "velocity": 105
+    },
+    {
+      "bar": 2,
+      "note": 62,
+      "start": 14,
+      "dur": 2,
+      "velocity": 105
+    },
+    {
+      "bar": 2,
+      "note": 71,
+      "start": 14,
+      "dur": 2,
+      "velocity": 105
+    },
+    {
+      "bar": 3,
+      "note": 57,
+      "start": 2,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 3,
+      "note": 54,
+      "start": 2,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 3,
+      "note": 50,
+      "start": 12,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 3,
+      "note": 57,
+      "start": 12,
+      "dur": 2,
+      "velocity": 85
+    },
+    {
+      "bar": 4,
+      "note": 52,
+      "start": 8,
+      "dur": 4,
+      "velocity": 105
+    },
+    {
+      "bar": 4,
+      "note": 55,
+      "start": 8,
+      "dur": 4,
+      "velocity": 105
+    },
+    {
+      "bar": 4,
+      "note": 59,
+      "start": 8,
+      "dur": 4,
+      "velocity": 105
+    },
+    {
+      "bar": 4,
+      "note": 67,
+      "start": 8,
+      "dur": 4,
+      "velocity": 105
+    },
+    {
+      "bar": 4,
+      "note": 71,
+      "start": 15,
+      "dur": 1,
+      "velocity": 63
+    },
+    {
+      "bar": 5,
+      "note": 48,
+      "start": 3,
+      "dur": 4,
+      "velocity": 105
+    },
+    {
+      "bar": 5,
+      "note": 52,
+      "start": 3,
+      "dur": 4,
+      "velocity": 105
+    },
+    {
+      "bar": 5,
+      "note": 55,
+      "start": 3,
+      "dur": 4,
+      "velocity": 105
+    },
+    {
+      "bar": 5,
+      "note": 64,
+      "start": 3,
+      "dur": 4,
+      "velocity": 105
+    }
+  ],
+  "title": "下挥落音",
+  "description": "你的13次挥动逐一落音: 轻6、中4、重3。"
+}

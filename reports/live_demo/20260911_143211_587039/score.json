@@ -1,0 +1,267 @@
+{
+  "bpm": 110,
+  "key": "C",
+  "bars": 8,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "Em"
+    },
+    {
+      "bar": 1,
+      "symbol": "C"
+    },
+    {
+      "bar": 2,
+      "symbol": "G"
+    },
+    {
+      "bar": 3,
+      "symbol": "D"
+    },
+    {
+      "bar": 4,
+      "symbol": "Em"
+    },
+    {
+      "bar": 5,
+      "symbol": "C"
+    },
+    {
+      "bar": 6,
+      "symbol": "G"
+    },
+    {
+      "bar": 7,
+      "symbol": "D"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 64,
+      "start": 6,
+      "dur": 2,
+      "velocity": 68
+    },
+    {
+      "bar": 0,
+      "note": 67,
+      "start": 9,
+      "dur": 2,
+      "velocity": 68
+    },
+    {
+      "bar": 0,
+      "note": 71,
+      "start": 13,
+      "dur": 2,
+      "velocity": 68
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 1,
+      "dur": 2,
+      "velocity": 68
+    },
+    {
+      "bar": 1,
+      "note": 52,
+      "start": 5,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 1,
+      "note": 48,
+      "start": 5,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 1,
+      "note": 48,
+      "start": 9,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 1,
+      "note": 52,
+      "start": 9,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 1,
+      "note": 55,
+      "start": 9,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 1,
+      "note": 64,
+      "start": 9,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 2,
+      "note": 55,
+      "start": 1,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 2,
+      "note": 62,
+      "start": 1,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 2,
+      "note": 71,
+      "start": 5,
+      "dur": 2,
+      "velocity": 68
+    },
+    {
+      "bar": 2,
+      "note": 62,
+      "start": 9,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 2,
+      "note": 59,
+      "start": 9,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 2,
+      "note": 67,
+      "start": 15,
+      "dur": 1,
+      "velocity": 68
+    },
+    {
+      "bar": 3,
+      "note": 54,
+      "start": 12,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 3,
+      "note": 50,
+      "start": 12,
+      "dur": 2,
+      "velocity": 90
+    },
+    {
+      "bar": 4,
+      "note": 71,
+      "start": 1,
+      "dur": 2,
+      "velocity": 68
+    },
+    {
+      "bar": 4,
+      "note": 52,
+      "start": 7,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 4,
+      "note": 55,
+      "start": 7,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 4,
+      "note": 59,
+      "start": 7,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 4,
+      "note": 67,
+      "start": 7,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 5,
+      "note": 48,
+      "start": 4,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 5,
+      "note": 52,
+      "start": 4,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 5,
+      "note": 55,
+      "start": 4,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 5,
+      "note": 64,
+      "start": 4,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 6,
+      "note": 55,
+      "start": 2,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 6,
+      "note": 59,
+      "start": 2,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 6,
+      "note": 62,
+      "start": 2,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 6,
+      "note": 71,
+      "start": 2,
+      "dur": 4,
+      "velocity": 110
+    },
+    {
+      "bar": 6,
+      "note": 67,
+      "start": 12,
+      "dur": 2,
+      "velocity": 68
+    }
+  ],
+  "title": "下挥落音",
+  "description": "你的16次挥动逐一落音: 轻8、中4、重4。"
+}

@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "mapping": "events",
+  "play_bpm": 75.0,
+  "body_start_s": 3.2,
+  "body_duration_s": 25.6,
+  "motion_duration_s": 15.04,
+  "bar_controls": [
+    {
+      "bar": 0,
+      "energy": 0.22735450000000004,
+      "active_ratio": 0.86037975,
+      "tier": "calm"
+    },
+    {
+      "bar": 1,
+      "energy": 0.2606505,
+      "active_ratio": 1.0,
+      "tier": "calm"
+    },
+    {
+      "bar": 2,
+      "energy": 0.3554737499999999,
+      "active_ratio": 0.9900990000000001,
+      "tier": "calm"
+    },
+    {
+      "bar": 3,
+      "energy": 0.3675699999999998,
+      "active_ratio": 0.92326725,
+      "tier": "calm"
+    },
+    {
+      "bar": 4,
+      "energy": 0.09145550000000002,
+      "active_ratio": 0.700957,
+      "tier": "calm"
+    },
+    {
+      "bar": 5,
+      "energy": 0.0,
+      "active_ratio": 0.0,
+      "tier": "calm"
+    },
+    {
+      "bar": 6,
+      "energy": 0.0,
+      "active_ratio": 0.0,
+      "tier": "calm"
+    },
+    {
+      "bar": 7,
+      "energy": 0.0,
+      "active_ratio": 0.0,
+      "tier": "calm"
+    }
+  ],
+  "pitch_control": "score_unchanged",
+  "tempo_control": "constant",
+  "min_tier_hold_bars": 1,
+  "inactive_ratio_threshold": 0.05,
+  "bar_mapping": [
+    {
+      "bar": 0,
+      "source_start_s": 0.0,
+      "source_end_s": 3.2,
+      "play_start_s": 3.2,
+      "play_end_s": 6.4
+    },
+    {
+      "bar": 1,
+      "source_start_s": 3.2,
+      "source_end_s": 6.4,
+      "play_start_s": 6.4,
+      "play_end_s": 9.600000000000001
+    },
+    {
+      "bar": 2,
+      "source_start_s": 6.4,
+      "source_end_s": 9.600000000000001,
+      "play_start_s": 9.600000000000001,
+      "play_end_s": 12.8
+    },
+    {
+      "bar": 3,
+      "source_start_s": 9.600000000000001,
+      "source_end_s": 12.8,
+      "play_start_s": 12.8,
+      "play_end_s": 16.0
+    },
+    {
+      "bar": 4,
+      "source_start_s": 12.8,
+      "source_end_s": 16.0,
+      "play_start_s": 16.0,
+      "play_end_s": 19.2
+    },
+    {
+      "bar": 5,
+      "source_start_s": 16.0,
+      "source_end_s": 19.200000000000003,
+      "play_start_s": 19.2,
+      "play_end_s": 22.400000000000002
+    },
+    {
+      "bar": 6,
+      "source_start_s": 19.200000000000003,
+      "source_end_s": 22.400000000000002,
+      "play_start_s": 22.400000000000002,
+      "play_end_s": 25.6
+    },
+    {
+      "bar": 7,
+      "source_start_s": 22.400000000000002,
+      "source_end_s": 25.6,
+      "play_start_s": 25.6,
+      "play_end_s": 28.8
+    }
+  ]
+}

@@ -1,0 +1,917 @@
+{
+  "version": 1,
+  "duration_s": 14.99,
+  "window_s": 1.0,
+  "step_s": 0.1,
+  "normalization": "personal",
+  "anchor_rms": 9.092,
+  "points": [
+    {
+      "t": 0.0,
+      "gyro_rms": 3.505352,
+      "energy": 0.385542,
+      "active_ratio": 0.901961
+    },
+    {
+      "t": 0.1,
+      "gyro_rms": 3.766266,
+      "energy": 0.41424,
+      "active_ratio": 0.918033
+    },
+    {
+      "t": 0.2,
+      "gyro_rms": 3.828774,
+      "energy": 0.421115,
+      "active_ratio": 0.929577
+    },
+    {
+      "t": 0.3,
+      "gyro_rms": 4.344712,
+      "energy": 0.477861,
+      "active_ratio": 0.938272
+    },
+    {
+      "t": 0.4,
+      "gyro_rms": 4.785638,
+      "energy": 0.526357,
+      "active_ratio": 0.945055
+    },
+    {
+      "t": 0.5,
+      "gyro_rms": 4.745558,
+      "energy": 0.521949,
+      "active_ratio": 0.950495
+    },
+    {
+      "t": 0.6,
+      "gyro_rms": 4.87187,
+      "energy": 0.535841,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 0.7,
+      "gyro_rms": 4.930566,
+      "energy": 0.542297,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 0.8,
+      "gyro_rms": 5.089385,
+      "energy": 0.559765,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 0.9,
+      "gyro_rms": 5.545516,
+      "energy": 0.609934,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 1.0,
+      "gyro_rms": 5.803477,
+      "energy": 0.638306,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 1.1,
+      "gyro_rms": 5.842812,
+      "energy": 0.642632,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 1.2,
+      "gyro_rms": 6.120943,
+      "energy": 0.673223,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 1.3,
+      "gyro_rms": 6.145975,
+      "energy": 0.675976,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 1.4,
+      "gyro_rms": 5.780601,
+      "energy": 0.63579,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 1.5,
+      "gyro_rms": 5.637319,
+      "energy": 0.620031,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 1.6,
+      "gyro_rms": 5.575145,
+      "energy": 0.613192,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 1.7,
+      "gyro_rms": 5.511564,
+      "energy": 0.606199,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 1.8,
+      "gyro_rms": 5.433439,
+      "energy": 0.597607,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 1.9,
+      "gyro_rms": 5.035383,
+      "energy": 0.553826,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 2.0,
+      "gyro_rms": 4.312548,
+      "energy": 0.474323,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 2.1,
+      "gyro_rms": 4.215038,
+      "energy": 0.463599,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 2.2,
+      "gyro_rms": 4.097184,
+      "energy": 0.450636,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 2.3,
+      "gyro_rms": 3.720805,
+      "energy": 0.409239,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 2.4,
+      "gyro_rms": 3.690412,
+      "energy": 0.405897,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 2.5,
+      "gyro_rms": 3.766172,
+      "energy": 0.414229,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 2.6,
+      "gyro_rms": 3.863937,
+      "energy": 0.424982,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 2.7,
+      "gyro_rms": 4.123942,
+      "energy": 0.453579,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 2.8,
+      "gyro_rms": 4.239353,
+      "energy": 0.466273,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 2.9,
+      "gyro_rms": 4.190857,
+      "energy": 0.460939,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 3.0,
+      "gyro_rms": 4.287101,
+      "energy": 0.471524,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 3.1,
+      "gyro_rms": 4.320864,
+      "energy": 0.475238,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 3.2,
+      "gyro_rms": 4.13009,
+      "energy": 0.454255,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 3.3,
+      "gyro_rms": 3.973871,
+      "energy": 0.437073,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 3.4,
+      "gyro_rms": 4.031054,
+      "energy": 0.443363,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 3.5,
+      "gyro_rms": 4.294044,
+      "energy": 0.472288,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 3.6,
+      "gyro_rms": 4.402052,
+      "energy": 0.484168,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 3.7,
+      "gyro_rms": 4.355793,
+      "energy": 0.47908,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 3.8,
+      "gyro_rms": 4.25356,
+      "energy": 0.467835,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 3.9,
+      "gyro_rms": 4.276303,
+      "energy": 0.470337,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 4.0,
+      "gyro_rms": 4.359596,
+      "energy": 0.479498,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 4.1,
+      "gyro_rms": 4.38859,
+      "energy": 0.482687,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 4.2,
+      "gyro_rms": 4.399166,
+      "energy": 0.48385,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 4.3,
+      "gyro_rms": 4.42292,
+      "energy": 0.486463,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 4.4,
+      "gyro_rms": 4.328069,
+      "energy": 0.47603,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 4.5,
+      "gyro_rms": 4.021589,
+      "energy": 0.442322,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 4.6,
+      "gyro_rms": 4.035508,
+      "energy": 0.443853,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 4.7,
+      "gyro_rms": 4.099548,
+      "energy": 0.450896,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 4.8,
+      "gyro_rms": 4.04885,
+      "energy": 0.44532,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 4.9,
+      "gyro_rms": 4.029805,
+      "energy": 0.443225,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 5.0,
+      "gyro_rms": 4.088621,
+      "energy": 0.449694,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 5.1,
+      "gyro_rms": 3.853656,
+      "energy": 0.423851,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 5.2,
+      "gyro_rms": 3.740949,
+      "energy": 0.411455,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 5.3,
+      "gyro_rms": 3.700595,
+      "energy": 0.407017,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 5.4,
+      "gyro_rms": 3.722052,
+      "energy": 0.409377,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 5.5,
+      "gyro_rms": 3.864182,
+      "energy": 0.425009,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 5.6,
+      "gyro_rms": 3.798571,
+      "energy": 0.417793,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 5.7,
+      "gyro_rms": 3.726079,
+      "energy": 0.40982,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 5.8,
+      "gyro_rms": 3.691889,
+      "energy": 0.406059,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 5.9,
+      "gyro_rms": 4.239424,
+      "energy": 0.466281,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 6.0,
+      "gyro_rms": 4.646791,
+      "energy": 0.511086,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 6.1,
+      "gyro_rms": 4.916926,
+      "energy": 0.540797,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 6.2,
+      "gyro_rms": 5.074486,
+      "energy": 0.558127,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 6.3,
+      "gyro_rms": 5.019296,
+      "energy": 0.552056,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 6.4,
+      "gyro_rms": 5.084609,
+      "energy": 0.55924,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 6.5,
+      "gyro_rms": 5.151273,
+      "energy": 0.566572,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 6.6,
+      "gyro_rms": 5.158518,
+      "energy": 0.567369,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 6.7,
+      "gyro_rms": 5.042137,
+      "energy": 0.554568,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 6.8,
+      "gyro_rms": 5.224639,
+      "energy": 0.574641,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 6.9,
+      "gyro_rms": 5.097946,
+      "energy": 0.560707,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 7.0,
+      "gyro_rms": 4.614765,
+      "energy": 0.507563,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 7.1,
+      "gyro_rms": 4.336054,
+      "energy": 0.476909,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 7.2,
+      "gyro_rms": 4.248361,
+      "energy": 0.467264,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 7.3,
+      "gyro_rms": 4.224871,
+      "energy": 0.46468,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 7.4,
+      "gyro_rms": 4.080757,
+      "energy": 0.448829,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 7.5,
+      "gyro_rms": 3.778558,
+      "energy": 0.415591,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 7.6,
+      "gyro_rms": 3.661159,
+      "energy": 0.402679,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 7.7,
+      "gyro_rms": 3.687117,
+      "energy": 0.405534,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 7.8,
+      "gyro_rms": 3.635988,
+      "energy": 0.399911,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 7.9,
+      "gyro_rms": 3.45523,
+      "energy": 0.38003,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 8.0,
+      "gyro_rms": 3.291704,
+      "energy": 0.362044,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 8.1,
+      "gyro_rms": 3.383307,
+      "energy": 0.372119,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 8.2,
+      "gyro_rms": 3.121992,
+      "energy": 0.343378,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 8.3,
+      "gyro_rms": 3.208705,
+      "energy": 0.352915,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 8.4,
+      "gyro_rms": 3.331998,
+      "energy": 0.366476,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 8.5,
+      "gyro_rms": 3.58302,
+      "energy": 0.394085,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 8.6,
+      "gyro_rms": 3.707682,
+      "energy": 0.407796,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 8.7,
+      "gyro_rms": 3.682437,
+      "energy": 0.405019,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 8.8,
+      "gyro_rms": 3.53155,
+      "energy": 0.388424,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 8.9,
+      "gyro_rms": 3.747293,
+      "energy": 0.412153,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 9.0,
+      "gyro_rms": 3.91269,
+      "energy": 0.430344,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 9.1,
+      "gyro_rms": 3.772009,
+      "energy": 0.414871,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 9.2,
+      "gyro_rms": 3.792251,
+      "energy": 0.417098,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 9.3,
+      "gyro_rms": 3.869907,
+      "energy": 0.425639,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 9.4,
+      "gyro_rms": 3.993598,
+      "energy": 0.439243,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 9.5,
+      "gyro_rms": 3.84014,
+      "energy": 0.422365,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 9.6,
+      "gyro_rms": 3.717499,
+      "energy": 0.408876,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 9.7,
+      "gyro_rms": 3.600695,
+      "energy": 0.396029,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 9.8,
+      "gyro_rms": 3.592797,
+      "energy": 0.39516,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 9.9,
+      "gyro_rms": 3.33109,
+      "energy": 0.366376,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 10.0,
+      "gyro_rms": 3.163798,
+      "energy": 0.347976,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 10.1,
+      "gyro_rms": 3.163694,
+      "energy": 0.347965,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 10.2,
+      "gyro_rms": 3.173376,
+      "energy": 0.34903,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 10.3,
+      "gyro_rms": 3.432558,
+      "energy": 0.377536,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 10.4,
+      "gyro_rms": 3.683765,
+      "energy": 0.405166,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 10.5,
+      "gyro_rms": 3.684379,
+      "energy": 0.405233,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 10.6,
+      "gyro_rms": 3.784709,
+      "energy": 0.416268,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 10.7,
+      "gyro_rms": 3.815678,
+      "energy": 0.419674,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 10.8,
+      "gyro_rms": 4.157537,
+      "energy": 0.457274,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 10.9,
+      "gyro_rms": 4.223636,
+      "energy": 0.464544,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 11.0,
+      "gyro_rms": 4.386259,
+      "energy": 0.482431,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 11.1,
+      "gyro_rms": 4.499131,
+      "energy": 0.494845,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 11.2,
+      "gyro_rms": 4.518114,
+      "energy": 0.496933,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 11.3,
+      "gyro_rms": 4.298867,
+      "energy": 0.472819,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 11.4,
+      "gyro_rms": 3.79949,
+      "energy": 0.417894,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 11.5,
+      "gyro_rms": 3.85926,
+      "energy": 0.424468,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 11.6,
+      "gyro_rms": 4.019633,
+      "energy": 0.442107,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 11.7,
+      "gyro_rms": 4.153615,
+      "energy": 0.456843,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 11.8,
+      "gyro_rms": 3.983135,
+      "energy": 0.438092,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 11.9,
+      "gyro_rms": 4.018441,
+      "energy": 0.441975,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 12.0,
+      "gyro_rms": 4.400793,
+      "energy": 0.484029,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 12.1,
+      "gyro_rms": 4.308464,
+      "energy": 0.473874,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 12.2,
+      "gyro_rms": 4.314927,
+      "energy": 0.474585,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 12.3,
+      "gyro_rms": 4.288929,
+      "energy": 0.471726,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 12.4,
+      "gyro_rms": 4.379195,
+      "energy": 0.481654,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 12.5,
+      "gyro_rms": 4.327866,
+      "energy": 0.476008,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 12.6,
+      "gyro_rms": 4.060525,
+      "energy": 0.446604,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 12.7,
+      "gyro_rms": 3.916012,
+      "energy": 0.43071,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 12.8,
+      "gyro_rms": 3.987197,
+      "energy": 0.438539,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 12.9,
+      "gyro_rms": 3.907572,
+      "energy": 0.429781,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 13.0,
+      "gyro_rms": 3.288365,
+      "energy": 0.361677,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 13.1,
+      "gyro_rms": 3.145274,
+      "energy": 0.345939,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 13.2,
+      "gyro_rms": 3.266531,
+      "energy": 0.359275,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 13.3,
+      "gyro_rms": 3.425826,
+      "energy": 0.376796,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 13.4,
+      "gyro_rms": 3.313454,
+      "energy": 0.364436,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 13.5,
+      "gyro_rms": 3.261969,
+      "energy": 0.358773,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 13.6,
+      "gyro_rms": 3.427638,
+      "energy": 0.376995,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 13.7,
+      "gyro_rms": 3.459395,
+      "energy": 0.380488,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 13.8,
+      "gyro_rms": 3.220232,
+      "energy": 0.354183,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 13.9,
+      "gyro_rms": 3.170185,
+      "energy": 0.348679,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 14.0,
+      "gyro_rms": 3.38946,
+      "energy": 0.372796,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 14.1,
+      "gyro_rms": 3.534839,
+      "energy": 0.388786,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 14.2,
+      "gyro_rms": 3.515263,
+      "energy": 0.386633,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 14.3,
+      "gyro_rms": 3.489111,
+      "energy": 0.383756,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 14.4,
+      "gyro_rms": 3.818147,
+      "energy": 0.419946,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 14.5,
+      "gyro_rms": 4.152623,
+      "energy": 0.456734,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 14.6,
+      "gyro_rms": 4.18127,
+      "energy": 0.459885,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 14.7,
+      "gyro_rms": 4.321323,
+      "energy": 0.475289,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 14.8,
+      "gyro_rms": 4.564075,
+      "energy": 0.501988,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 14.9,
+      "gyro_rms": 4.74718,
+      "energy": 0.522127,
+      "active_ratio": 1.0
+    },
+    {
+      "t": 14.99,
+      "gyro_rms": 4.638581,
+      "energy": 0.510183,
+      "active_ratio": 1.0
+    }
+  ],
+  "csv_sha256": "6d1035a25856f417a5c0decee7d32fa04505f593805b7164317fd2423b347848"
+}

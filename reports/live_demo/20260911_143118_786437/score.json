@@ -1,0 +1,306 @@
+{
+  "bpm": 142,
+  "key": "C",
+  "bars": 9,
+  "chords": [
+    {
+      "bar": 0,
+      "symbol": "C"
+    },
+    {
+      "bar": 1,
+      "symbol": "Am"
+    },
+    {
+      "bar": 2,
+      "symbol": "F"
+    },
+    {
+      "bar": 3,
+      "symbol": "G"
+    },
+    {
+      "bar": 4,
+      "symbol": "C"
+    },
+    {
+      "bar": 5,
+      "symbol": "Am"
+    },
+    {
+      "bar": 6,
+      "symbol": "F"
+    },
+    {
+      "bar": 7,
+      "symbol": "G"
+    },
+    {
+      "bar": 8,
+      "symbol": "C"
+    }
+  ],
+  "melody": [
+    {
+      "bar": 0,
+      "note": 72,
+      "start": 7,
+      "dur": 2,
+      "velocity": 54
+    },
+    {
+      "bar": 0,
+      "note": 64,
+      "start": 13,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 0,
+      "note": 60,
+      "start": 13,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 1,
+      "note": 64,
+      "start": 2,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 1,
+      "note": 60,
+      "start": 2,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 1,
+      "note": 57,
+      "start": 7,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 1,
+      "note": 64,
+      "start": 7,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 1,
+      "note": 72,
+      "start": 13,
+      "dur": 2,
+      "velocity": 54
+    },
+    {
+      "bar": 2,
+      "note": 72,
+      "start": 4,
+      "dur": 2,
+      "velocity": 54
+    },
+    {
+      "bar": 2,
+      "note": 65,
+      "start": 8,
+      "dur": 2,
+      "velocity": 54
+    },
+    {
+      "bar": 3,
+      "note": 71,
+      "start": 3,
+      "dur": 2,
+      "velocity": 54
+    },
+    {
+      "bar": 3,
+      "note": 74,
+      "start": 6,
+      "dur": 2,
+      "velocity": 54
+    },
+    {
+      "bar": 3,
+      "note": 67,
+      "start": 12,
+      "dur": 2,
+      "velocity": 54
+    },
+    {
+      "bar": 4,
+      "note": 76,
+      "start": 5,
+      "dur": 2,
+      "velocity": 54
+    },
+    {
+      "bar": 5,
+      "note": 64,
+      "start": 1,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 5,
+      "note": 60,
+      "start": 1,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 5,
+      "note": 69,
+      "start": 12,
+      "dur": 2,
+      "velocity": 54
+    },
+    {
+      "bar": 6,
+      "note": 57,
+      "start": 3,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 6,
+      "note": 53,
+      "start": 3,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 6,
+      "note": 60,
+      "start": 6,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 6,
+      "note": 57,
+      "start": 6,
+      "dur": 2,
+      "velocity": 74
+    },
+    {
+      "bar": 7,
+      "note": 55,
+      "start": 3,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 7,
+      "note": 59,
+      "start": 3,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 7,
+      "note": 62,
+      "start": 3,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 7,
+      "note": 71,
+      "start": 3,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 7,
+      "note": 55,
+      "start": 9,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 7,
+      "note": 59,
+      "start": 9,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 7,
+      "note": 62,
+      "start": 9,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 7,
+      "note": 71,
+      "start": 9,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 8,
+      "note": 60,
+      "start": 7,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 8,
+      "note": 64,
+      "start": 7,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 8,
+      "note": 67,
+      "start": 7,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 8,
+      "note": 76,
+      "start": 7,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 8,
+      "note": 60,
+      "start": 11,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 8,
+      "note": 64,
+      "start": 11,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 8,
+      "note": 67,
+      "start": 11,
+      "dur": 4,
+      "velocity": 94
+    },
+    {
+      "bar": 8,
+      "note": 76,
+      "start": 11,
+      "dur": 4,
+      "velocity": 94
+    }
+  ],
+  "title": "下挥落音",
+  "description": "你的19次挥动逐一落音: 轻9、中6、重4。"
+}

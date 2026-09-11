@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "duration_s": 14.99,
+  "tempo": {
+    "bpm": 177.4,
+    "confidence": "high",
+    "method": "autocorr"
+  },
+  "energy": {
+    "gyro_rms": 9.795,
+    "accel_std": 25.027,
+    "gyro_peak": 30.2,
+    "normalized": null
+  },
+  "activity": {
+    "active_ratio": 0.995
+  },
+  "posture": {
+    "available": false,
+    "roll_median": null,
+    "roll_range": null,
+    "pitch_median": null
+  },
+  "structure": {
+    "change_points": [
+      1.5,
+      5.5
+    ]
+  },
+  "subject_id": "s00",
+  "mount_version": "live"
+}
