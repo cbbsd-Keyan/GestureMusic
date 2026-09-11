@@ -1,0 +1,306 @@
+[
+  {
+    "code": "old_C",
+    "variant": "A_solo",
+    "bpm": 86,
+    "counts": {
+      "melody_on": 46,
+      "melody_off": 46
+    }
+  },
+  {
+    "code": "old_C",
+    "variant": "B_simple",
+    "bpm": 86,
+    "counts": {
+      "melody_on": 46,
+      "chord_on": 12,
+      "melody_off": 46,
+      "chord_off": 12
+    }
+  },
+  {
+    "code": "old_C",
+    "variant": "C_frozen",
+    "bpm": 103.2,
+    "counts": {
+      "chord_on": 26,
+      "bass_on": 97,
+      "drum": 156,
+      "chord_off": 26,
+      "bass_off": 97,
+      "melody_on": 44,
+      "melody_off": 44
+    }
+  },
+  {
+    "code": "old_C",
+    "variant": "D_pre_dynamic",
+    "bpm": 103.2,
+    "counts": {
+      "chord_on": 29,
+      "chord_off": 29,
+      "melody_on": 46,
+      "bass_on": 97,
+      "drum": 156,
+      "bass_off": 97,
+      "melody_off": 46
+    }
+  },
+  {
+    "code": "old_C",
+    "variant": "E_current_static",
+    "bpm": 103.2,
+    "counts": {
+      "chord_on": 29,
+      "chord_off": 29,
+      "melody_on": 46,
+      "bass_on": 97,
+      "drum": 156,
+      "bass_off": 97,
+      "melody_off": 46
+    }
+  },
+  {
+    "code": "old_C",
+    "variant": "F_dynamic",
+    "bpm": 86,
+    "counts": {
+      "chord_on": 60,
+      "chord_off": 60,
+      "melody_on": 46,
+      "bass_on": 74,
+      "drum": 115,
+      "melody_off": 46,
+      "bass_off": 74
+    }
+  },
+  {
+    "code": "old_Am",
+    "variant": "A_solo",
+    "bpm": 86,
+    "counts": {
+      "melody_on": 46,
+      "melody_off": 46
+    }
+  },
+  {
+    "code": "old_Am",
+    "variant": "B_simple",
+    "bpm": 86,
+    "counts": {
+      "melody_on": 46,
+      "chord_on": 12,
+      "melody_off": 46,
+      "chord_off": 12
+    }
+  },
+  {
+    "code": "old_Am",
+    "variant": "C_frozen",
+    "bpm": 103.2,
+    "counts": {
+      "chord_on": 26,
+      "bass_on": 97,
+      "drum": 156,
+      "chord_off": 26,
+      "bass_off": 97,
+      "melody_on": 44,
+      "melody_off": 44
+    }
+  },
+  {
+    "code": "old_Am",
+    "variant": "D_pre_dynamic",
+    "bpm": 103.2,
+    "counts": {
+      "chord_on": 29,
+      "chord_off": 29,
+      "melody_on": 46,
+      "bass_on": 97,
+      "drum": 156,
+      "bass_off": 97,
+      "melody_off": 46
+    }
+  },
+  {
+    "code": "old_Am",
+    "variant": "E_current_static",
+    "bpm": 103.2,
+    "counts": {
+      "chord_on": 29,
+      "chord_off": 29,
+      "melody_on": 46,
+      "bass_on": 97,
+      "drum": 156,
+      "bass_off": 97,
+      "melody_off": 46
+    }
+  },
+  {
+    "code": "old_Am",
+    "variant": "F_dynamic",
+    "bpm": 86,
+    "counts": {
+      "chord_on": 59,
+      "chord_off": 59,
+      "melody_on": 46,
+      "bass_on": 74,
+      "drum": 115,
+      "melody_off": 46,
+      "bass_off": 74
+    }
+  },
+  {
+    "code": "new_1524",
+    "variant": "A_solo",
+    "bpm": 105,
+    "counts": {
+      "melody_on": 61,
+      "melody_off": 61
+    }
+  },
+  {
+    "code": "new_1524",
+    "variant": "B_simple",
+    "bpm": 105,
+    "counts": {
+      "melody_on": 61,
+      "chord_on": 16,
+      "melody_off": 61,
+      "chord_off": 16
+    }
+  },
+  {
+    "code": "new_1524",
+    "variant": "C_frozen",
+    "bpm": 126.0,
+    "counts": {
+      "chord_on": 41,
+      "bass_on": 129,
+      "drum": 208,
+      "chord_off": 41,
+      "bass_off": 129,
+      "melody_on": 59,
+      "melody_off": 59
+    }
+  },
+  {
+    "code": "new_1524",
+    "variant": "D_pre_dynamic",
+    "bpm": 126.0,
+    "counts": {
+      "chord_on": 44,
+      "chord_off": 44,
+      "melody_on": 61,
+      "bass_on": 129,
+      "drum": 208,
+      "bass_off": 129,
+      "melody_off": 61
+    }
+  },
+  {
+    "code": "new_1524",
+    "variant": "E_current_static",
+    "bpm": 126.0,
+    "counts": {
+      "chord_on": 44,
+      "chord_off": 44,
+      "melody_on": 61,
+      "bass_on": 129,
+      "drum": 208,
+      "bass_off": 129,
+      "melody_off": 61
+    }
+  },
+  {
+    "code": "new_1524",
+    "variant": "F_dynamic",
+    "bpm": 105,
+    "counts": {
+      "chord_on": 89,
+      "chord_off": 89,
+      "melody_on": 61,
+      "bass_on": 97,
+      "drum": 152,
+      "melody_off": 61,
+      "bass_off": 97
+    }
+  },
+  {
+    "code": "new_1528",
+    "variant": "A_solo",
+    "bpm": 79,
+    "counts": {
+      "melody_on": 46,
+      "melody_off": 46
+    }
+  },
+  {
+    "code": "new_1528",
+    "variant": "B_simple",
+    "bpm": 79,
+    "counts": {
+      "melody_on": 46,
+      "chord_on": 12,
+      "melody_off": 46,
+      "chord_off": 12
+    }
+  },
+  {
+    "code": "new_1528",
+    "variant": "C_frozen",
+    "bpm": 94.8,
+    "counts": {
+      "chord_on": 37,
+      "bass_on": 97,
+      "drum": 156,
+      "chord_off": 37,
+      "bass_off": 97,
+      "melody_on": 42,
+      "melody_off": 42
+    }
+  },
+  {
+    "code": "new_1528",
+    "variant": "D_pre_dynamic",
+    "bpm": 94.8,
+    "counts": {
+      "chord_on": 40,
+      "chord_off": 40,
+      "melody_on": 46,
+      "bass_on": 97,
+      "drum": 156,
+      "bass_off": 97,
+      "melody_off": 46
+    }
+  },
+  {
+    "code": "new_1528",
+    "variant": "E_current_static",
+    "bpm": 94.8,
+    "counts": {
+      "chord_on": 40,
+      "chord_off": 40,
+      "melody_on": 46,
+      "bass_on": 97,
+      "drum": 156,
+      "bass_off": 97,
+      "melody_off": 46
+    }
+  },
+  {
+    "code": "new_1528",
+    "variant": "F_dynamic",
+    "bpm": 79,
+    "counts": {
+      "chord_on": 66,
+      "chord_off": 66,
+      "melody_on": 46,
+      "bass_on": 74,
+      "drum": 115,
+      "melody_off": 46,
+      "bass_off": 74
+    }
+  }
+]

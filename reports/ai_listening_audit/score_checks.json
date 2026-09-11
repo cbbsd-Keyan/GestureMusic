@@ -1,0 +1,3794 @@
+[
+  {
+    "file": "reports\\batch_FINAL\\pV3_p1_1.json",
+    "notes": 46,
+    "strong_total": 24,
+    "strong_nonchord": 0,
+    "long_nonchord": 0,
+    "nonchord": 0,
+    "cases": []
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p1_2.json",
+    "notes": 46,
+    "strong_total": 24,
+    "strong_nonchord": 3,
+    "long_nonchord": 6,
+    "nonchord": 6,
+    "cases": [
+      {
+        "bar_1based": 2,
+        "start": 8,
+        "duration": 4,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": true
+      },
+      {
+        "bar_1based": 3,
+        "start": 12,
+        "duration": 4,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 6,
+        "start": 8,
+        "duration": 4,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": true
+      },
+      {
+        "bar_1based": 7,
+        "start": 12,
+        "duration": 4,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 10,
+        "start": 8,
+        "duration": 4,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": true
+      },
+      {
+        "bar_1based": 11,
+        "start": 12,
+        "duration": 4,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": true
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p1_3.json",
+    "notes": 48,
+    "strong_total": 18,
+    "strong_nonchord": 6,
+    "long_nonchord": 1,
+    "nonchord": 24,
+    "cases": [
+      {
+        "bar_1based": 1,
+        "start": 0,
+        "duration": 3,
+        "note": 62,
+        "chord": "C",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 1,
+        "start": 7,
+        "duration": 2,
+        "note": 65,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 4,
+        "duration": 2,
+        "note": 59,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 8,
+        "duration": 3,
+        "note": 62,
+        "chord": "Am",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 3,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 5,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 4,
+        "duration": 2,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 6,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 5,
+        "duration": 2,
+        "note": 69,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 4,
+        "duration": 2,
+        "note": 59,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 8,
+        "duration": 3,
+        "note": 62,
+        "chord": "Am",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 3,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 5,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 4,
+        "duration": 2,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 6,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 0,
+        "duration": 3,
+        "note": 62,
+        "chord": "C",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 7,
+        "duration": 2,
+        "note": 65,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 4,
+        "duration": 2,
+        "note": 59,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 8,
+        "duration": 3,
+        "note": 62,
+        "chord": "Am",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 3,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 5,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 4,
+        "duration": 2,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 6,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 8,
+        "duration": 4,
+        "note": 60,
+        "chord": "G",
+        "strong": true,
+        "long": true
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p1_4.json",
+    "notes": 46,
+    "strong_total": 13,
+    "strong_nonchord": 2,
+    "long_nonchord": 8,
+    "nonchord": 19,
+    "cases": [
+      {
+        "bar_1based": 1,
+        "start": 4,
+        "duration": 3,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 4,
+        "duration": 3,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 9,
+        "duration": 4,
+        "note": 57,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 3,
+        "start": 7,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 9,
+        "duration": 4,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 4,
+        "start": 7,
+        "duration": 2,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 4,
+        "duration": 3,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 4,
+        "duration": 3,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 9,
+        "duration": 4,
+        "note": 57,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 7,
+        "start": 7,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 9,
+        "duration": 4,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 8,
+        "start": 7,
+        "duration": 2,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 4,
+        "duration": 3,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 4,
+        "duration": 3,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 9,
+        "duration": 4,
+        "note": 57,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 11,
+        "start": 7,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 9,
+        "duration": 4,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 12,
+        "start": 0,
+        "duration": 4,
+        "note": 69,
+        "chord": "E",
+        "strong": true,
+        "long": true
+      },
+      {
+        "bar_1based": 12,
+        "start": 8,
+        "duration": 4,
+        "note": 57,
+        "chord": "E",
+        "strong": true,
+        "long": true
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p2_1.json",
+    "notes": 61,
+    "strong_total": 16,
+    "strong_nonchord": 0,
+    "long_nonchord": 0,
+    "nonchord": 15,
+    "cases": [
+      {
+        "bar_1based": 1,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 4,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 2,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 4,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 2,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 4,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 2,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 13,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 4,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 15,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p2_2.json",
+    "notes": 96,
+    "strong_total": 16,
+    "strong_nonchord": 4,
+    "long_nonchord": 4,
+    "nonchord": 27,
+    "cases": [
+      {
+        "bar_1based": 1,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 1,
+        "start": 9,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 0,
+        "duration": 3,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 7,
+        "duration": 2,
+        "note": 60,
+        "chord": "Dm",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 11,
+        "duration": 4,
+        "note": 59,
+        "chord": "Dm",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 3,
+        "start": 5,
+        "duration": 2,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 7,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 9,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 0,
+        "duration": 3,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 7,
+        "duration": 2,
+        "note": 60,
+        "chord": "Dm",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 11,
+        "duration": 4,
+        "note": 59,
+        "chord": "Dm",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 7,
+        "start": 5,
+        "duration": 2,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 7,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 9,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 0,
+        "duration": 3,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 7,
+        "duration": 2,
+        "note": 60,
+        "chord": "Dm",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 11,
+        "duration": 4,
+        "note": 59,
+        "chord": "Dm",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 11,
+        "start": 5,
+        "duration": 2,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 7,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 13,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 13,
+        "start": 9,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 0,
+        "duration": 3,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 7,
+        "duration": 2,
+        "note": 60,
+        "chord": "Dm",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 11,
+        "duration": 4,
+        "note": 59,
+        "chord": "Dm",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 15,
+        "start": 5,
+        "duration": 2,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p2_3.json",
+    "notes": 64,
+    "strong_total": 32,
+    "strong_nonchord": 0,
+    "long_nonchord": 9,
+    "nonchord": 9,
+    "cases": [
+      {
+        "bar_1based": 3,
+        "start": 4,
+        "duration": 4,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 4,
+        "start": 4,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 7,
+        "start": 4,
+        "duration": 4,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 8,
+        "start": 4,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 11,
+        "start": 4,
+        "duration": 4,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 12,
+        "start": 4,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 15,
+        "start": 4,
+        "duration": 4,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 16,
+        "start": 4,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 16,
+        "start": 12,
+        "duration": 4,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p2_4.json",
+    "notes": 76,
+    "strong_total": 20,
+    "strong_nonchord": 0,
+    "long_nonchord": 0,
+    "nonchord": 25,
+    "cases": [
+      {
+        "bar_1based": 2,
+        "start": 3,
+        "duration": 3,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 9,
+        "duration": 3,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 4,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 7,
+        "duration": 3,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 13,
+        "duration": 3,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 7,
+        "duration": 3,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 3,
+        "duration": 3,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 9,
+        "duration": 3,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 4,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 7,
+        "duration": 3,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 13,
+        "duration": 3,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 7,
+        "duration": 3,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 3,
+        "duration": 3,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 9,
+        "duration": 3,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 4,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 7,
+        "duration": 3,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 13,
+        "duration": 3,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 7,
+        "duration": 3,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 3,
+        "duration": 3,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 9,
+        "duration": 3,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 15,
+        "start": 4,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 15,
+        "start": 7,
+        "duration": 3,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 15,
+        "start": 13,
+        "duration": 3,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 16,
+        "start": 7,
+        "duration": 3,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 16,
+        "start": 13,
+        "duration": 3,
+        "note": 57,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p3_1.json",
+    "notes": 73,
+    "strong_total": 25,
+    "strong_nonchord": 8,
+    "long_nonchord": 4,
+    "nonchord": 30,
+    "cases": [
+      {
+        "bar_1based": 2,
+        "start": 0,
+        "duration": 3,
+        "note": 72,
+        "chord": "G",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 3,
+        "duration": 3,
+        "note": 70,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 9,
+        "duration": 3,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 12,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 3,
+        "start": 8,
+        "duration": 3,
+        "note": 67,
+        "chord": "Am",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 11,
+        "duration": 3,
+        "note": 65,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 3,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 9,
+        "duration": 3,
+        "note": 59,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 0,
+        "duration": 3,
+        "note": 72,
+        "chord": "G",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 3,
+        "duration": 3,
+        "note": 70,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 9,
+        "duration": 3,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 12,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 7,
+        "start": 8,
+        "duration": 3,
+        "note": 67,
+        "chord": "Am",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 11,
+        "duration": 3,
+        "note": 65,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 3,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 9,
+        "duration": 3,
+        "note": 59,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 0,
+        "duration": 3,
+        "note": 72,
+        "chord": "G",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 3,
+        "duration": 3,
+        "note": 70,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 9,
+        "duration": 3,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 12,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 11,
+        "start": 8,
+        "duration": 3,
+        "note": 67,
+        "chord": "Am",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 11,
+        "duration": 3,
+        "note": 65,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 3,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 9,
+        "duration": 3,
+        "note": 59,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 0,
+        "duration": 3,
+        "note": 72,
+        "chord": "G",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 3,
+        "duration": 3,
+        "note": 70,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 9,
+        "duration": 3,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 12,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 15,
+        "start": 8,
+        "duration": 3,
+        "note": 67,
+        "chord": "Am",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 15,
+        "start": 11,
+        "duration": 3,
+        "note": 65,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p3_2.json",
+    "notes": 58,
+    "strong_total": 16,
+    "strong_nonchord": 4,
+    "long_nonchord": 0,
+    "nonchord": 8,
+    "cases": [
+      {
+        "bar_1based": 2,
+        "start": 0,
+        "duration": 2,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 6,
+        "duration": 2,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 0,
+        "duration": 2,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 6,
+        "duration": 2,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 0,
+        "duration": 2,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 6,
+        "duration": 2,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 0,
+        "duration": 2,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 15,
+        "start": 6,
+        "duration": 2,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p3_3.json",
+    "notes": 48,
+    "strong_total": 12,
+    "strong_nonchord": 0,
+    "long_nonchord": 0,
+    "nonchord": 25,
+    "cases": [
+      {
+        "bar_1based": 1,
+        "start": 2,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 1,
+        "start": 6,
+        "duration": 2,
+        "note": 65,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 3,
+        "duration": 1,
+        "note": 59,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 6,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 2,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 3,
+        "duration": 1,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 4,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 2,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 6,
+        "duration": 2,
+        "note": 65,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 3,
+        "duration": 1,
+        "note": 59,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 6,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 2,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 3,
+        "duration": 1,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 4,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 2,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 6,
+        "duration": 2,
+        "note": 65,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 3,
+        "duration": 1,
+        "note": 59,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 6,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 2,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 3,
+        "duration": 1,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 4,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 6,
+        "duration": 2,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p3_4.json",
+    "notes": 45,
+    "strong_total": 13,
+    "strong_nonchord": 1,
+    "long_nonchord": 1,
+    "nonchord": 18,
+    "cases": [
+      {
+        "bar_1based": 1,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 3,
+        "duration": 2,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 7,
+        "duration": 2,
+        "note": 57,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 5,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 5,
+        "duration": 2,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 3,
+        "duration": 2,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 7,
+        "duration": 2,
+        "note": 57,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 5,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 5,
+        "duration": 2,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 4,
+        "duration": 2,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 6,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 6,
+        "duration": 2,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 8,
+        "duration": 4,
+        "note": 57,
+        "chord": "E",
+        "strong": true,
+        "long": true
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p4_1.json",
+    "notes": 45,
+    "strong_total": 12,
+    "strong_nonchord": 1,
+    "long_nonchord": 0,
+    "nonchord": 22,
+    "cases": [
+      {
+        "bar_1based": 1,
+        "start": 0,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 1,
+        "start": 6,
+        "duration": 2,
+        "note": 65,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 2,
+        "duration": 2,
+        "note": 69,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 6,
+        "duration": 2,
+        "note": 69,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 2,
+        "duration": 2,
+        "note": 67,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 4,
+        "duration": 2,
+        "note": 65,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 2,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 6,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 2,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 6,
+        "duration": 2,
+        "note": 65,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 2,
+        "duration": 2,
+        "note": 69,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 6,
+        "duration": 2,
+        "note": 69,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 2,
+        "duration": 2,
+        "note": 67,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 4,
+        "duration": 2,
+        "note": 65,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 2,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 6,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 2,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 6,
+        "duration": 2,
+        "note": 65,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 2,
+        "duration": 2,
+        "note": 69,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 6,
+        "duration": 2,
+        "note": 69,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 2,
+        "duration": 2,
+        "note": 67,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 4,
+        "duration": 2,
+        "note": 65,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p4_2.json",
+    "notes": 48,
+    "strong_total": 24,
+    "strong_nonchord": 3,
+    "long_nonchord": 12,
+    "nonchord": 12,
+    "cases": [
+      {
+        "bar_1based": 1,
+        "start": 4,
+        "duration": 4,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 2,
+        "start": 0,
+        "duration": 4,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": true
+      },
+      {
+        "bar_1based": 2,
+        "start": 12,
+        "duration": 4,
+        "note": 60,
+        "chord": "Dm",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 3,
+        "start": 12,
+        "duration": 4,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 5,
+        "start": 4,
+        "duration": 4,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 6,
+        "start": 0,
+        "duration": 4,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": true
+      },
+      {
+        "bar_1based": 6,
+        "start": 12,
+        "duration": 4,
+        "note": 60,
+        "chord": "Dm",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 7,
+        "start": 12,
+        "duration": 4,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 9,
+        "start": 4,
+        "duration": 4,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 10,
+        "start": 0,
+        "duration": 4,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": true
+      },
+      {
+        "bar_1based": 10,
+        "start": 12,
+        "duration": 4,
+        "note": 60,
+        "chord": "Dm",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 11,
+        "start": 12,
+        "duration": 4,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": true
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p4_3.json",
+    "notes": 49,
+    "strong_total": 24,
+    "strong_nonchord": 0,
+    "long_nonchord": 9,
+    "nonchord": 10,
+    "cases": [
+      {
+        "bar_1based": 2,
+        "start": 3,
+        "duration": 2,
+        "note": 59,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 4,
+        "duration": 4,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 4,
+        "start": 4,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 4,
+        "start": 11,
+        "duration": 4,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 7,
+        "start": 4,
+        "duration": 4,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 8,
+        "start": 4,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 8,
+        "start": 11,
+        "duration": 4,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 11,
+        "start": 4,
+        "duration": 4,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 12,
+        "start": 4,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 12,
+        "start": 11,
+        "duration": 4,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p4_4.json",
+    "notes": 45,
+    "strong_total": 23,
+    "strong_nonchord": 1,
+    "long_nonchord": 15,
+    "nonchord": 15,
+    "cases": [
+      {
+        "bar_1based": 2,
+        "start": 4,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 2,
+        "start": 12,
+        "duration": 4,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 3,
+        "start": 4,
+        "duration": 4,
+        "note": 59,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 3,
+        "start": 12,
+        "duration": 4,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 4,
+        "start": 12,
+        "duration": 4,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 6,
+        "start": 4,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 6,
+        "start": 12,
+        "duration": 4,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 7,
+        "start": 4,
+        "duration": 4,
+        "note": 59,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 7,
+        "start": 12,
+        "duration": 4,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 8,
+        "start": 12,
+        "duration": 4,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 10,
+        "start": 4,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 10,
+        "start": 12,
+        "duration": 4,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 11,
+        "start": 4,
+        "duration": 4,
+        "note": 59,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 11,
+        "start": 12,
+        "duration": 4,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 12,
+        "start": 0,
+        "duration": 4,
+        "note": 57,
+        "chord": "E",
+        "strong": true,
+        "long": true
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p5_1.json",
+    "notes": 72,
+    "strong_total": 20,
+    "strong_nonchord": 0,
+    "long_nonchord": 4,
+    "nonchord": 14,
+    "cases": [
+      {
+        "bar_1based": 2,
+        "start": 12,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 3,
+        "start": 7,
+        "duration": 3,
+        "note": 67,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 4,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 10,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 12,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 7,
+        "start": 7,
+        "duration": 3,
+        "note": 67,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 4,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 10,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 12,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 11,
+        "start": 7,
+        "duration": 3,
+        "note": 67,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 4,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 10,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 12,
+        "duration": 4,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 15,
+        "start": 7,
+        "duration": 3,
+        "note": 67,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p5_2.json",
+    "notes": 43,
+    "strong_total": 12,
+    "strong_nonchord": 3,
+    "long_nonchord": 0,
+    "nonchord": 6,
+    "cases": [
+      {
+        "bar_1based": 2,
+        "start": 0,
+        "duration": 3,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 7,
+        "duration": 2,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 0,
+        "duration": 3,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 7,
+        "duration": 2,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 0,
+        "duration": 3,
+        "note": 60,
+        "chord": "Dm",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 7,
+        "duration": 2,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p5_3.json",
+    "notes": 60,
+    "strong_total": 12,
+    "strong_nonchord": 0,
+    "long_nonchord": 1,
+    "nonchord": 30,
+    "cases": [
+      {
+        "bar_1based": 1,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 1,
+        "start": 7,
+        "duration": 2,
+        "note": 65,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 3,
+        "duration": 2,
+        "note": 59,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 9,
+        "duration": 3,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 3,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 5,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 9,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 3,
+        "duration": 2,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 5,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 9,
+        "duration": 3,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 7,
+        "duration": 2,
+        "note": 65,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 3,
+        "duration": 2,
+        "note": 59,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 9,
+        "duration": 3,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 3,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 5,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 9,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 3,
+        "duration": 2,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 5,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 9,
+        "duration": 3,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 7,
+        "duration": 2,
+        "note": 65,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 3,
+        "duration": 2,
+        "note": 59,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 9,
+        "duration": 3,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 3,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 5,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 9,
+        "duration": 3,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 3,
+        "duration": 2,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 5,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 9,
+        "duration": 4,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      }
+    ]
+  },
+  {
+    "file": "reports\\batch_FINAL\\pV3_p5_4.json",
+    "notes": 72,
+    "strong_total": 12,
+    "strong_nonchord": 3,
+    "long_nonchord": 9,
+    "nonchord": 42,
+    "cases": [
+      {
+        "bar_1based": 1,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 1,
+        "start": 9,
+        "duration": 2,
+        "note": 71,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 0,
+        "duration": 3,
+        "note": 69,
+        "chord": "G",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 3,
+        "duration": 2,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 5,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 9,
+        "duration": 2,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 11,
+        "duration": 4,
+        "note": 57,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 3,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 5,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 9,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 11,
+        "duration": 4,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 4,
+        "start": 5,
+        "duration": 2,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 9,
+        "duration": 2,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 11,
+        "duration": 4,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 5,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 9,
+        "duration": 2,
+        "note": 71,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 0,
+        "duration": 3,
+        "note": 69,
+        "chord": "G",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 3,
+        "duration": 2,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 5,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 9,
+        "duration": 2,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 11,
+        "duration": 4,
+        "note": 57,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 7,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 5,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 9,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 11,
+        "duration": 4,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 8,
+        "start": 5,
+        "duration": 2,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 9,
+        "duration": 2,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 11,
+        "duration": 4,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 9,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 9,
+        "duration": 2,
+        "note": 71,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 0,
+        "duration": 3,
+        "note": 69,
+        "chord": "G",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 3,
+        "duration": 2,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 5,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 9,
+        "duration": 2,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 11,
+        "duration": 4,
+        "note": 57,
+        "chord": "G",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 11,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 5,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 9,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 11,
+        "duration": 4,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": true
+      },
+      {
+        "bar_1based": 12,
+        "start": 5,
+        "duration": 2,
+        "note": 69,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 9,
+        "duration": 2,
+        "note": 72,
+        "chord": "E",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 11,
+        "duration": 4,
+        "note": 57,
+        "chord": "E",
+        "strong": false,
+        "long": true
+      }
+    ]
+  },
+  {
+    "file": "reports\\live_demo\\20260911_152424_246405\\score.json",
+    "notes": 61,
+    "strong_total": 24,
+    "strong_nonchord": 8,
+    "long_nonchord": 4,
+    "nonchord": 16,
+    "cases": [
+      {
+        "bar_1based": 2,
+        "start": 0,
+        "duration": 3,
+        "note": 72,
+        "chord": "G",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 6,
+        "duration": 3,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 9,
+        "duration": 3,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 8,
+        "duration": 4,
+        "note": 67,
+        "chord": "Am",
+        "strong": true,
+        "long": true
+      },
+      {
+        "bar_1based": 6,
+        "start": 0,
+        "duration": 3,
+        "note": 72,
+        "chord": "G",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 6,
+        "duration": 3,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 9,
+        "duration": 3,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 8,
+        "duration": 4,
+        "note": 67,
+        "chord": "Am",
+        "strong": true,
+        "long": true
+      },
+      {
+        "bar_1based": 10,
+        "start": 0,
+        "duration": 3,
+        "note": 72,
+        "chord": "G",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 6,
+        "duration": 3,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 9,
+        "duration": 3,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 8,
+        "duration": 4,
+        "note": 67,
+        "chord": "Am",
+        "strong": true,
+        "long": true
+      },
+      {
+        "bar_1based": 14,
+        "start": 0,
+        "duration": 3,
+        "note": 72,
+        "chord": "G",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 6,
+        "duration": 3,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 14,
+        "start": 9,
+        "duration": 3,
+        "note": 60,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 15,
+        "start": 8,
+        "duration": 4,
+        "note": 67,
+        "chord": "Am",
+        "strong": true,
+        "long": true
+      }
+    ]
+  },
+  {
+    "file": "reports\\live_demo\\20260911_152802_669527\\score.json",
+    "notes": 46,
+    "strong_total": 18,
+    "strong_nonchord": 6,
+    "long_nonchord": 3,
+    "nonchord": 24,
+    "cases": [
+      {
+        "bar_1based": 1,
+        "start": 0,
+        "duration": 3,
+        "note": 62,
+        "chord": "C",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 1,
+        "start": 7,
+        "duration": 2,
+        "note": 65,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 4,
+        "duration": 2,
+        "note": 59,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 2,
+        "start": 8,
+        "duration": 3,
+        "note": 62,
+        "chord": "Am",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 3,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 3,
+        "start": 5,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 4,
+        "duration": 2,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 4,
+        "start": 6,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 3,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 5,
+        "start": 7,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 6,
+        "start": 0,
+        "duration": 4,
+        "note": 59,
+        "chord": "Am",
+        "strong": true,
+        "long": true
+      },
+      {
+        "bar_1based": 6,
+        "start": 6,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 3,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 7,
+        "start": 5,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 4,
+        "duration": 2,
+        "note": 65,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 8,
+        "start": 6,
+        "duration": 2,
+        "note": 64,
+        "chord": "G",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 4,
+        "duration": 2,
+        "note": 62,
+        "chord": "C",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 9,
+        "start": 8,
+        "duration": 3,
+        "note": 65,
+        "chord": "C",
+        "strong": true,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 3,
+        "duration": 2,
+        "note": 59,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 10,
+        "start": 7,
+        "duration": 2,
+        "note": 62,
+        "chord": "Am",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 3,
+        "duration": 2,
+        "note": 64,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 11,
+        "start": 5,
+        "duration": 2,
+        "note": 62,
+        "chord": "F",
+        "strong": false,
+        "long": false
+      },
+      {
+        "bar_1based": 12,
+        "start": 0,
+        "duration": 4,
+        "note": 60,
+        "chord": "G",
+        "strong": true,
+        "long": true
+      },
+      {
+        "bar_1based": 12,
+        "start": 8,
+        "duration": 4,
+        "note": 48,
+        "chord": "G",
+        "strong": true,
+        "long": true
+      }
+    ]
+  }
+]
