@@ -7,6 +7,7 @@ import math
 
 TRIAD_PCS = {
     "C": (0, 4, 7),
+    "D": (2, 6, 9),
     "Dm": (2, 5, 9),
     "Em": (4, 7, 11),
     "E": (4, 8, 11),
@@ -17,6 +18,7 @@ TRIAD_PCS = {
 
 ROOTS = {
     "C": 36,
+    "D": 38,
     "Dm": 38,
     "Em": 40,
     "E": 40,
@@ -262,6 +264,7 @@ def build_arranged_events(
     legato=False,
     plain=False,
     avoid=True,
+    dynamics=None,
 ):
 
     """
@@ -275,21 +278,35 @@ def build_arranged_events(
     base_bpm = score["bpm"]
     bars = score["bars"]
 
-    bpm = base_bpm * tempo_factor(energy, base_bpm)
+    bpm = base_bpm if dynamics is not None else base_bpm * tempo_factor(energy, base_bpm)
+    if dynamics is not None and (dynamics.bpm != base_bpm or dynamics.bars != bars):
+        raise ValueError("动作时间映射与乐谱不匹配")
+    if dynamics is not None:
+        dynamics.intro_seconds = 0.0
 
     grid = 60.0 / bpm / 4.0
 
-    tier = energy_tier(energy)
+    tier = dynamics.tier(0) if dynamics is not None else energy_tier(energy)
 
-    vscale = velocity_scale(energy)
+    vscale = 1.0 if dynamics is not None else velocity_scale(energy)
 
-    octave = octave_shift(energy)
+    octave = 0 if dynamics is not None else octave_shift(energy)
 
     events = []
 
     def beat_time(bar, pos):
 
         return (bar * 16 + pos) * grid
+
+    def add_note(start, end, kind, data, velocity):
+        if dynamics is not None:
+            position = start / grid
+            if not dynamics.active(position):
+                return
+            end = dynamics.release_position(position, end / grid) * grid
+            velocity = max(1, min(120, int(velocity * dynamics.gain(position))))
+        events.append((start, kind + "_on", data, velocity))
+        events.append((end, kind + "_off", data, 0))
 
     # -------------------------
     # 旋律（音区偏移 + 强拍重音 + 力度缩放 + 连音填充）
@@ -320,12 +337,12 @@ def build_arranged_events(
         vel = item.get("velocity", 80)
 
         if start in (0, 8):
-            vel = vel + ACCENT[tier]
+            vel = vel + ACCENT[dynamics.tier(bar) if dynamics is not None else tier]
 
         vel = int(vel * vscale)
 
         # 力度弧线 + 后半曲抬升
-        if not plain:
+        if not plain and dynamics is None:
 
             pos = (
                 bar * 16 + start
@@ -364,6 +381,12 @@ def build_arranged_events(
             end_pos % 16,
         )
 
+        if dynamics is not None:
+            if not dynamics.active(bar * 16 + start):
+                continue
+            end_pos = dynamics.release_position(bar * 16 + start, end_pos)
+            t1 = end_pos * grid
+
         melody_spans.append(
             (bar * 16 + start, end_pos, note)
         )
@@ -373,8 +396,7 @@ def build_arranged_events(
             [],
         ).append(start)
 
-        events.append((t0, "melody_on", note, vel))
-        events.append((t1, "melody_off", note, 0))
+        add_note(t0, t1, "melody", note, vel)
 
     # -------------------------
     # 碰撞判定(只作用于同刻)
@@ -439,7 +461,7 @@ def build_arranged_events(
             else bars
         )
 
-        if plain:
+        if plain and dynamics is None:
 
             # 旧版: 整段长音
             t0 = beat_time(bar, 0)
@@ -453,6 +475,8 @@ def build_arranged_events(
         # 新版: 逐小节伴奏pattern
         for b in range(bar, next_bar):
 
+            bar_tier = dynamics.tier(b) if dynamics is not None else tier
+
             bpos = (
                 b * 16 + 8
             ) / total_pos
@@ -465,9 +489,11 @@ def build_arranged_events(
                 110,
                 int(chord_vel * arc),
             )
+            if dynamics is not None:
+                base_vel = CHORD_VELOCITY[bar_tier]
 
             # 密度自适应: 旋律密的小节伴奏减半
-            pattern = ACCOMP_PATTERN[tier]
+            pattern = ACCOMP_PATTERN[bar_tier]
 
             mel_count = len(
                 onsets_by_bar.get(b, [])
@@ -484,7 +510,7 @@ def build_arranged_events(
             # 抢拍让路: 旋律在12~15格有音则去掉14格
             if (
                 not plain
-                and tier == "intense"
+                and bar_tier == "intense"
                 and any(
                     12 <= p <= 15
                     for p in onsets_by_bar.get(b, [])
@@ -497,7 +523,7 @@ def build_arranged_events(
                     if p[0] != 14
                 ]
 
-            if tier == "intense":
+            if bar_tier == "intense":
 
                 # 强拍重击(逐音过碰撞规则)
                 for pos, dur in pattern:
@@ -536,8 +562,7 @@ def build_arranged_events(
                     t0 = beat_time(b, pos)
                     t1 = t0 + dur * grid
 
-                    events.append((t0, "chord_on", kept, v))
-                    events.append((t1, "chord_off", kept, 0))
+                    add_note(t0, t1, "chord", kept, v)
 
             else:
 
@@ -567,12 +592,7 @@ def build_arranged_events(
                     t0 = beat_time(b, pos)
                     t1 = t0 + dur * grid
 
-                    events.append(
-                        (t0, "chord_on", [note], v)
-                    )
-                    events.append(
-                        (t1, "chord_off", [note], 0)
-                    )
+                    add_note(t0, t1, "chord", [note], v)
 
     # -------------------------
     # 贝斯（根音律动）
@@ -583,7 +603,7 @@ def build_arranged_events(
         int(78 * vscale),
     )
 
-    for item in chords:
+    for i, item in enumerate(chords):
 
         symbol = item["symbol"]
 
@@ -594,16 +614,15 @@ def build_arranged_events(
 
         fifth = root + 7
 
-        for pos, dur in BASS[tier]:
-
-            # 第三拍用五度增加行进感
-            note = fifth if pos == 8 else root
-
-            t0 = beat_time(item["bar"], pos)
-            t1 = t0 + dur * grid
-
-            events.append((t0, "bass_on", note, bass_vel))
-            events.append((t1, "bass_off", note, 0))
+        next_bar = chords[i + 1]["bar"] if i + 1 < len(chords) else bars
+        bass_bars = range(item["bar"], next_bar) if dynamics is not None else (item["bar"],)
+        for b in bass_bars:
+            bar_tier = dynamics.tier(b) if dynamics is not None else tier
+            for pos, dur in BASS[bar_tier]:
+                note = fifth if pos == 8 else root
+                t0 = beat_time(b, pos)
+                t1 = t0 + dur * grid
+                add_note(t0, t1, "bass", note, bass_vel)
 
     # -------------------------
     # 鼓
@@ -616,17 +635,26 @@ def build_arranged_events(
 
     for bar in range(bars):
 
-        for pos, drum_note in DRUMS[tier]:
+        bar_tier = dynamics.tier(bar) if dynamics is not None else tier
+        for pos, drum_note in DRUMS[bar_tier]:
+
+            velocity = drum_vel
+            if dynamics is not None:
+                if not dynamics.active(bar * 16 + pos):
+                    continue
+                velocity = max(1, min(115, int(velocity * dynamics.gain(bar * 16 + pos))))
 
             events.append(
-                (beat_time(bar, pos), "drum", drum_note, drum_vel)
+                (beat_time(bar, pos), "drum", drum_note, velocity)
             )
 
     # -------------------------
     # 尾声: 主和弦延长收束(plain除外)
     # -------------------------
 
-    if not plain and last_symbol is not None:
+    # 收束独立于动作静止门控；全程没有主体声音时不凭空播放尾声。
+    if (not plain and last_symbol is not None
+            and (dynamics is None or events)):
 
         pcs = TRIAD_PCS.get(last_symbol)
 
@@ -634,19 +662,29 @@ def build_arranged_events(
 
         if pcs is not None and root is not None:
 
+            tail_start = beat_time(bars, 0)
+            tail_gain = 1.0
+            if dynamics is not None:
+                last_onset = max(t for t, kind, _, _ in events
+                                 if kind.endswith("_on") or kind == "drum")
+                tail_gain = dynamics.gain(last_onset / grid)
+                if not dynamics.active(bars * 16 - 1e-6):
+                    # 去掉尾部静止和补齐小节造成的空等，接在主体释放后。
+                    tail_start = max(t for t, _, _, _ in events)
+
             final_voicing = voice_chord(
                 pcs,
                 prev_voicing,
             )
 
-            t0 = beat_time(bars, 0)
+            t0 = tail_start
 
             events.append(
                 (
                     t0,
                     "chord_on",
                     final_voicing,
-                    int(chord_vel * 0.9),
+                    int(chord_vel * 0.9 * tail_gain),
                 )
             )
 
@@ -660,7 +698,7 @@ def build_arranged_events(
             )
 
             events.append(
-                (t0, "bass_on", root, int(bass_vel * 0.9))
+                (t0, "bass_on", root, int(bass_vel * 0.9 * tail_gain))
             )
 
             events.append(
@@ -675,6 +713,8 @@ def build_arranged_events(
     if not plain and last_symbol is not None:
 
         intro_grid = 16 * grid
+        if dynamics is not None:
+            dynamics.intro_seconds = intro_grid
 
         events = [
             (t + intro_grid, etype, data, vel)
@@ -687,7 +727,7 @@ def build_arranged_events(
             )
         )
 
-        if first_pcs is not None:
+        if first_pcs is not None and (dynamics is None or dynamics.active(0)):
 
             intro_notes = voice_chord(
                 first_pcs,
@@ -702,6 +742,8 @@ def build_arranged_events(
                     * arc_factor(0.0)
                 ),
             )
+            if dynamics is not None:
+                intro_vel = max(1, int(CHORD_VELOCITY[tier] * dynamics.gain(0) * 0.9))
 
             for k, (pos, dur) in enumerate(
                 ACCOMP_PATTERN[tier]
@@ -739,7 +781,11 @@ def build_arranged_events(
                     (t1, "chord_off", note_group, 0)
                 )
 
-    events.sort(key=lambda x: x[0])
+    if dynamics is not None:
+        # 同刻先停再起，避免持续音的结束关掉刚刚重触发的同音。
+        events.sort(key=lambda x: (x[0], 0 if x[1].endswith("_off") else 1))
+    else:
+        events.sort(key=lambda x: x[0])
 
     return events, tier, bpm
 

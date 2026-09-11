@@ -199,7 +199,7 @@ def compose(profile, seed=None):
                     "bar": bar,
                     "note": note,
                     "start": start,
-                    "dur": dur,
+                    "dur": min(dur, 16 - start),
                     "velocity": max(
                         30,
                         min(

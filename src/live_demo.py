@@ -12,6 +12,7 @@ BASE = Path(__file__).resolve().parent
 sys.path.insert(0, str(BASE / "features"))
 sys.path.insert(0, str(BASE / "music"))
 sys.path.insert(0, str(BASE / "input"))
+sys.path.insert(0, str(BASE / "llm"))
 
 from udp_reader import UDPReader
 from recorder import Recorder
@@ -299,6 +300,8 @@ def show_motion_chart(
     interactive=True,
     register_times=None,
     register_mode=None,
+    dynamics=None,
+    timeline=None,
 ):
 
     """
@@ -355,46 +358,18 @@ def show_motion_chart(
             )
         )
 
-    # 节拍标记: 平滑后局部峰
-    sm = []
-
-    half = 5
-
-    for i in range(len(mags)):
-
-        lo = max(0, i - half)
-        hi = min(len(mags), i + half + 1)
-
-        sm.append(
-            statistics.fmean(mags[lo:hi])
-        )
-
-    mean = statistics.fmean(sm)
-    std = statistics.pstdev(sm)
-
-    thr = mean + 0.5 * std
-
-    min_gap = int(hz * 60 / 180)
-
-    peaks = []
-
-    last = -10 * min_gap
-
-    for i in range(1, len(sm) - 1):
-
-        if (
-            sm[i] >= sm[i - 1]
-            and sm[i] > sm[i + 1]
-            and sm[i] > thr
-            and i - last >= min_gap
-        ):
-
-            peaks.append(i / hz)
-
-            last = i
+    from composer_events import extract_swing_events
+    peaks = [t for t, _, _ in extract_swing_events(uniform)]
+    if timeline is not None:
+        times = [p["t"] for p in timeline["points"]]
+        roll = [p["gyro_rms"] for p in timeline["points"]]
 
     # 档位线(raw单位)
-    if "校准" in energy_src:
+    if timeline is not None and timeline.get("anchor_rms"):
+        anchor = timeline["anchor_rms"]
+        tier_lo, tier_hi = 0.33 * anchor, 0.70 * anchor
+        tier_note = "按你的校准"
+    elif "校准" in energy_src:
 
         anchor_path = (
             Path(csv_path).parent / "baseline.json"
@@ -427,27 +402,24 @@ def show_motion_chart(
         and len(register_times) > 0
     )
 
+    heights = [3] + ([1.3] if show_reg else []) + ([1.5] if dynamics else []) + [1]
+    fig, axes = plt.subplots(len(heights), 1, figsize=(9, 4 + len(heights)),
+                             gridspec_kw={"height_ratios": heights})
+    ax1, ax2 = axes[0], axes[-1]
     if show_reg:
-
-        fig, (ax1, axR, ax2) = plt.subplots(
-            3,
-            1,
-            figsize=(9, 6.5),
-            gridspec_kw={
-                "height_ratios": [3, 1.3, 1]
-            },
-        )
-
-    else:
-
-        fig, (ax1, ax2) = plt.subplots(
-            2,
-            1,
-            figsize=(9, 5.5),
-            gridspec_kw={
-                "height_ratios": [3, 1]
-            },
-        )
+        axR = axes[1]
+    if dynamics is not None:
+        axD = axes[-2]
+        controls = dynamics.bar_controls
+        positions = [dynamics.intro_seconds + c["bar"] * 16 * dynamics.grid_s for c in controls]
+        levels = [{"calm": 0, "neutral": 1, "intense": 2}[c["tier"]] for c in controls]
+        positions.append(dynamics.intro_seconds + dynamics.bars * 16 * dynamics.grid_s)
+        levels.append(levels[-1])
+        axD.step(positions, levels, where="post", color="#e07a20")
+        axD.set_yticks([0, 1, 2], ["轻柔", "中等", "强烈"])
+        axD.set_ylim(-0.3, 2.3)
+        axD.set_xlabel("实际播放时间（秒，含前奏偏移）")
+        axD.set_title("实际伴奏档位（按小节切换；静止时暂停起音）")
 
     ax1.plot(
         times,
@@ -506,7 +478,7 @@ def show_motion_chart(
         va="bottom",
     )
 
-    ax1.set_ylabel("挥动强度")
+    ax1.set_ylabel("角速度 RMS (rad/s)")
 
     ax1.set_title(
         f"你刚才的挥动 ({tier_note})"
@@ -568,16 +540,17 @@ def show_motion_chart(
     ax2.text(
         0.02,
         0.72,
-        f"节奏 {bpm_text} → 曲速   "
-        f"强度 {energy*100:.0f}% → {tier_name}   "
-        f"时长 {profile['duration_s']:.0f}秒 → 曲长",
+        (f"播放 {dynamics.bpm:g} BPM   总体强度 {energy*100:.0f}%   伴奏跟随局部强弱"
+         if dynamics is not None else
+         f"动作节奏 {bpm_text}   总体强度 {energy*100:.0f}% → {tier_name}"),
         fontsize=13,
     )
 
     ax2.text(
         0.02,
         0.22,
-        "曲线跨过虚线 = 音乐换档；红点 = 系统数出来的拍子",
+        ("强度驱动力度；伴奏按小节换档（含平滑与滞回）；红点为挥动"
+         if dynamics is not None else "当前按整段强度配器，虚线仅作参考；红点为挥动"),
         fontsize=10,
         color="gray",
     )
@@ -588,6 +561,8 @@ def show_motion_chart(
         out_png,
         dpi=120,
     )
+    if not interactive:
+        plt.close(fig)
 
     if interactive:
 
@@ -661,6 +636,8 @@ def main():
         action="store_true",
         help="只跑流程不出声(测试用)",
     )
+    parser.add_argument("--static-energy", action="store_true", help="使用旧版整段能量配器作对照")
+    parser.add_argument("--seed", type=int, default=None, help="规则作曲随机种子，便于固定旋律比较")
 
     args = parser.parse_args()
 
@@ -718,6 +695,19 @@ def main():
         args.subject,
     )
 
+    timeline = None
+    if not args.static_energy:
+        from energy_timeline import load_energy_timeline
+        try:
+            timeline = load_energy_timeline(csv_path)
+            if timeline.get("anchor_rms"):
+                energy = max(0.0, min(1.0, profile["energy"]["gyro_rms"] / timeline["anchor_rms"]))
+                profile["energy"]["normalized"] = energy
+                energy_src = "本人校准（时间线）"
+        except (ValueError, OSError, TypeError, KeyError) as exc:
+            timeline = None
+            print(f"[动态配器不可用] {exc}；本次使用整段能量配器")
+
     bpm = profile["tempo"]["bpm"]
 
     bpm_text = (
@@ -748,6 +738,9 @@ def main():
     score = None
 
     engine_name = "规则作曲"
+    register_times = None
+    register_mode = None
+    mapping = "song"
 
     if args.events:
 
@@ -763,6 +756,7 @@ def main():
         if ev_score is not None:
 
             score = ev_score
+            mapping = "events"
             counts = ev_info["counts"]
             register_times = ev_info.get("register_times")
             register_mode = ev_info.get("register_mode")
@@ -805,6 +799,10 @@ def main():
             from client import call_llm
 
             score, meta = call_llm(profile)
+            from validator import validate_and_fix
+            score, fixes, fatals = validate_and_fix(score)
+            if fatals:
+                raise ValueError("；".join(fatals))
 
             engine_name = (
                 f"大模型({meta['model']}, "
@@ -812,6 +810,8 @@ def main():
             )
 
         except Exception as e:
+
+            score = None
 
             print(
                 f"[大模型失败] {e}"
@@ -823,7 +823,7 @@ def main():
 
         score = compose(
             profile,
-            seed=int(time.time()) % 100000,
+            seed=args.seed if args.seed is not None else int(time.time()) % 100000,
         )
 
     print()
@@ -835,6 +835,20 @@ def main():
     )
 
     t_compose_done = time.monotonic()
+
+    from arrangement import build_arranged_events
+    dynamics = None
+    if timeline is not None:
+        from motion_dynamics import MotionDynamics
+        try:
+            dynamics = MotionDynamics(score, timeline, mode=mapping)
+        except (ValueError, TypeError, KeyError) as exc:
+            print(f"[动态配器不可用] {exc}；本次使用整段能量配器")
+            timeline = None
+    events, tier, play_bpm = build_arranged_events(score, energy, dynamics=dynamics)
+    if dynamics is not None:
+        names = {"calm": "轻", "neutral": "中", "intense": "强"}
+        print("[动态配器] 小节档位 " + "→".join(names[c["tier"]] for c in dynamics.bar_controls))
 
     # -------------------------
     # 4. 存档
@@ -849,6 +863,13 @@ def main():
     import shutil
 
     shutil.copy(csv_path, out_dir / "input.csv")
+
+    if dynamics is not None:
+        for name, data in (("energy_timeline.json", timeline), ("dynamics.json", dynamics.report())):
+            with (out_dir / name).open("w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+    with (out_dir / "playback.json").open("w", encoding="utf-8") as f:
+        json.dump({"version": 1, "play_bpm": play_bpm, "events": events}, f, ensure_ascii=False)
 
     if vision is not None:
         vision["csv_sha256"] = hashlib.sha256((out_dir / "input.csv").read_bytes()).hexdigest()
@@ -898,6 +919,8 @@ def main():
             interactive=not args.dry_run,
             register_times=register_times,
             register_mode=register_mode,
+            dynamics=dynamics,
+            timeline=timeline,
         )
 
         print("[曲线] 已生成挥动曲线图")
@@ -923,10 +946,6 @@ def main():
 
         print()
         print("[播放中] 按 Ctrl+C 可中断")
-
-        events, tier, play_bpm = (
-            build_arranged_events(score, energy)
-        )
 
         engine = MidiEngine(
             device_id=args.device,

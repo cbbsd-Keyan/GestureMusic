@@ -28,7 +28,7 @@ def extract_swing_events(uniform, hz=100.0):
 
     """
     从重采样序列提取每次挥动的(时刻, 力度, 峰值索引)。
-    逻辑与 tempo.py 峰检测一致, 独立实现避免改动现有代码。
+    局部背景阈值避免强烈段淹没轻挥；固定幅度和突出度下限排除静止噪声。
     """
 
     mags = []
@@ -56,15 +56,6 @@ def extract_swing_events(uniform, hz=100.0):
     if not sm:
         return []
 
-    mean = statistics.fmean(sm)
-
-    std = statistics.pstdev(sm)
-
-    if std <= 0:
-        return []
-
-    threshold = mean + 0.5 * std
-
     min_gap = max(
         2,
         int(hz * 60 / 180),
@@ -75,6 +66,13 @@ def extract_swing_events(uniform, hz=100.0):
     last = -10 * min_gap
 
     for i in range(1, len(sm) - 1):
+
+        if not (sm[i] >= sm[i - 1] and sm[i] > sm[i + 1]):
+            continue
+        local = sm[max(0, i - int(hz)):min(len(sm), i + int(hz) + 1)]
+        background = statistics.median(local)
+        mad = statistics.median(abs(v - background) for v in local)
+        threshold = max(0.5, background + max(0.15, 1.5 * mad))
 
         if (
             sm[i] >= sm[i - 1]
@@ -284,10 +282,6 @@ def compose_events(
 
         start = max(0, min(15, start))
 
-        # 时值不得溢出小节
-        if start + 4 > 16:
-            start = min(start, 12)
-
         chord = prog[bar % len(prog)][1]
 
         reg = register_of.get(i, 0)
@@ -339,7 +333,7 @@ def compose_events(
                     "bar": bar,
                     "note": note,
                     "start": start,
-                    "dur": dur,
+                    "dur": min(dur, 16 - start),
                     "velocity": min(
                         115,
                         vel,
