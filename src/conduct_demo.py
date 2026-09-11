@@ -32,6 +32,8 @@ PAUSE_DELAY = 0.5           # 暂停前的等待时间
 FADE_TIME = 0.4             # 淡入淡出时间(秒)
 GAIN_FLOOR = 0.15           # 活跃时最低音量
 GAIN_CEIL = 1.0             # 最大音量
+FILTER_MIN_HZ = 200         # 明暗: 最低截止频率(很闷)
+FILTER_MAX_HZ = 12000       # 明暗: 最高截止频率(几乎透明)
 TEMPO_MIN = 1.0             # 最慢播放速度(暂时锁定1.0, 变速有音质问题)
 TEMPO_MAX = 1.0             # 最快播放速度(暂时锁定1.0)
 TEMPO_REF_RATE = 1.5        # 参考挥动频率(次/秒, 约90BPM)
@@ -65,6 +67,7 @@ class Params:
         self.energy = 0.0
         self.rate = 0.0
         self.active = 0.0
+        self.filter_alpha = 1.0  # 1.0=不过滤(透明)
         self._lock = threading.Lock()
 
     def set(self, **kw):
@@ -171,6 +174,19 @@ def control_loop(reader, params, audio_len):
 
             pause_start = None
 
+            # ---------- 明暗(滤波) ----------
+
+            # 指数映射: energy 0→200Hz, 1→12000Hz
+            cutoff_hz = FILTER_MIN_HZ * (
+                FILTER_MAX_HZ / FILTER_MIN_HZ
+            ) ** energy
+
+            # 一阶低通系数
+            import struct
+            filter_alpha = 1.0 - math.exp(
+                -2.0 * math.pi * cutoff_hz / SAMPLE_RATE
+            )
+
             # ---------- 增益 ----------
 
             target_gain = GAIN_FLOOR + (GAIN_CEIL - GAIN_FLOOR) * energy
@@ -200,6 +216,7 @@ def control_loop(reader, params, audio_len):
                 energy=energy,
                 rate=rate,
                 active=active_ratio,
+                filter_alpha=filter_alpha,
             )
 
         # ---------- 控制台显示 ----------
@@ -231,9 +248,14 @@ def control_loop(reader, params, audio_len):
 # 音频回调(sounddevice)
 # =========================
 
-def make_audio_callback(audio_data, params):
+def make_audio_callback(audio_data, params, use_filter=True):
+
+    # 滤波器状态(左右声道各自独立)
+    filter_state = [0.0, 0.0]
 
     def callback(outdata, frames, time_info, status):
+
+        nonlocal filter_state
 
         if status:
             pass
@@ -242,25 +264,14 @@ def make_audio_callback(audio_data, params):
         gain = params.get("gain")
         stride = params.get("stride")
         pos = params.get("position")
+        alpha = params.get("filter_alpha") if use_filter else 1.0
 
         if paused:
-
-            # 渐弱
-            fade = np.linspace(gain, 0, frames, dtype=np.float32)
-
-            outdata[:] = (fade[:, None] * audio_data[
-                int(pos):int(pos) + frames
-            ][:outdata.shape[0]]).astype(np.float32) if int(pos) + frames <= len(audio_data) else 0.0
-
-            # 简化: 直接静音
             outdata.fill(0)
-
             return
 
-        # 生成采样位置(等差, 步长=stride)
+        # 生成采样位置
         indices = pos + stride * np.arange(frames, dtype=np.float64)
-
-        # 循环
         indices = indices % len(audio_data)
 
         # 线性插值
@@ -268,17 +279,25 @@ def make_audio_callback(audio_data, params):
         idx1 = (idx0 + 1) % len(audio_data)
         frac = (indices - idx0).astype(np.float32)
 
-        # 双声道
         for ch in range(min(2, audio_data.shape[1])):
             samples = (
                 audio_data[idx0, ch] * (1 - frac)
                 + audio_data[idx1, ch] * frac
-            )
-            outdata[:, ch] = samples * gain
+            ) * gain
 
-        # 更新位置
+            if alpha < 0.999:
+                # 一阶低通(逐样本, 状态跨帧保持)
+                out = np.empty(frames, dtype=np.float32)
+                prev = filter_state[ch]
+                for i in range(frames):
+                    prev = alpha * samples[i] + (1.0 - alpha) * prev
+                    out[i] = prev
+                filter_state[ch] = prev
+                outdata[:, ch] = out
+            else:
+                outdata[:, ch] = samples
+
         new_pos = (pos + stride * frames) % len(audio_data)
-
         params.set(position=new_pos)
 
     return callback
@@ -296,6 +315,12 @@ def main():
     parser = argparse.ArgumentParser(description="指挥模式: 挥动控制现成音频")
 
     parser.add_argument("audio", help="音频文件(WAV/MP3)")
+
+    parser.add_argument(
+        "--no-filter",
+        action="store_true",
+        help="关闭明暗滤波(试验开关, 默认开启)",
+    )
 
     parser.add_argument(
         "--blocksize",
@@ -364,7 +389,7 @@ def main():
         daemon=True,
     )
 
-    callback = make_audio_callback(audio_data, params)
+    callback = make_audio_callback(audio_data, params, use_filter=not args.no_filter)
 
     print()
     print("挥动指挥棒控制音乐:")
