@@ -253,47 +253,72 @@ def make_audio_callback(audio_data, params, use_filter=True):
     # 滤波器状态(左右声道各自独立)
     filter_state = [0.0, 0.0]
 
+    # 上一块的参数值(用于线性斜坡消除阶跃)
+    prev_gain = 0.0
+    prev_alpha = 1.0
+
     def callback(outdata, frames, time_info, status):
 
-        nonlocal filter_state
+        nonlocal filter_state, prev_gain, prev_alpha
 
         if status:
             pass
 
         paused = params.get("paused")
-        gain = params.get("gain")
         stride = params.get("stride")
         pos = params.get("position")
-        alpha = params.get("filter_alpha") if use_filter else 1.0
+        target_gain = params.get("gain")
+        target_alpha = (
+            params.get("filter_alpha") if use_filter else 1.0
+        )
 
         if paused:
             outdata.fill(0)
+            prev_gain = 0.0
             return
 
-        # 生成采样位置
+        # ---------- 线性斜坡(消灭参数阶跃) ----------
+
+        gain_ramp = np.linspace(
+            prev_gain, target_gain, frames, dtype=np.float32
+        )
+
+        alpha_ramp = np.linspace(
+            prev_alpha, target_alpha, frames
+        )
+
+        prev_gain = target_gain
+        prev_alpha = target_alpha
+
+        # ---------- 采样与播放 ----------
+
         indices = pos + stride * np.arange(frames, dtype=np.float64)
         indices = indices % len(audio_data)
 
-        # 线性插值
         idx0 = indices.astype(np.int64)
         idx1 = (idx0 + 1) % len(audio_data)
         frac = (indices - idx0).astype(np.float32)
 
         for ch in range(min(2, audio_data.shape[1])):
+
             samples = (
                 audio_data[idx0, ch] * (1 - frac)
                 + audio_data[idx1, ch] * frac
-            ) * gain
+            ) * gain_ramp
 
-            if alpha < 0.999:
-                # 一阶低通(逐样本, 状态跨帧保持)
+            if target_alpha < 0.999:
+
                 out = np.empty(frames, dtype=np.float32)
                 prev = filter_state[ch]
+
                 for i in range(frames):
-                    prev = alpha * samples[i] + (1.0 - alpha) * prev
+                    a = alpha_ramp[i]
+                    prev = a * samples[i] + (1.0 - a) * prev
                     out[i] = prev
+
                 filter_state[ch] = prev
                 outdata[:, ch] = out
+
             else:
                 outdata[:, ch] = samples
 
