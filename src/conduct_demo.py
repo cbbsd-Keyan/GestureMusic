@@ -263,96 +263,87 @@ def _get_window():
 
 class GranularPlayer:
     """
-    颗粒合成变速: 源音频匀速读取(音高不变),
+    颗粒合成变速: 源匀速读(音高不变),
     颗粒在输出域按tempo排布(速度变化)。
+    绝对坐标管理: acc_offset + grain_out_pos 始终一致。
     """
 
     def __init__(self, audio, tempo=1.0):
         self.audio = audio
         self.tempo = tempo
         self.input_pos = 0
-        self.output_buffer = np.zeros(0, dtype=np.float32)
         self.window = _get_window()
+
+        # 绝对坐标
+        self.acc = np.zeros(0, dtype=np.float32)
+        self.acc_offset = 0      # acc[0] 对应的绝对输出位置
+        self.grain_out_pos = 0   # 下一颗粒应放的绝对输出位置
+
+        # 预填几个颗粒保证有数据
+        for _ in range(4):
+            self._add_grain()
 
     def set_tempo(self, t):
         self.tempo = max(0.5, min(1.5, t))
 
-    def get_block(self, n_samples, n_channels=2):
-        """取 n_samples 个输出样本(已是目标速度, 原始音高)。"""
+    def get_block(self, n):
+        """取 n 个输出样本。"""
+        # 确保积累够 n 个
+        target_end = self.acc_offset + n
+        while self.grain_out_pos < target_end:
+            self._add_grain()
 
-        while len(self.output_buffer) < n_samples:
-            self._add_grain(n_channels)
+        result = self.acc[:n].copy()
+        self.acc = self.acc[n:]
+        self.acc_offset += n
 
-        result = self.output_buffer[:n_samples].copy()
-        self.output_buffer = self.output_buffer[n_samples:]
+        # 保持最小缓冲
+        min_len = GRAIN_SIZE * 2
+        if len(self.acc) < min_len:
+            self.acc = np.concatenate([
+                self.acc,
+                np.zeros(min_len - len(self.acc), dtype=np.float32),
+            ])
+
         return result
 
-    def _add_grain(self, n_channels):
+    def _add_grain(self):
         G = GRAIN_SIZE
-        Ha = HOP_ANALYSIS
+        Ha = HOP_ANALYSIS  # 1024
         Hs = int(Ha * self.tempo)
 
-        # 从源读取一个颗粒(匀速, 不变速)
+        # 从源读颗粒(匀速)
         src = int(self.input_pos)
-
         if src + G >= len(self.audio):
             self.input_pos = 0
             src = 0
-
-        # 确保输出缓冲够长
-        needed = len(self.output_buffer) + Hs + G + 8
-
-        if len(self.output_buffer) < needed:
-            pad = needed - len(self.output_buffer)
-            if n_channels > 1:
-                self.output_buffer = np.concatenate([
-                    self.output_buffer,
-                    np.zeros(pad, dtype=np.float32),
-                ])
-            else:
-                self.output_buffer = np.concatenate([
-                    self.output_buffer,
-                    np.zeros(pad, dtype=np.float32),
-                ])
-
-        # 对每个声道: 读颗粒 × 汉恩窗, 叠加到输出
-        # (先只做单声道核心, 外面复制到双声道)
         grain = self.audio[src:src+G, 0].astype(np.float32) * self.window
 
-        # 叠加到输出缓冲的当前尾部位置
-        offset = max(0, len(self.output_buffer) - Hs - G)
+        # 颗粒放在绝对输出位置 grain_out_pos
+        idx = self.grain_out_pos - self.acc_offset
 
-        # 实际写法: 颗粒应叠加在 "上一颗粒的synthesis hop" 处
-        # 用更直接的方式: 维护output_write_pos
-        if not hasattr(self, 'output_write_pos'):
-            self.output_write_pos = 0
-
-        wpos = self.output_write_pos
-
-        end = wpos + G
-
-        if end > len(self.output_buffer):
-            self.output_buffer = np.concatenate([
-                self.output_buffer,
-                np.zeros(end - len(self.output_buffer), dtype=np.float32),
+        # 确保缓冲够长
+        needed = idx + G
+        if needed > len(self.acc):
+            self.acc = np.concatenate([
+                self.acc,
+                np.zeros(needed - len(self.acc) + G, dtype=np.float32),
             ])
 
-        self.output_buffer[wpos:end] += grain
-        self.output_write_pos = wpos + Hs
+        # 叠加
+        self.acc[idx:idx+G] += grain
 
-        # 清理已消费的缓冲
-        if self.output_write_pos > GRAIN_SIZE * 4:
-            trim = self.output_write_pos - GRAIN_SIZE * 2
-            self.output_buffer = self.output_buffer[trim:]
-            self.output_write_pos -= trim
-
-        # 推进源位置
+        # 推进
         self.input_pos += Ha
+        self.grain_out_pos += Hs
 
     def reset(self):
         self.input_pos = 0
-        self.output_buffer = np.zeros(0, dtype=np.float32)
-        self.output_write_pos = 0
+        self.acc = np.zeros(0, dtype=np.float32)
+        self.acc_offset = 0
+        self.grain_out_pos = 0
+        for _ in range(4):
+            self._add_grain()
 
 # =========================
 # 音频回调(sounddevice)
