@@ -34,8 +34,8 @@ GAIN_FLOOR = 0.15           # 活跃时最低音量
 GAIN_CEIL = 1.0             # 最大音量
 FILTER_MIN_HZ = 200         # 明暗: 最低截止频率(很闷)
 FILTER_MAX_HZ = 12000       # 明暗: 最高截止频率(几乎透明)
-TEMPO_MIN = 0.7             # 最慢播放速度
-TEMPO_MAX = 1.3             # 最快播放速度
+TEMPO_MIN = 1.0             # 锁定1.0(颗粒合成音质不达标, 归一化未解决相位问题)
+TEMPO_MAX = 1.0
 TEMPO_REF_RATE = 1.5        # 参考挥动频率(次/秒, 约90BPM)
 
 SAMPLE_RATE = 44100
