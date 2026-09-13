@@ -34,8 +34,8 @@ GAIN_FLOOR = 0.15           # 活跃时最低音量
 GAIN_CEIL = 1.0             # 最大音量
 FILTER_MIN_HZ = 200         # 明暗: 最低截止频率(很闷)
 FILTER_MAX_HZ = 12000       # 明暗: 最高截止频率(几乎透明)
-TEMPO_MIN = 1.0             # 锁定1.0(颗粒合成音质不达标, 归一化未解决相位问题)
-TEMPO_MAX = 1.0
+TEMPO_MIN = 1.0             # 最慢播放速度(暂时锁定1.0, 变速有音质问题)
+TEMPO_MAX = 1.0             # 最快播放速度(暂时锁定1.0)
 TEMPO_REF_RATE = 1.5        # 参考挥动频率(次/秒, 约90BPM)
 
 SAMPLE_RATE = 44100
@@ -245,136 +245,10 @@ def control_loop(reader, params, audio_len):
 
 
 # =========================
-# 颗粒合成时间拉伸(不变调变速)
-# =========================
-
-GRAIN_SIZE = 2048       # ~46ms
-HOP_ANALYSIS = GRAIN_SIZE // 2  # 50%重叠
-GRAIN_WINDOW = None     # 延迟初始化
-
-
-def _get_window():
-    global GRAIN_WINDOW
-    if GRAIN_WINDOW is None:
-        import numpy as _np
-        GRAIN_WINDOW = _np.hanning(GRAIN_SIZE).astype(np.float32)
-    return GRAIN_WINDOW
-
-
-class GranularPlayer:
-    """
-    颗粒合成变速: 源匀速读(音高不变),
-    颗粒在输出域按tempo排布(速度变化)。
-    绝对坐标管理: acc_offset + grain_out_pos 始终一致。
-    """
-
-    def __init__(self, audio, tempo=1.0):
-        self.audio = audio
-        self.tempo = tempo
-        self.input_pos = 0
-        self.window = _get_window()
-
-        # 绝对坐标
-        self.acc = np.zeros(0, dtype=np.float32)
-        self.acc_offset = 0      # acc[0] 对应的绝对输出位置
-        self.grain_out_pos = 0   # 下一颗粒应放的绝对输出位置
-
-        # 窗重叠累积器(与信号同步积累, 用于归一化)
-        self.wsum = np.zeros(0, dtype=np.float32)
-
-        # 预填几个颗粒保证有数据
-        for _ in range(4):
-            self._add_grain()
-
-    def set_tempo(self, t):
-        self.tempo = max(0.5, min(1.5, t))
-
-    def get_block(self, n):
-        """取 n 个输出样本(已归一化, 无振幅调制)。"""
-        # 确保积累够 n 个
-        target_end = self.acc_offset + n
-        while self.grain_out_pos < target_end:
-            self._add_grain()
-
-        # 归一化: 信号 ÷ 窗重叠和
-        sig = self.acc[:n]
-        wsum = self.wsum[:n]
-
-        # 避免除零: 窗和极小的地方直接输出零
-        safe = np.maximum(wsum, 1e-6)
-
-        result = (sig / safe).astype(np.float32)
-
-        # 消费缓冲
-        self.acc = self.acc[n:]
-        self.wsum = self.wsum[n:]
-        self.acc_offset += n
-
-        # 保持最小缓冲
-        min_len = GRAIN_SIZE * 2
-        if len(self.acc) < min_len:
-            self.acc = np.concatenate([
-                self.acc,
-                np.zeros(min_len - len(self.acc), dtype=np.float32),
-            ])
-            self.wsum = np.concatenate([
-                self.wsum,
-                np.zeros(min_len - len(self.wsum), dtype=np.float32),
-            ])
-
-        return result
-
-    def _add_grain(self):
-        G = GRAIN_SIZE
-        Ha = HOP_ANALYSIS  # 1024
-        Hs = int(Ha * self.tempo)
-
-        # 从源读颗粒(匀速)
-        src = int(self.input_pos)
-        if src + G >= len(self.audio):
-            self.input_pos = 0
-            src = 0
-
-        raw = self.audio[src:src+G, 0].astype(np.float32)
-
-        # 颗粒放在绝对输出位置 grain_out_pos
-        idx = self.grain_out_pos - self.acc_offset
-
-        # 确保缓冲够长(信号和窗同步)
-        needed = idx + G
-        if needed > len(self.acc):
-            pad = needed - len(self.acc) + G
-            self.acc = np.concatenate([
-                self.acc,
-                np.zeros(pad, dtype=np.float32),
-            ])
-            self.wsum = np.concatenate([
-                self.wsum,
-                np.zeros(pad, dtype=np.float32),
-            ])
-
-        # 叠加信号和窗
-        self.acc[idx:idx+G] += raw * self.window
-        self.wsum[idx:idx+G] += self.window
-
-        # 推进
-        self.input_pos += Ha
-        self.grain_out_pos += Hs
-
-    def reset(self):
-        self.input_pos = 0
-        self.acc = np.zeros(0, dtype=np.float32)
-        self.wsum = np.zeros(0, dtype=np.float32)
-        self.acc_offset = 0
-        self.grain_out_pos = 0
-        for _ in range(4):
-            self._add_grain()
-
-# =========================
 # 音频回调(sounddevice)
 # =========================
 
-def make_audio_callback(audio_data, params, use_filter=True, use_granular=False):
+def make_audio_callback(audio_data, params, use_filter=True):
 
     # 滤波器状态(左右声道各自独立)
     filter_state = [0.0, 0.0]
@@ -382,9 +256,6 @@ def make_audio_callback(audio_data, params, use_filter=True, use_granular=False)
     # 上一块的参数值(用于线性斜坡消除阶跃)
     prev_gain = 0.0
     prev_alpha = 1.0
-
-    # 颗粒播放器(不变调变速)
-    granular = GranularPlayer(audio_data) if use_granular else None
 
     def callback(outdata, frames, time_info, status):
 
@@ -404,8 +275,6 @@ def make_audio_callback(audio_data, params, use_filter=True, use_granular=False)
         if paused:
             outdata.fill(0)
             prev_gain = 0.0
-            if granular:
-                granular.reset()
             return
 
         # ---------- 线性斜坡(消灭参数阶跃) ----------
@@ -421,56 +290,40 @@ def make_audio_callback(audio_data, params, use_filter=True, use_granular=False)
         prev_gain = target_gain
         prev_alpha = target_alpha
 
-        # ---------- 获取音频样本 ----------
+        # ---------- 采样与播放 ----------
 
-        if granular:
-            # 颗粒模式: 不变调变速
-            granular.set_tempo(stride)
-            mono = granular.get_block(frames)
-            # 复制到双声道
-            for ch in range(min(2, audio_data.shape[1])):
-                samples = mono * gain_ramp
-                if target_alpha < 0.999:
-                    out = np.empty(frames, dtype=np.float32)
-                    prev = filter_state[ch]
-                    for i in range(frames):
-                        a = alpha_ramp[i]
-                        prev = a * samples[i] + (1.0 - a) * prev
-                        out[i] = prev
-                    filter_state[ch] = prev
-                    outdata[:, ch] = out
-                else:
-                    outdata[:, ch] = samples
+        indices = pos + stride * np.arange(frames, dtype=np.float64)
+        indices = indices % len(audio_data)
 
-        else:
-            # 普通模式: 可变步长(会变调)
-            indices = pos + stride * np.arange(frames, dtype=np.float64)
-            indices = indices % len(audio_data)
+        idx0 = indices.astype(np.int64)
+        idx1 = (idx0 + 1) % len(audio_data)
+        frac = (indices - idx0).astype(np.float32)
 
-            idx0 = indices.astype(np.int64)
-            idx1 = (idx0 + 1) % len(audio_data)
-            frac = (indices - idx0).astype(np.float32)
+        for ch in range(min(2, audio_data.shape[1])):
 
-            for ch in range(min(2, audio_data.shape[1])):
-                samples = (
-                    audio_data[idx0, ch] * (1 - frac)
-                    + audio_data[idx1, ch] * frac
-                ) * gain_ramp
+            samples = (
+                audio_data[idx0, ch] * (1 - frac)
+                + audio_data[idx1, ch] * frac
+            ) * gain_ramp
 
-                if target_alpha < 0.999:
-                    out = np.empty(frames, dtype=np.float32)
-                    prev = filter_state[ch]
-                    for i in range(frames):
-                        a = alpha_ramp[i]
-                        prev = a * samples[i] + (1.0 - a) * prev
-                        out[i] = prev
-                    filter_state[ch] = prev
-                    outdata[:, ch] = out
-                else:
-                    outdata[:, ch] = samples
+            if target_alpha < 0.999:
 
-            new_pos = (pos + stride * frames) % len(audio_data)
-            params.set(position=new_pos)
+                out = np.empty(frames, dtype=np.float32)
+                prev = filter_state[ch]
+
+                for i in range(frames):
+                    a = alpha_ramp[i]
+                    prev = a * samples[i] + (1.0 - a) * prev
+                    out[i] = prev
+
+                filter_state[ch] = prev
+                outdata[:, ch] = out
+
+            else:
+                outdata[:, ch] = samples
+
+        new_pos = (pos + stride * frames) % len(audio_data)
+        params.set(position=new_pos)
 
     return callback
 
@@ -492,12 +345,6 @@ def main():
         "--no-filter",
         action="store_true",
         help="关闭明暗滤波(试验开关, 默认开启)",
-    )
-
-    parser.add_argument(
-        "--granular",
-        action="store_true",
-        help="试验: 颗粒合成不变调变速(默认关闭, 用可变步长代替)",
     )
 
     parser.add_argument(
@@ -567,11 +414,7 @@ def main():
         daemon=True,
     )
 
-    callback = make_audio_callback(
-        audio_data, params,
-        use_filter=not args.no_filter,
-        use_granular=args.granular,
-    )
+    callback = make_audio_callback(audio_data, params, use_filter=not args.no_filter)
 
     print()
     print("挥动指挥棒控制音乐:")
