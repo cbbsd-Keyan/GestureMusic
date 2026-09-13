@@ -279,6 +279,9 @@ class GranularPlayer:
         self.acc_offset = 0      # acc[0] 对应的绝对输出位置
         self.grain_out_pos = 0   # 下一颗粒应放的绝对输出位置
 
+        # 窗重叠累积器(与信号同步积累, 用于归一化)
+        self.wsum = np.zeros(0, dtype=np.float32)
+
         # 预填几个颗粒保证有数据
         for _ in range(4):
             self._add_grain()
@@ -287,14 +290,24 @@ class GranularPlayer:
         self.tempo = max(0.5, min(1.5, t))
 
     def get_block(self, n):
-        """取 n 个输出样本。"""
+        """取 n 个输出样本(已归一化, 无振幅调制)。"""
         # 确保积累够 n 个
         target_end = self.acc_offset + n
         while self.grain_out_pos < target_end:
             self._add_grain()
 
-        result = self.acc[:n].copy()
+        # 归一化: 信号 ÷ 窗重叠和
+        sig = self.acc[:n]
+        wsum = self.wsum[:n]
+
+        # 避免除零: 窗和极小的地方直接输出零
+        safe = np.maximum(wsum, 1e-6)
+
+        result = (sig / safe).astype(np.float32)
+
+        # 消费缓冲
         self.acc = self.acc[n:]
+        self.wsum = self.wsum[n:]
         self.acc_offset += n
 
         # 保持最小缓冲
@@ -303,6 +316,10 @@ class GranularPlayer:
             self.acc = np.concatenate([
                 self.acc,
                 np.zeros(min_len - len(self.acc), dtype=np.float32),
+            ])
+            self.wsum = np.concatenate([
+                self.wsum,
+                np.zeros(min_len - len(self.wsum), dtype=np.float32),
             ])
 
         return result
@@ -317,21 +334,28 @@ class GranularPlayer:
         if src + G >= len(self.audio):
             self.input_pos = 0
             src = 0
-        grain = self.audio[src:src+G, 0].astype(np.float32) * self.window
+
+        raw = self.audio[src:src+G, 0].astype(np.float32)
 
         # 颗粒放在绝对输出位置 grain_out_pos
         idx = self.grain_out_pos - self.acc_offset
 
-        # 确保缓冲够长
+        # 确保缓冲够长(信号和窗同步)
         needed = idx + G
         if needed > len(self.acc):
+            pad = needed - len(self.acc) + G
             self.acc = np.concatenate([
                 self.acc,
-                np.zeros(needed - len(self.acc) + G, dtype=np.float32),
+                np.zeros(pad, dtype=np.float32),
+            ])
+            self.wsum = np.concatenate([
+                self.wsum,
+                np.zeros(pad, dtype=np.float32),
             ])
 
-        # 叠加
-        self.acc[idx:idx+G] += grain
+        # 叠加信号和窗
+        self.acc[idx:idx+G] += raw * self.window
+        self.wsum[idx:idx+G] += self.window
 
         # 推进
         self.input_pos += Ha
@@ -340,6 +364,7 @@ class GranularPlayer:
     def reset(self):
         self.input_pos = 0
         self.acc = np.zeros(0, dtype=np.float32)
+        self.wsum = np.zeros(0, dtype=np.float32)
         self.acc_offset = 0
         self.grain_out_pos = 0
         for _ in range(4):
