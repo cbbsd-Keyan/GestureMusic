@@ -1,6 +1,11 @@
 # Python virtual environment
 .venv/
 venv/
+.trial-libs/
+.native-build/
+src/audio/native/*.dll
+src/audio/native/*.lib
+src/audio/native/*.exp
 
 # Python cache
 __pycache__/

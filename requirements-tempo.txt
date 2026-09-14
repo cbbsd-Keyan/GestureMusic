@@ -1,0 +1,6 @@
+# Runtime for the independent manual tempo player (not needed by composition).
+numpy
+sounddevice>=0.5
+soundfile>=0.13
+# Streaming Signalsmith DLL is built from vendored source with MSVC x64;
+# the offline python-stretch wheel is NOT used by the streaming player.

@@ -1,12 +1,14 @@
-import pygame.midi
-
-
 class MidiEngine:
     def __init__(self, device_id=1):
-
-        pygame.midi.init()
-
-        self.player = pygame.midi.Output(device_id)
+        self.using_pygame = False
+        try:
+            import pygame.midi
+            pygame.midi.init()
+            self.player = pygame.midi.Output(device_id)
+            self.using_pygame = True
+        except ImportError:
+            from audio.stem_conductor import _WindowsMidiOutput
+            self.player = _WindowsMidiOutput()
 
         self.CHORD_CHANNEL = 0
         self.BASS_CHANNEL = 1
@@ -102,6 +104,21 @@ class MidiEngine:
             self.DRUM_CHANNEL
         )
 
+    def all_notes_off(self):
+        """Silence every channel when a preview is stopped or fails mid-event."""
+        for channel in (
+            self.CHORD_CHANNEL,
+            self.BASS_CHANNEL,
+            self.MELODY_CHANNEL,
+            self.DRUM_CHANNEL,
+        ):
+            self.player.write_short(0xB0 | channel, 123, 0)
+
     def close(self):
-        self.player.close()
-        pygame.midi.quit()
+        try:
+            self.all_notes_off()
+        finally:
+            self.player.close()
+            if self.using_pygame:
+                import pygame.midi
+                pygame.midi.quit()
