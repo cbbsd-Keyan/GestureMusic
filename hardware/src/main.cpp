@@ -13,6 +13,8 @@ Adafruit_NeoPixel strip(
     NEO_GRB + NEO_KHZ800
 );
 
+bool gestureStarting = false;
+
 // 默认 BPM
 int bpm = 90;
 
@@ -71,6 +73,7 @@ void setMode(LedMode newMode)
 
         case MODE_GESTURE:
             Serial.println("GESTURE");
+            gestureStarting = true;
             break;
 
         case MODE_WAITING:
@@ -179,31 +182,33 @@ void updateGesture()
 {
     unsigned long elapsed = millis() - modeStartTime;
 
-    // 1.5s 一个完整周期
-    float phase = (elapsed % 1500) / 1500.0f;
+    // =========================
+    // 启动动画：1~16逐个亮起
+    // 总时长约1秒
+    // =========================
+    if (gestureStarting)
+{
+    const unsigned long startDuration = 1000;
 
-    // 平滑亮灭，不是硬闪
-    float pulse =
-        0.15f + 0.45f *
-        (0.5f - 0.5f * cos(phase * 2.0f * PI));
+    int litCount =
+        (elapsed * LED_COUNT) / startDuration;
+
+    if (litCount > LED_COUNT)
+        litCount = LED_COUNT;
 
     for (int lamp = 1; lamp <= 16; lamp++)
     {
         uint32_t color;
 
-        // 灯1、9：紫色
+        // 和后续 MODE_GESTURE 完全相同的配色
         if (lamp == 1 || lamp == 9)
         {
-            color = strip.Color(140, 0, 220);
+            color = strip.Color(140, 0, 220);   // 紫
         }
-
-        // 灯5、13：青色
         else if (lamp == 5 || lamp == 13)
         {
-            color = strip.Color(0, 120, 140);
+            color = strip.Color(0, 120, 140);   // 青
         }
-
-        // 1 -> 5：紫 -> 青
         else if (lamp > 1 && lamp < 5)
         {
             float t = (lamp - 1) / 4.0f;
@@ -214,8 +219,6 @@ void updateGesture()
                 t
             );
         }
-
-        // 5 -> 9：青 -> 紫
         else if (lamp > 5 && lamp < 9)
         {
             float t = (lamp - 5) / 4.0f;
@@ -226,8 +229,6 @@ void updateGesture()
                 t
             );
         }
-
-        // 9 -> 13：紫 -> 青
         else if (lamp > 9 && lamp < 13)
         {
             float t = (lamp - 9) / 4.0f;
@@ -238,11 +239,111 @@ void updateGesture()
                 t
             );
         }
-
-        // 13 -> 16 -> 1：青 -> 紫
         else
         {
             float t = (lamp - 13) / 4.0f;
+
+            color = lerpColor(
+                0, 120, 140,
+                140, 0, 220,
+                t
+            );
+        }
+
+        // 已经轮到的灯保持点亮
+        if (lamp <= litCount)
+        {
+            strip.setPixelColor(
+                lamp - 1,
+                scaleColor(color, 0.45f)
+            );
+        }
+        else
+        {
+            strip.setPixelColor(
+                lamp - 1,
+                strip.Color(0, 0, 0)
+            );
+        }
+    }
+
+    strip.show();
+
+    // 16颗全部亮完后进入正式 GESTURE 动画
+    if (elapsed >= startDuration)
+    {
+        gestureStarting = false;
+        modeStartTime = millis();
+    }
+
+    return;
+}
+
+    // =========================
+    // 原来的 GESTURE 动画
+    // =========================
+
+    elapsed = millis() - modeStartTime;
+
+    float phase =
+        (elapsed % 1500) / 1500.0f;
+
+    float pulse =
+        0.15f + 0.45f *
+        (0.5f - 0.5f *
+        cos(phase * 2.0f * PI));
+
+    for (int lamp = 1; lamp <= 16; lamp++)
+    {
+        uint32_t color;
+
+        if (lamp == 1 || lamp == 9)
+        {
+            color =
+                strip.Color(140, 0, 220);
+        }
+        else if (lamp == 5 || lamp == 13)
+        {
+            color =
+                strip.Color(0, 120, 140);
+        }
+        else if (lamp > 1 && lamp < 5)
+        {
+            float t =
+                (lamp - 1) / 4.0f;
+
+            color = lerpColor(
+                140, 0, 220,
+                0, 120, 140,
+                t
+            );
+        }
+        else if (lamp > 5 && lamp < 9)
+        {
+            float t =
+                (lamp - 5) / 4.0f;
+
+            color = lerpColor(
+                0, 120, 140,
+                140, 0, 220,
+                t
+            );
+        }
+        else if (lamp > 9 && lamp < 13)
+        {
+            float t =
+                (lamp - 9) / 4.0f;
+
+            color = lerpColor(
+                140, 0, 220,
+                0, 120, 140,
+                t
+            );
+        }
+        else
+        {
+            float t =
+                (lamp - 13) / 4.0f;
 
             color = lerpColor(
                 0, 120, 140,
@@ -259,7 +360,6 @@ void updateGesture()
 
     strip.show();
 }
-
 // ======================================================
 // 手势识别成功
 // 整圈快速闪绿一次
