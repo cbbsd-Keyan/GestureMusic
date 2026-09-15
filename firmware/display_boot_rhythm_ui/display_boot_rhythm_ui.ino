@@ -6,6 +6,12 @@
 
 // ======================================================
 // ST7735S
+// 接线：
+// SCL  -> GPIO12
+// SDA  -> GPIO11
+// CS   -> GPIO10
+// DC   -> GPIO13
+// RES  -> GPIO14
 // ======================================================
 
 #define TFT_CS    10
@@ -14,2659 +20,1815 @@
 #define TFT_MOSI  11
 #define TFT_SCLK  12
 
-Adafruit_ST7735 tft(
-  TFT_CS,
-  TFT_DC,
-  TFT_RST
-);
-
+Adafruit_ST7735 tft(TFT_CS, TFT_DC, TFT_RST);
 U8G2_FOR_ADAFRUIT_GFX u8g2;
 
-
 // ======================================================
-// COLORS
-// ======================================================
-
-uint16_t BG;
-uint16_t PANEL;
-uint16_t PANEL2;
-
-uint16_t WHITE;
-uint16_t DIM;
-
-uint16_t CYAN;
-uint16_t CYAN_DARK;
-
-uint16_t PURPLE;
-uint16_t PURPLE_DARK;
-
-uint16_t PINK;
-
-uint16_t GREEN;
-uint16_t RED;
-uint16_t ORANGE;
-uint16_t BLUE_SOFT;
-
-
-// ======================================================
-// PAGE
+// 基础颜色
 // ======================================================
 
-enum Page {
-
-  PAGE_MENU,
-  PAGE_COMPOSE_MODE,
-  PAGE_COUNTDOWN,
-  PAGE_RECORD,
-  PAGE_GENERATING,
-  PAGE_RESULT,
-  PAGE_PREVIEW,
-  PAGE_MOONLIGHT,
-  PAGE_CANON,
-  PAGE_ERROR
-
-};
-
-Page currentPage =
-  PAGE_MENU;
-
+uint16_t C_BG;
+uint16_t C_PANEL;
+uint16_t C_WHITE;
+uint16_t C_BLACK;
+uint16_t C_GRAY;
+uint16_t C_CYAN;
+uint16_t C_CYAN_DARK;
+uint16_t C_PURPLE;
+uint16_t C_PURPLE_DARK;
+uint16_t C_PINK;
+uint16_t C_GREEN;
+uint16_t C_RED;
+uint16_t C_ORANGE;
 
 // ======================================================
-// TIME
+// 咕嘎一家队角色颜色
 // ======================================================
 
-unsigned long pageStart = 0;
-unsigned long lastFrame = 0;
+uint16_t GG_SKIN;
+uint16_t GG_HAIR;
+uint16_t GG_HAIR_LIGHT;
+uint16_t GG_EYE;
+uint16_t GG_EYE_DARK;
+uint16_t GG_BODY;
+uint16_t GG_BODY_SHADOW;
+uint16_t GG_ORANGE;
+uint16_t GG_BLUSH;
 
+// ======================================================
+// 主界面 DEMO 数据
+// ======================================================
+
+int bpm = 65;
+float intensity = 0.55;
+float motionValue = 0.50;
+
+int beatNumber = 1;
+float beatStrength = 1.0;
 float phase = 0;
 
+unsigned long lastBeat = 0;
+unsigned long pulseStart = 0;
+unsigned long lastFrame = 0;
+unsigned long startTime = 0;
 
 // ======================================================
-// 中文
+// 波形区域
+// ======================================================
+
+#define WX 4
+#define WY 89
+#define WW 152
+#define WH 26
+
+int waveX = WX + 2;
+int lastWaveY = WY + WH / 2;
+
+// ======================================================
+// 动画数学
+// ======================================================
+
+float smoothStep(float x) {
+  x = constrain(x, 0.0, 1.0);
+  return x * x * (3.0 - 2.0 * x);
+}
+
+float easeOutCubic(float x) {
+  x = constrain(x, 0.0, 1.0);
+  return 1.0 - pow(1.0 - x, 3);
+}
+
+float easeOutBack(float x) {
+  const float c1 = 1.70158;
+  const float c3 = c1 + 1.0;
+
+  x = constrain(x, 0.0, 1.0);
+
+  return 1.0
+         + c3 * pow(x - 1.0, 3)
+         + c1 * pow(x - 1.0, 2);
+}
+
+// ======================================================
+// 中文字体
 // ======================================================
 
 void setChineseFont() {
-
   u8g2.setFontMode(1);
-
   u8g2.setFontDirection(0);
-
-  u8g2.setFont(
-    u8g2_font_wqy16_t_gb2312
-  );
+  u8g2.setFont(u8g2_font_wqy16_t_gb2312);
 }
 
-
-void cn(
+void drawChineseText(
   int x,
   int y,
   const char* text,
   uint16_t color
 ) {
-
-  u8g2.setForegroundColor(
-    color
-  );
-
-  u8g2.setCursor(
-    x,
-    y
-  );
-
-  u8g2.print(
-    text
-  );
+  u8g2.setForegroundColor(color);
+  u8g2.setCursor(x, y);
+  u8g2.print(text);
 }
 
-
 // ======================================================
-// COLORS
+// 初始化颜色
 // ======================================================
 
 void initColors() {
+  C_BG          = tft.color565(2, 4, 10);
+  C_PANEL       = tft.color565(15, 22, 36);
+  C_WHITE       = tft.color565(235, 245, 255);
+  C_BLACK       = tft.color565(18, 18, 24);
+  C_GRAY        = tft.color565(72, 85, 108);
+  C_CYAN        = tft.color565(25, 225, 255);
+  C_CYAN_DARK   = tft.color565(0, 55, 75);
+  C_PURPLE      = tft.color565(165, 75, 255);
+  C_PURPLE_DARK = tft.color565(65, 28, 105);
+  C_PINK        = tft.color565(255, 55, 175);
+  C_GREEN       = tft.color565(55, 255, 145);
+  C_RED         = tft.color565(255, 70, 85);
+  C_ORANGE      = tft.color565(255, 155, 35);
 
-  BG =
-    tft.color565(
-      2, 4, 10
-    );
-
-  PANEL =
-    tft.color565(
-      16, 24, 40
-    );
-
-  PANEL2 =
-    tft.color565(
-      44, 52, 72
-    );
-
-  WHITE =
-    tft.color565(
-      238, 245, 255
-    );
-
-  DIM =
-    tft.color565(
-      76, 90, 115
-    );
-
-  CYAN =
-    tft.color565(
-      25, 225, 255
-    );
-
-  CYAN_DARK =
-    tft.color565(
-      0, 55, 80
-    );
-
-  PURPLE =
-    tft.color565(
-      170, 75, 255
-    );
-
-  PURPLE_DARK =
-    tft.color565(
-      64, 28, 110
-    );
-
-  PINK =
-    tft.color565(
-      255, 55, 175
-    );
-
-  GREEN =
-    tft.color565(
-      60, 255, 150
-    );
-
-  RED =
-    tft.color565(
-      255, 60, 75
-    );
-
-  ORANGE =
-    tft.color565(
-      255, 165, 45
-    );
-
-  BLUE_SOFT =
-    tft.color565(
-      105, 165, 255
-    );
+  GG_SKIN        = tft.color565(255, 221, 206);
+  GG_HAIR        = tft.color565(44, 39, 45);
+  GG_HAIR_LIGHT  = tft.color565(82, 73, 78);
+  GG_EYE         = tft.color565(202, 108, 122);
+  GG_EYE_DARK    = tft.color565(85, 38, 47);
+  GG_BODY        = tft.color565(242, 222, 185);
+  GG_BODY_SHADOW = tft.color565(211, 190, 156);
+  GG_ORANGE      = tft.color565(194, 77, 27);
+  GG_BLUSH       = tft.color565(250, 146, 158);
 }
 
-
 // ======================================================
-// COMMON DECORATION
+// 开屏背景
 // ======================================================
 
-void drawCorners() {
+void drawBootBG() {
+  tft.fillScreen(C_BG);
 
-  // 左上
-  tft.drawFastHLine(
-    3, 3,
-    12,
-    CYAN_DARK
-  );
+  tft.drawFastHLine(6, 9, 28, C_CYAN_DARK);
+  tft.drawFastHLine(126, 9, 28, C_PURPLE_DARK);
+  tft.drawFastHLine(7, 118, 20, C_PURPLE_DARK);
+  tft.drawFastHLine(133, 118, 20, C_CYAN_DARK);
 
-  tft.drawFastVLine(
-    3, 3,
-    8,
-    CYAN_DARK
-  );
-
-
-  // 右上
-  tft.drawFastHLine(
-    145, 3,
-    12,
-    PURPLE_DARK
-  );
-
-  tft.drawFastVLine(
-    156, 3,
-    8,
-    PURPLE_DARK
-  );
-
-
-  // 左下
-  tft.drawFastHLine(
-    3, 123,
-    12,
-    PURPLE_DARK
-  );
-
-  tft.drawFastVLine(
-    3, 116,
-    8,
-    PURPLE_DARK
-  );
-
-
-  // 右下
-  tft.drawFastHLine(
-    145, 123,
-    12,
-    CYAN_DARK
-  );
-
-  tft.drawFastVLine(
-    156, 116,
-    8,
-    CYAN_DARK
-  );
+  tft.fillCircle(14, 18, 1, C_PINK);
+  tft.fillCircle(22, 15, 1, C_CYAN);
+  tft.fillCircle(28, 21, 1, C_PINK);
 }
 
-
-void clearPage() {
-
-  tft.fillScreen(
-    BG
-  );
-
-  drawCorners();
-}
-
-
 // ======================================================
-// TOP BAR
+// ① 队名动画：咕嘎一家队
+// 总时长约 2 秒
 // ======================================================
 
-void topBar(
-  const char* left,
-  const char* right,
-  uint16_t statusColor
-) {
+void teamIntroFast() {
+  const char* chars[5] = {
+    "咕",
+    "嘎",
+    "一",
+    "家",
+    "队"
+  };
 
-  tft.fillRoundRect(
-    5,
-    4,
-    150,
-    15,
-    4,
-    PANEL
-  );
+  int tx[5] = {40, 56, 72, 88, 104};
+  int ty = 67;
 
+  int sx[5] = {-25, 180, -25, 180, 80};
+  int sy[5] = {18, 18, 110, 110, -25};
 
-  tft.fillCircle(
-    11,
-    11,
-    3,
-    statusColor
-  );
+  drawBootBG();
 
+  unsigned long introStart = millis();
 
-  tft.setTextSize(
-    1
-  );
+  // 五个字飞入
+  while (millis() - introStart < 950) {
+    unsigned long elapsed = millis() - introStart;
 
+    float t = (float)elapsed / 950.0;
+    t = constrain(t, 0.0, 1.0);
 
-  tft.setTextColor(
-    WHITE
-  );
+    float ex = easeOutBack(t);
+    float ey = smoothStep(t);
 
+    tft.fillRect(0, 23, 160, 79, C_BG);
+    tft.drawFastHLine(35, 82, 90, C_CYAN_DARK);
 
-  tft.setCursor(
-    18,
-    8
-  );
+    for (int i = 0; i < 5; i++) {
+      int x = sx[i] + (int)((tx[i] - sx[i]) * ex);
+      int y = sy[i] + (int)((ty - sy[i]) * ey);
 
+      drawChineseText(x + 3, y + 2, chars[i], C_PURPLE_DARK);
+      drawChineseText(x - 1, y, chars[i], C_PINK);
+      drawChineseText(x, y, chars[i], C_CYAN);
+    }
 
-  tft.print(
-    left
-  );
-
-
-  int rightW =
-    strlen(right) * 6;
-
-
-  tft.setTextColor(
-    DIM
-  );
-
-
-  tft.setCursor(
-    151 - rightW,
-    8
-  );
-
-
-  tft.print(
-    right
-  );
-}
-
-
-// ======================================================
-// SCANLINE
-// ======================================================
-
-void drawScanLine() {
-
-  int y =
-    23 +
-    ((millis() / 35) % 94);
-
-
-  tft.drawFastHLine(
-    6,
-    y,
-    148,
-    CYAN_DARK
-  );
-}
-
-
-// ======================================================
-// 音符
-// ======================================================
-
-void drawNote(
-  int x,
-  int y,
-  uint16_t c
-) {
-
-  tft.fillCircle(
-    x,
-    y,
-    4,
-    c
-  );
-
-
-  tft.drawFastVLine(
-    x + 4,
-    y - 16,
-    17,
-    c
-  );
-
-
-  tft.drawFastHLine(
-    x + 4,
-    y - 16,
-    8,
-    c
-  );
-}
-
-
-// ======================================================
-// 指挥棒
-// ======================================================
-
-void drawBaton(
-  int x,
-  int y,
-  float a,
-  uint16_t color
-) {
-
-  int len =
-    35;
-
-
-  int x2 =
-    x +
-    cos(a) * len;
-
-
-  int y2 =
-    y -
-    sin(a) * len;
-
-
-  // 拖尾
-  tft.drawLine(
-    x,
-    y,
-    x2 - 4,
-    y2 + 3,
-    PURPLE_DARK
-  );
-
-
-  tft.drawLine(
-    x,
-    y,
-    x2 - 2,
-    y2 + 1,
-    CYAN_DARK
-  );
-
-
-  // 棒
-  tft.drawLine(
-    x,
-    y,
-    x2,
-    y2,
-    color
-  );
-
-
-  // 手柄
-  tft.fillCircle(
-    x,
-    y,
-    3,
-    PINK
-  );
-
-
-  // 尖端
-  tft.fillCircle(
-    x2,
-    y2,
-    2,
-    WHITE
-  );
-}
-
-
-// ======================================================
-// 霓虹框
-// ======================================================
-
-void neonCard(
-  int x,
-  int y,
-  int w,
-  int h,
-  bool active
-) {
-
-  if(active) {
-
-    tft.fillRoundRect(
-      x - 2,
-      y - 2,
-      w + 4,
-      h + 4,
-      6,
-      CYAN_DARK
-    );
+    delay(28);
   }
 
+  // 固定最终位置
+  tft.fillRect(0, 23, 160, 79, C_BG);
+
+  for (int i = 0; i < 5; i++) {
+    drawChineseText(tx[i] + 2, ty + 2, chars[i], C_PURPLE_DARK);
+    drawChineseText(tx[i], ty, chars[i], C_CYAN);
+  }
+
+  // 霓虹线展开
+  unsigned long lineStart = millis();
+
+  while (millis() - lineStart < 350) {
+    float t = (float)(millis() - lineStart) / 350.0;
+    t = constrain(t, 0.0, 1.0);
+
+    int half = (int)(56 * smoothStep(t));
+
+    tft.drawFastHLine(80 - half, 78, half * 2, C_CYAN);
+
+    if (half > 10) {
+      int p = half - 8;
+      tft.drawFastHLine(80 - p, 81, p * 2, C_PURPLE);
+    }
+
+    if (half > 5) {
+      tft.fillCircle(80 - half, 78, 1, C_WHITE);
+      tft.fillCircle(80 + half, 78, 1, C_WHITE);
+    }
+
+    delay(22);
+  }
+
+  // TEAM
+  tft.setTextSize(1);
+  tft.setTextColor(C_GRAY);
+  tft.setCursor(68, 38);
+  tft.print("TEAM");
+
+  // 粒子
+  tft.fillCircle(18, 57, 1, C_PINK);
+  tft.fillCircle(27, 48, 1, C_CYAN);
+  tft.fillCircle(140, 49, 1, C_PINK);
+  tft.fillCircle(147, 61, 1, C_CYAN);
+
+  // 补足约 2 秒
+  while (millis() - introStart < 2000) {
+    unsigned long now = millis();
+
+    if (((now / 130) % 2) == 0) {
+      tft.fillCircle(24, 78, 1, C_WHITE);
+      tft.fillCircle(136, 78, 1, C_WHITE);
+    } else {
+      tft.fillCircle(24, 78, 1, C_CYAN);
+      tft.fillCircle(136, 78, 1, C_PURPLE);
+    }
+
+    delay(25);
+  }
+
+  tft.fillScreen(C_BG);
+  delay(30);
+}
+
+// ======================================================
+// 二次元眼睛
+// ======================================================
+
+void drawAnimeEye(
+  int x,
+  int y,
+  bool blink
+) {
+  if (blink) {
+    tft.drawLine(x - 6, y, x - 1, y + 2, GG_EYE_DARK);
+    tft.drawLine(x - 1, y + 2, x + 5, y, GG_EYE_DARK);
+    return;
+  }
+
+  tft.fillRoundRect(x - 6, y - 5, 12, 10, 5, C_WHITE);
+  tft.fillCircle(x, y, 4, GG_EYE);
+  tft.fillCircle(x, y - 1, 3, GG_EYE_DARK);
+  tft.fillCircle(x, y, 1, C_BLACK);
+
+  tft.fillCircle(x - 2, y - 2, 1, C_WHITE);
+  tft.drawPixel(x + 2, y + 2, C_WHITE);
+
+  tft.drawFastHLine(x - 6, y - 5, 11, GG_EYE_DARK);
+  tft.drawLine(x + 5, y - 5, x + 8, y - 7, GG_EYE_DARK);
+}
+
+// ======================================================
+// 咕嘎一家队企鹅角色
+// ======================================================
+
+void drawGuguGaga(
+  int cx,
+  int cy,
+  int kick,
+  bool blink,
+  int lean
+) {
+  cx += lean;
+
+  // 翅膀
+  tft.fillTriangle(
+    cx - 20, cy + 4,
+    cx - 37, cy + 42,
+    cx - 17, cy + 32,
+    GG_HAIR
+  );
+
+  tft.fillTriangle(
+    cx + 20, cy + 4,
+    cx + 37, cy + 42,
+    cx + 17, cy + 32,
+    GG_HAIR
+  );
+
+  // 身体
+  tft.fillRoundRect(
+    cx - 21, cy - 1,
+    42, 63,
+    16,
+    GG_BODY
+  );
 
   tft.fillRoundRect(
-    x,
-    y,
-    w,
-    h,
-    5,
-    active
-      ? PANEL
-      : BG
+    cx - 15, cy + 15,
+    30, 42,
+    13,
+    GG_BODY_SHADOW
   );
 
-
-  tft.drawRoundRect(
-    x,
-    y,
-    w,
-    h,
-    5,
-    active
-      ? CYAN
-      : PANEL2
+  tft.fillRoundRect(
+    cx - 13, cy + 10,
+    26, 39,
+    12,
+    GG_BODY
   );
 
+  // 后脑头发
+  tft.fillCircle(cx, cy - 25, 27, GG_HAIR);
+  tft.fillRoundRect(cx - 27, cy - 31, 11, 36, 5, GG_HAIR);
+  tft.fillRoundRect(cx + 16, cy - 31, 11, 36, 5, GG_HAIR);
 
-  if(active) {
+  // 脸
+  tft.fillRoundRect(
+    cx - 21, cy - 43,
+    42, 40,
+    16,
+    GG_SKIN
+  );
 
-    tft.drawFastVLine(
-      x + 3,
-      y + 6,
-      h - 12,
-      PINK
+  tft.fillTriangle(
+    cx - 15, cy - 8,
+    cx + 15, cy - 8,
+    cx, cy + 3,
+    GG_SKIN
+  );
+
+  // 刘海
+  tft.fillTriangle(
+    cx - 21, cy - 42,
+    cx - 7, cy - 44,
+    cx - 16, cy - 19,
+    GG_HAIR
+  );
+
+  tft.fillTriangle(
+    cx - 12, cy - 45,
+    cx + 1, cy - 45,
+    cx - 5, cy - 19,
+    GG_HAIR
+  );
+
+  tft.fillTriangle(
+    cx - 3, cy - 45,
+    cx + 11, cy - 42,
+    cx + 3, cy - 19,
+    GG_HAIR
+  );
+
+  tft.fillTriangle(
+    cx + 6, cy - 43,
+    cx + 22, cy - 39,
+    cx + 10, cy - 18,
+    GG_HAIR
+  );
+
+  // 两边碎发
+  tft.fillTriangle(
+    cx - 19, cy - 35,
+    cx - 12, cy - 37,
+    cx - 21, cy - 13,
+    GG_HAIR
+  );
+
+  tft.fillTriangle(
+    cx + 14, cy - 36,
+    cx + 21, cy - 33,
+    cx + 20, cy - 13,
+    GG_HAIR
+  );
+
+  // 发丝高光
+  tft.drawLine(
+    cx - 15, cy - 39,
+    cx - 12, cy - 29,
+    GG_HAIR_LIGHT
+  );
+
+  tft.drawLine(
+    cx + 13, cy - 39,
+    cx + 9, cy - 29,
+    GG_HAIR_LIGHT
+  );
+
+  // 眼睛
+  drawAnimeEye(cx - 9, cy - 19, blink);
+  drawAnimeEye(cx + 9, cy - 19, blink);
+
+  // 腮红
+  tft.fillCircle(cx - 16, cy - 10, 2, GG_BLUSH);
+  tft.fillCircle(cx + 16, cy - 10, 2, GG_BLUSH);
+
+  // 鼻子
+  tft.drawPixel(cx, cy - 11, GG_BLUSH);
+
+  // 嘴
+  tft.drawFastHLine(cx - 3, cy - 4, 6, GG_EYE_DARK);
+  tft.drawPixel(cx + 3, cy - 5, GG_EYE_DARK);
+
+  // 右脚
+  int feetY = cy + 54;
+
+  tft.fillTriangle(
+    cx + 5, feetY,
+    cx + 26, feetY + 8,
+    cx + 13, feetY + 15,
+    GG_ORANGE
+  );
+
+  tft.fillTriangle(
+    cx + 8, feetY + 3,
+    cx + 18, feetY + 16,
+    cx + 1, feetY + 13,
+    GG_ORANGE
+  );
+
+  // 左腿踹屏
+  int legX = cx - 7;
+  int legY = cy + 49;
+
+  int footX = legX - kick;
+  int footY = legY - kick / 6;
+
+  tft.fillTriangle(
+    legX, legY,
+    legX - 8, legY + 6,
+    footX, footY,
+    GG_ORANGE
+  );
+
+  int footW = 13 + kick / 8;
+  int footH = 8 + kick / 12;
+
+  tft.fillRoundRect(
+    footX - footW,
+    footY - footH / 2,
+    footW + 7,
+    footH,
+    4,
+    GG_ORANGE
+  );
+
+  // 三个脚趾
+  tft.fillTriangle(
+    footX - footW, footY,
+    footX - footW - 6, footY - 5,
+    footX - footW + 3, footY + 1,
+    GG_ORANGE
+  );
+
+  tft.fillTriangle(
+    footX - footW, footY,
+    footX - footW - 7, footY,
+    footX - footW + 3, footY + 4,
+    GG_ORANGE
+  );
+
+  tft.fillTriangle(
+    footX - footW, footY,
+    footX - footW - 5, footY + 6,
+    footX - footW + 4, footY + 3,
+    GG_ORANGE
+  );
+}
+
+// ======================================================
+// 蛛网裂屏
+// ======================================================
+
+void drawScreenCrackReal(
+  int x,
+  int y
+) {
+  // 中央破口
+  tft.fillCircle(x, y, 4, C_BLACK);
+  tft.drawCircle(x, y, 6, C_WHITE);
+  tft.drawCircle(x, y, 10, C_WHITE);
+  tft.drawCircle(x, y, 13, C_CYAN_DARK);
+
+  // 主裂纹
+  tft.drawLine(x, y, x - 44, y - 24, C_WHITE);
+  tft.drawLine(x, y, x - 41, y + 20, C_WHITE);
+  tft.drawLine(x, y, x - 11, y - 44, C_WHITE);
+  tft.drawLine(x, y, x + 24, y - 34, C_WHITE);
+  tft.drawLine(x, y, x + 42, y + 20, C_WHITE);
+  tft.drawLine(x, y, x + 8, y + 43, C_WHITE);
+  tft.drawLine(x, y, x - 27, y + 36, C_WHITE);
+  tft.drawLine(x, y, x + 37, y - 7, C_WHITE);
+
+  // 分叉
+  tft.drawLine(x - 15, y - 8, x - 29, y - 4, C_CYAN);
+  tft.drawLine(x - 25, y - 14, x - 31, y - 24, C_CYAN);
+  tft.drawLine(x - 17, y + 10, x - 31, y + 5, C_CYAN);
+  tft.drawLine(x - 7, y - 26, x - 1, y - 36, C_CYAN);
+  tft.drawLine(x + 13, y - 18, x + 27, y - 12, C_CYAN);
+  tft.drawLine(x + 20, y + 10, x + 33, y + 5, C_CYAN);
+  tft.drawLine(x + 3, y + 23, x + 9, y + 35, C_CYAN);
+  tft.drawLine(x - 14, y + 19, x - 21, y + 31, C_CYAN);
+
+  // 细裂纹
+  tft.drawLine(x - 32, y - 18, x - 40, y - 13, C_GRAY);
+  tft.drawLine(x + 29, y + 14, x + 39, y + 11, C_GRAY);
+  tft.drawLine(x + 14, y - 27, x + 15, y - 39, C_GRAY);
+  tft.drawLine(x - 22, y + 27, x - 32, y + 30, C_GRAY);
+
+  // 玻璃碎片
+  tft.fillTriangle(
+    x - 25, y - 18,
+    x - 18, y - 26,
+    x - 14, y - 16,
+    C_WHITE
+  );
+
+  tft.fillTriangle(
+    x + 18, y - 21,
+    x + 29, y - 16,
+    x + 18, y - 11,
+    C_CYAN
+  );
+
+  tft.fillTriangle(
+    x + 20, y + 15,
+    x + 30, y + 20,
+    x + 17, y + 23,
+    C_WHITE
+  );
+
+  tft.fillTriangle(
+    x - 21, y + 18,
+    x - 13, y + 24,
+    x - 23, y + 28,
+    C_CYAN
+  );
+}
+
+// ======================================================
+// 企鹅动画单帧
+// ======================================================
+
+void drawPenguinScene(
+  int cx,
+  int cy,
+  int kick,
+  bool blink,
+  int lean,
+  bool crack
+) {
+  tft.fillScreen(C_BG);
+
+  drawGuguGaga(
+    cx,
+    cy,
+    kick,
+    blink,
+    lean
+  );
+
+  if (crack) {
+    int footW = 13 + kick / 8;
+
+    int impactX =
+      cx
+      - 7
+      - kick
+      - footW;
+
+    int impactY =
+      cy
+      + 49
+      - kick / 6;
+
+    drawScreenCrackReal(
+      impactX,
+      impactY
     );
   }
 }
 
-
 // ======================================================
-// PAGE 1
-// 主菜单
+// ② 企鹅冲入 / 踹屏 / 裂屏 / 眨眼
 // ======================================================
 
-void pageMenu() {
+void guguEntranceAnimation() {
+  // 冲入
+  for (int i = 0; i <= 6; i++) {
+    float t = (float)i / 6.0;
+    float e = easeOutCubic(t);
 
-  clearPage();
+    int x =
+      205
+      -
+      (int)(
+        114 * e
+      );
 
-  topBar(
-    "GESTURE",
-    "SELECT",
-    GREEN
-  );
+    drawPenguinScene(
+      x,
+      62,
+      0,
+      false,
+      0,
+      false
+    );
 
+    delay(20);
+  }
 
-  // ------------------------------
-  // 作曲区
-  // ------------------------------
-
-  neonCard(
-    10,
-    27,
+  // 停住
+  drawPenguinScene(
     91,
-    38,
-    true
-  );
-
-
-  // 音符
-  drawNote(
-    24,
-    51,
-    CYAN
-  );
-
-
-  drawNote(
-    36,
-    43,
-    PURPLE
-  );
-
-
-  cn(
-    55,
-    52,
-    "作曲",
-    WHITE
-  );
-
-
-  // 小音符粒子
-  tft.fillCircle(
-    87,
-    37,
-    1,
-    PINK
-  );
-
-  tft.fillCircle(
-    92,
-    47,
-    1,
-    CYAN
-  );
-
-
-  // ------------------------------
-  // 指挥区
-  // ------------------------------
-
-  neonCard(
-    10,
-    73,
-    140,
-    31,
+    62,
+    0,
+    false,
+    0,
     false
   );
 
+  delay(45);
 
-  cn(
-    28,
-    95,
-    "指挥",
-    DIM
-  );
-
-
-  float a =
-    0.7 +
-    0.25 *
-    sin(
-      phase
+  // 蓄力
+  for (int i = 0; i < 3; i++) {
+    drawPenguinScene(
+      91 + i * 2,
+      62,
+      3 + i * 3,
+      false,
+      2 + i * 2,
+      false
     );
 
+    delay(30);
+  }
 
-  drawBaton(
-    108,
-    96,
-    a,
-    PURPLE
+  // 猛踹
+  for (int i = 0; i <= 4; i++) {
+    float t = (float)i / 4.0;
+    float e = easeOutCubic(t);
+
+    int kick =
+      8
+      +
+      (int)(
+        22 * e
+      );
+
+    drawPenguinScene(
+      94,
+      62,
+      kick,
+      false,
+      4,
+      false
+    );
+
+    delay(23);
+  }
+
+  // 双白闪
+  tft.fillScreen(C_WHITE);
+  delay(25);
+
+  tft.fillScreen(C_BG);
+  delay(12);
+
+  tft.fillScreen(C_WHITE);
+  delay(12);
+
+  // 震动 + 裂屏
+  const int shakeX[8] = {
+    -5, 5, -4, 4, -3, 2, -1, 0
+  };
+
+  const int shakeY[8] = {
+    2, -2, 2, -2, 1, -1, 1, 0
+  };
+
+  for (int i = 0; i < 8; i++) {
+    drawPenguinScene(
+      94 + shakeX[i],
+      62 + shakeY[i],
+      30,
+      false,
+      4,
+      true
+    );
+
+    delay(27);
+  }
+
+  // 收腿
+  for (int kick = 27; kick >= 9; kick -= 5) {
+    drawPenguinScene(
+      83,
+      62,
+      kick,
+      false,
+      0,
+      true
+    );
+
+    delay(28);
+  }
+
+  // 站稳
+  drawPenguinScene(
+    80,
+    62,
+    8,
+    false,
+    0,
+    true
   );
 
+  delay(120);
 
-  // 挥动轨迹
-  tft.drawArc(
-    108,
-    96,
-    33,
-    27,
-    190,
-    245,
-    CYAN_DARK
+  // 眨眼
+  drawPenguinScene(
+    80,
+    62,
+    8,
+    true,
+    0,
+    true
   );
 
+  delay(75);
+
+  drawPenguinScene(
+    80,
+    62,
+    8,
+    false,
+    0,
+    true
+  );
+
+  delay(150);
+}
+
+// ======================================================
+// ③ GESTURE MUSIC
+// 最后白球扩大吞屏
+// ======================================================
+
+void projectTitleAnimation() {
+  tft.fillScreen(C_BG);
+
+  // GESTURE / MUSIC 两侧滑入
+  for (int i = 0; i <= 14; i++) {
+    float t = (float)i / 14.0;
+    float e = easeOutCubic(t);
+
+    int gx =
+      -80 +
+      (int)(
+        108 * e
+      );
+
+    int mx =
+      170 -
+      (int)(
+        120 * e
+      );
+
+    tft.fillRect(
+      0,
+      24,
+      160,
+      75,
+      C_BG
+    );
+
+    tft.drawFastHLine(
+      7,
+      64,
+      146,
+      C_PANEL
+    );
+
+    // GESTURE 阴影
+    tft.setTextSize(2);
+    tft.setTextColor(C_CYAN_DARK);
+    tft.setCursor(gx + 2, 39);
+    tft.print("GESTURE");
+
+    // GESTURE 主体
+    tft.setTextColor(C_CYAN);
+    tft.setCursor(gx, 37);
+    tft.print("GESTURE");
+
+    // MUSIC 阴影
+    tft.setTextColor(C_PURPLE_DARK);
+    tft.setCursor(mx + 2, 69);
+    tft.print("MUSIC");
+
+    // MUSIC 主体
+    tft.setTextColor(C_PURPLE);
+    tft.setCursor(mx, 67);
+    tft.print("MUSIC");
+
+    delay(18);
+  }
+
+  // 标题停留
+  delay(430);
+
+  int cx = 80;
+  int cy = 64;
+
+  // 中央能量核心
+  for (int r = 3; r <= 17; r += 3) {
+    tft.drawCircle(cx, cy, r, C_CYAN);
+
+    if (r > 7) {
+      tft.drawCircle(
+        cx,
+        cy,
+        r - 4,
+        C_PURPLE
+      );
+    }
+
+    tft.fillCircle(
+      cx,
+      cy,
+      2,
+      C_WHITE
+    );
+
+    delay(25);
+  }
+
+  // 白色核心扩大吞屏
+  for (int r = 4; r <= 105; r += 5) {
+    tft.fillCircle(
+      cx,
+      cy,
+      r + 3,
+      C_CYAN
+    );
+
+    if (r > 10) {
+      tft.fillCircle(
+        cx,
+        cy,
+        r + 1,
+        C_PURPLE
+      );
+    }
+
+    tft.fillCircle(
+      cx,
+      cy,
+      r,
+      C_WHITE
+    );
+
+    delay(12);
+  }
+
+  tft.fillScreen(C_WHITE);
+  delay(100);
+}
+
+// ======================================================
+// ④ SYSTEM ONLINE
+// ======================================================
+
+void systemOnlineAnimation() {
+  tft.fillScreen(C_BG);
+
+  // 核心启动
+  for (int r = 2; r <= 13; r += 2) {
+    tft.drawCircle(
+      80,
+      42,
+      r,
+      C_CYAN
+    );
+
+    if (r > 5) {
+      tft.drawCircle(
+        80,
+        42,
+        r - 5,
+        C_PURPLE
+      );
+    }
+
+    tft.fillCircle(
+      80,
+      42,
+      2,
+      C_WHITE
+    );
+
+    delay(22);
+  }
+
+  // SYSTEM ONLINE
+  tft.setTextSize(1);
+  tft.setTextColor(C_GREEN);
+  tft.setCursor(42, 65);
+  tft.print("SYSTEM ONLINE");
+
+  const char* labels[3] = {
+    "DISPLAY",
+    "SIGNAL",
+    "MOTION"
+  };
+
+  for (int i = 0; i < 3; i++) {
+    int y =
+      82 +
+      i * 11;
+
+    tft.setTextColor(C_GRAY);
+    tft.setCursor(42, y);
+    tft.print(labels[i]);
+
+    delay(85);
+
+    tft.setTextColor(C_GREEN);
+    tft.setCursor(105, y);
+    tft.print("OK");
+  }
+
+  // 停留
+  delay(610);
+}
+
+// ======================================================
+// ⑤ 百叶窗转场
+// ======================================================
+
+void transitionToMain() {
+  const int bladeH = 8;
+
+  // 多层百叶从左右向中央闭合
+  for (int step = 0; step <= 80; step += 5) {
+    for (int y = 0; y < 128; y += bladeH) {
+      if ((y / bladeH) % 2 == 0) {
+        tft.fillRect(
+          0,
+          y,
+          step,
+          bladeH - 1,
+          C_BG
+        );
+
+        tft.fillRect(
+          160 - step,
+          y,
+          step,
+          bladeH - 1,
+          C_BG
+        );
+
+      } else {
+        int w =
+          max(
+            0,
+            step - 8
+          );
+
+        tft.fillRect(
+          0,
+          y,
+          w,
+          bladeH - 1,
+          C_BG
+        );
+
+        tft.fillRect(
+          160 - w,
+          y,
+          w,
+          bladeH - 1,
+          C_BG
+        );
+      }
+
+      tft.drawFastHLine(
+        0,
+        y + bladeH - 1,
+        160,
+        C_CYAN_DARK
+      );
+    }
+
+    delay(18);
+  }
+
+  // 完全闭合
+  tft.fillScreen(C_BG);
+
+  // 中央最后一道光
+  tft.drawFastHLine(
+    18,
+    64,
+    124,
+    C_CYAN
+  );
+
+  delay(80);
+
+  tft.fillScreen(C_BG);
+  delay(80);
+}
+
+// ======================================================
+// 完整开机流程
+// ======================================================
+
+void bootAnimation() {
+  teamIntroFast();
+  guguEntranceAnimation();
+  projectTitleAnimation();
+  systemOnlineAnimation();
+  transitionToMain();
+}
+
+// ======================================================
+// 主界面底图
+// ======================================================
+
+void drawBaseUI() {
+  tft.fillScreen(C_BG);
+
+  // 顶栏
+  tft.fillRoundRect(
+    3,
+    3,
+    154,
+    16,
+    4,
+    C_PANEL
+  );
+
+  tft.fillCircle(
+    10,
+    11,
+    3,
+    C_GREEN
+  );
 
   tft.setTextSize(1);
 
-  tft.setTextColor(
-    CYAN
-  );
+  tft.setTextColor(C_CYAN);
+  tft.setCursor(17, 8);
+  tft.print("GESTURE");
 
+  tft.setTextColor(C_PURPLE);
+  tft.print(" MUSIC");
 
-  tft.setCursor(
-    53,
-    116
-  );
+  tft.setTextColor(C_GREEN);
+  tft.setCursor(113, 8);
+  tft.print("LIVE");
 
+  // 标签
+  tft.setTextColor(C_GRAY);
 
-  tft.print(
-    "< SELECT >"
-  );
-}
+  tft.setCursor(6, 24);
+  tft.print("TEMPO");
 
+  tft.setCursor(6, 66);
+  tft.print("ENERGY");
 
-// ======================================================
-// PAGE 2
-// 作曲方式
-// ======================================================
+  tft.setCursor(5, 82);
+  tft.print("MOTION");
 
-void drawModeIcon(
-  int mode,
-  int cx,
-  int cy,
-  bool active
-) {
-
-  uint16_t c =
-    active
-      ? CYAN
-      : DIM;
-
-
-  // 整体：圆环
-  if(mode == 0) {
-
-    tft.drawCircle(
-      cx,
-      cy,
-      9,
-      c
-    );
-
-    tft.drawCircle(
-      cx,
-      cy,
-      5,
-      active
-        ? PURPLE
-        : PANEL2
-    );
-  }
-
-
-  // 起伏：波浪
-  if(mode == 1) {
-
-    int lastX =
-      cx - 11;
-
-
-    int lastY =
-      cy;
-
-
-    for(int i = 1; i <= 22; i++) {
-
-      int x =
-        cx - 11 + i;
-
-
-      int y =
-        cy +
-        sin(
-          i * 0.6
-        )
-        * 6;
-
-
-      tft.drawLine(
-        lastX,
-        lastY,
-        x,
-        y,
-        c
-      );
-
-
-      lastX =
-        x;
-
-      lastY =
-        y;
-    }
-  }
-
-
-  // 校准：准星
-  if(mode == 2) {
-
-    tft.drawCircle(
-      cx,
-      cy,
-      7,
-      c
-    );
-
-
-    tft.drawFastHLine(
-      cx - 12,
-      cy,
-      24,
-      c
-    );
-
-
-    tft.drawFastVLine(
-      cx,
-      cy - 12,
-      24,
-      c
-    );
-
-
-    tft.fillCircle(
-      cx,
-      cy,
-      2,
-      active
-        ? PINK
-        : DIM
-    );
-  }
-}
-
-
-void pageComposeMode() {
-
-  clearPage();
-
-  topBar(
-    "COMPOSE",
-    "MODE",
-    CYAN
-  );
-
-
-  const char* labels[3] = {
-
-    "整体",
-    "起伏",
-    "校准"
-  };
-
-
-  for(int i = 0; i < 3; i++) {
-
-    int y =
-      26 +
-      i * 30;
-
-
-    bool active =
-      i == 1;
-
-
-    neonCard(
-      13,
-      y,
-      134,
-      25,
-      active
-    );
-
-
-    drawModeIcon(
-      i,
-      31,
-      y + 12,
-      active
-    );
-
-
-    cn(
-      55,
-      y + 18,
-      labels[i],
-      active
-        ? WHITE
-        : DIM
-    );
-
-
-    if(active) {
-
-      tft.fillTriangle(
-        136,
-        y + 8,
-
-        136,
-        y + 17,
-
-        142,
-        y + 12,
-
-        PINK
-      );
-    }
-  }
-
-
-  tft.setTextSize(
-    1
-  );
-
-
-  tft.setTextColor(
-    PINK
-  );
-
-
-  tft.setCursor(
-    36,
-    118
-  );
-
-
-  tft.print(
-    "DYNAMIC PROFILE"
-  );
-}
-
-
-// ======================================================
-// PAGE 3
-// Countdown
-// ======================================================
-
-void pageCountdown() {
-
-  clearPage();
-
-  topBar(
-    "COMPOSE",
-    "READY",
-    ORANGE
-  );
-
-
-  unsigned long e =
-    millis() -
-    pageStart;
-
-
-  int number =
-    3 -
-    e / 750;
-
-
-  number =
-    constrain(
-      number,
-      1,
-      3
-    );
-
-
-  float local =
-    (e % 750)
-    /
-    750.0;
-
-
-  int radius =
-    36 -
-    local * 15;
-
-
-  // 外圈
-  tft.drawCircle(
-    80,
-    65,
-    radius + 7,
-    CYAN_DARK
-  );
-
-
-  tft.drawCircle(
-    80,
-    65,
-    radius + 2,
-    PURPLE
-  );
-
-
-  tft.drawCircle(
-    80,
-    65,
-    radius,
-    CYAN
-  );
-
-
-  // 四个刻度
-  tft.drawFastHLine(
-    34,
-    65,
-    8,
-    DIM
-  );
-
-
-  tft.drawFastHLine(
-    118,
-    65,
-    8,
-    DIM
-  );
-
-
-  tft.drawFastVLine(
-    80,
-    20,
-    8,
-    DIM
-  );
-
-
-  tft.drawFastVLine(
-    80,
-    102,
-    8,
-    DIM
-  );
-
-
-  // 大数字
-  tft.setTextSize(
-    5
-  );
-
-
-  tft.setTextColor(
-    WHITE
-  );
-
-
-  tft.setCursor(
-    66,
-    44
-  );
-
-
-  tft.print(
-    number
-  );
-
-
-  // 准备
-  cn(
-    63,
-    117,
-    "准备",
-    CYAN
-  );
-
-
-  // 三点
-  for(int i = 0; i < 3; i++) {
-
-    tft.fillCircle(
-      62 + i * 18,
-      104,
-      2,
-      i <= 3 - number
-        ? PINK
-        : PANEL2
-    );
-  }
-}
-
-
-// ======================================================
-// PAGE 4
-// Recording
-// ======================================================
-
-void pageRecord() {
-
-  clearPage();
-
-  topBar(
-    "COMPOSE",
-    "RECORD",
-    RED
-  );
-
-
-  // REC blink
-  if(
-    (
-      millis() /
-      250
-    )
-    %
-    2
-  ) {
-
-    tft.fillCircle(
-      145,
-      11,
-      3,
-      RED
-    );
-  }
-
-
-  // 网格背景
-
-  for(int x = 12; x <= 148; x += 17) {
-
-    tft.drawFastVLine(
-      x,
-      28,
-      57,
-      CYAN_DARK
-    );
-  }
-
-
-  for(int y = 30; y <= 84; y += 13) {
-
-    tft.drawFastHLine(
-      8,
-      y,
-      144,
-      CYAN_DARK
-    );
-  }
-
-
-  // 动态波形
-
-  int lastY =
-    59;
-
-
-  for(int x = 8; x < 152; x++) {
-
-    float value =
-
-      sin(
-        x * 0.10 +
-        phase * 2.5
-      )
-
-      +
-
-      0.35 *
-      sin(
-        x * 0.31 +
-        phase * 1.2
-      );
-
-
-    int y =
-      59 +
-      value *
-      12;
-
-
-    if(x > 8) {
-
-      tft.drawLine(
-        x - 1,
-        lastY,
-        x,
-        y + 1,
-        PURPLE
-      );
-
-
-      tft.drawLine(
-        x - 1,
-        lastY - 1,
-        x,
-        y,
-        CYAN
-      );
-    }
-
-
-    lastY =
-      y;
-  }
-
-
-  // 指挥棒
-
-  float angle =
-    0.75 +
-    0.50 *
-    sin(
-      phase * 1.8
-    );
-
-
-  drawBaton(
+  // ENERGY 背景
+  tft.fillRoundRect(
+    5,
     76,
-    74,
-    angle,
-    WHITE
+    70,
+    5,
+    2,
+    C_PANEL
   );
 
-
-  // 录制时间
-
-  int seconds =
-    (
-      millis() -
-      pageStart
-    )
-    /
-    180;
-
-
-  seconds =
-    constrain(
-      seconds,
-      0,
-      15
-    );
-
-
-  float p =
-    seconds /
-    15.0;
-
-
-  // progress
-
-  tft.fillRoundRect(
-    9,
-    96,
-    142,
-    9,
-    4,
-    PANEL
-  );
-
-
-  int pw =
-    138 *
-    p;
-
-
-  if(pw > 0) {
-
-    tft.fillRoundRect(
-      11,
-      98,
-      pw,
-      5,
-      2,
-      PURPLE
-    );
-
-
-    tft.fillCircle(
-      11 + pw,
-      100,
-      3,
-      CYAN
-    );
-  }
-
-
-  char timeText[12];
-
-
-  sprintf(
-    timeText,
-    "%02d / 15s",
-    seconds
-  );
-
-
-  tft.setTextSize(
-    1
-  );
-
-
-  tft.setTextColor(
-    WHITE
-  );
-
-
-  tft.setCursor(
-    54,
-    114
-  );
-
-
-  tft.print(
-    timeText
-  );
-}
-
-
-// ======================================================
-// PAGE 5
-// Generating
-// ======================================================
-
-void pageGenerating() {
-
-  clearPage();
-
-  topBar(
-    "COMPOSE",
-    "AI CORE",
-    PURPLE
-  );
-
-
-  int cx =
-    80;
-
-
-  int cy =
-    59;
-
-
-  // 轨道
-  tft.drawCircle(
-    cx,
-    cy,
-    33,
-    CYAN_DARK
-  );
-
-
-  tft.drawCircle(
-    cx,
-    cy,
-    25,
-    PURPLE_DARK
-  );
-
-
-  // 三颗卫星
-  for(int i = 0; i < 3; i++) {
-
-    float a =
-      phase * 1.7 +
-      i * 2.094;
-
-
-    int x =
-      cx +
-      cos(a) * 33;
-
-
-    int y =
-      cy +
-      sin(a) * 33;
-
-
-    uint16_t c =
-      i == 0
-        ? CYAN
-        :
-        (
-          i == 1
-            ? PURPLE
-            : PINK
-        );
-
-
-    tft.fillCircle(
-      x,
-      y,
-      4,
-      c
-    );
-
-
+  // 四拍
+  for (int i = 0; i < 4; i++) {
     tft.drawCircle(
-      x,
-      y,
-      6,
-      c
-    );
-  }
-
-
-  // 中央发光音符
-
-  int pulse =
-    1 +
-    2 *
-    (
-      0.5 +
-      0.5 *
-      sin(
-        phase * 2
-      )
-    );
-
-
-  tft.fillCircle(
-    75,
-    64,
-    5 + pulse,
-    PINK
-  );
-
-
-  tft.fillCircle(
-    75,
-    64,
-    4,
-    WHITE
-  );
-
-
-  tft.drawFastVLine(
-    80,
-    42,
-    22,
-    WHITE
-  );
-
-
-  tft.drawFastHLine(
-    80,
-    42,
-    10,
-    WHITE
-  );
-
-
-  tft.setTextSize(
-    1
-  );
-
-
-  tft.setTextColor(
-    DIM
-  );
-
-
-  tft.setCursor(
-    46,
-    97
-  );
-
-
-  tft.print(
-    "MUSIC ENGINE"
-  );
-
-
-  cn(
-    51,
-    117,
-    "生成中",
-    CYAN
-  );
-
-
-  // 三个 loading 点
-
-  int active =
-    (
-      millis() /
-      180
-    )
-    %
-    3;
-
-
-  for(int i = 0; i < 3; i++) {
-
-    tft.fillCircle(
-      104 + i * 8,
-      113,
+      96 + i * 11,
+      76,
       2,
-      i == active
-        ? PINK
-        : PANEL2
+      C_GRAY
     );
   }
-}
 
-
-// ======================================================
-// PAGE 6
-// Result
-// ======================================================
-
-void pageResult() {
-
-  clearPage();
-
-  topBar(
-    "COMPOSE",
-    "DONE",
-    GREEN
-  );
-
-
-  // 左边专辑封面
-
-  tft.fillRoundRect(
-    9,
-    29,
-    67,
-    66,
-    6,
-    PANEL
-  );
-
-
+  // 波形框
   tft.drawRoundRect(
-    9,
-    29,
-    67,
-    66,
-    6,
-    CYAN_DARK
-  );
-
-
-  // 封面顶部装饰
-
-  tft.drawFastHLine(
-    15,
-    37,
-    55,
-    PURPLE
-  );
-
-
-  // 锯齿波封面
-
-  int lastX =
-    16;
-
-
-  int lastY =
-    65;
-
-
-  for(int x = 17; x <= 69; x += 4) {
-
-    int y =
-      63 +
-      sin(
-        x * 0.8
-      )
-      * 18;
-
-
-    tft.drawLine(
-      lastX,
-      lastY,
-      x,
-      y,
-      CYAN
-    );
-
-
-    lastX =
-      x;
-
-    lastY =
-      y;
-  }
-
-
-  // 右侧结果
-
-  cn(
-    90,
-    45,
-    "激烈",
-    WHITE
-  );
-
-
-  tft.setTextSize(
-    2
-  );
-
-
-  tft.setTextColor(
-    PINK
-  );
-
-
-  tft.setCursor(
-    87,
-    60
-  );
-
-
-  tft.print(
-    "125"
-  );
-
-
-  tft.setTextSize(
-    1
-  );
-
-
-  tft.setTextColor(
-    DIM
-  );
-
-
-  tft.setCursor(
-    125,
-    67
-  );
-
-
-  tft.print(
-    "BPM"
-  );
-
-
-  // BPM徽章
-
-  tft.drawRoundRect(
-    85,
-    54,
-    65,
-    22,
-    5,
-    PURPLE
-  );
-
-
-  // READY
-
-  tft.setTextColor(
-    GREEN
-  );
-
-
-  tft.setCursor(
-    94,
-    84
-  );
-
-
-  tft.print(
-    "TRACK READY"
-  );
-
-
-  // 底部按钮
-
-  tft.fillRoundRect(
-    7,
-    105,
-    45,
-    17,
-    4,
-    PANEL
-  );
-
-
-  tft.fillRoundRect(
-    57,
-    105,
-    45,
-    17,
-    4,
-    PANEL
-  );
-
-
-  tft.fillRoundRect(
-    107,
-    105,
-    46,
-    17,
-    4,
-    PANEL
-  );
-
-
-  tft.setTextColor(
-    CYAN
-  );
-
-
-  tft.setCursor(
-    17,
-    110
-  );
-
-
-  tft.print(
-    "> PLAY"
-  );
-
-
-  tft.setTextColor(
-    GREEN
-  );
-
-
-  tft.setCursor(
-    66,
-    110
-  );
-
-
-  tft.print(
-    "+ SAVE"
-  );
-
-
-  tft.setTextColor(
-    ORANGE
-  );
-
-
-  tft.setCursor(
-    111,
-    110
-  );
-
-
-  tft.print(
-    "RETRY"
-  );
-}
-
-
-// ======================================================
-// PAGE 7
-// Preview
-// ======================================================
-
-void pagePreview() {
-
-  clearPage();
-
-  topBar(
-    "COMPOSE",
-    "PREVIEW",
-    GREEN
-  );
-
-
-  // 大播放按钮
-
-  tft.drawCircle(
-    27,
-    55,
-    17,
-    CYAN
-  );
-
-
-  tft.drawCircle(
-    27,
-    55,
-    20,
-    CYAN_DARK
-  );
-
-
-  tft.fillTriangle(
-    23,
-    46,
-    23,
-    64,
-    36,
-    55,
-    WHITE
-  );
-
-
-  // 曲名
-
-  cn(
-    58,
-    50,
-    "激烈",
-    WHITE
-  );
-
-
-  tft.setTextSize(
-    1
-  );
-
-
-  tft.setTextColor(
-    DIM
-  );
-
-
-  tft.setCursor(
-    58,
-    61
-  );
-
-
-  tft.print(
-    "125 BPM"
-  );
-
-
-  // 播放轨道
-
-  tft.drawFastHLine(
-    12,
-    82,
-    136,
-    PANEL2
-  );
-
-
-  int progress =
-    (
-      millis() -
-      pageStart
-    )
-    /
-    15;
-
-
-  progress %=
-    136;
-
-
-  tft.drawFastHLine(
-    12,
-    82,
-    progress,
-    PURPLE
-  );
-
-
-  tft.fillCircle(
-    12 + progress,
-    82,
+    WX,
+    WY,
+    WW,
+    WH,
     3,
-    CYAN
+    C_PANEL
   );
-
-
-  // 能量柱
-
-  for(int i = 0; i < 14; i++) {
-
-    float value =
-      0.5 +
-      0.5 *
-      sin(
-        phase * 2 +
-        i * 0.55
-      );
-
-
-    int h =
-      4 +
-      value * 20;
-
-
-    uint16_t c =
-      i < 5
-        ? CYAN
-        :
-        (
-          i < 10
-            ? PURPLE
-            : PINK
-        );
-
-
-    tft.fillRect(
-      7 + i * 11,
-      117 - h,
-      6,
-      h,
-      c
-    );
-  }
-}
-
-
-// ======================================================
-// PAGE 8
-// Moonlight
-// ======================================================
-
-void pageMoonlight() {
-
-  clearPage();
-
-  topBar(
-    "CONDUCT",
-    "MOONLIGHT",
-    BLUE_SOFT
-  );
-
-
-  // 星星
-
-  int starsX[7] = {
-
-    18, 39, 56, 110, 129, 143, 101
-  };
-
-
-  int starsY[7] = {
-
-    30, 46, 28, 34, 49, 26, 56
-  };
-
-
-  for(int i = 0; i < 7; i++) {
-
-    int glow =
-      (
-        (
-          millis() /
-          250
-        )
-        +
-        i
-      )
-      %
-      2;
-
-
-    tft.fillCircle(
-      starsX[i],
-      starsY[i],
-      glow
-        ? 2
-        : 1,
-      glow
-        ? WHITE
-        : BLUE_SOFT
-    );
-  }
-
-
-  // 月牙
-  tft.fillCircle(
-    48,
-    59,
-    24,
-    BLUE_SOFT
-  );
-
-
-  tft.fillCircle(
-    58,
-    52,
-    22,
-    BG
-  );
-
-
-  // 月光外晕
-
-  int halo =
-    29 +
-    2 *
-    sin(
-      phase
-    );
-
-
-  tft.drawCircle(
-    48,
-    59,
-    halo,
-    CYAN_DARK
-  );
-
-
-  // 曲名
-
-  cn(
-    91,
-    62,
-    "月光",
-    WHITE
-  );
-
-
-  // PLAY symbol
-
-  tft.fillTriangle(
-    103,
-    70,
-    103,
-    86,
-    116,
-    78,
-    PURPLE
-  );
-
-
-  // Energy
-
-  float energy =
-    0.5 +
-    0.45 *
-    sin(
-      phase
-    );
-
-
-  tft.fillRoundRect(
-    13,
-    102,
-    134,
-    9,
-    4,
-    PANEL
-  );
-
-
-  int width =
-    130 *
-    energy;
-
-
-  tft.fillRoundRect(
-    15,
-    104,
-    width,
-    5,
-    2,
-    BLUE_SOFT
-  );
-
-
-  tft.fillCircle(
-    15 + width,
-    106,
-    4,
-    WHITE
-  );
-
-
-  tft.setTextSize(
-    1
-  );
-
-
-  tft.setTextColor(
-    DIM
-  );
-
-
-  tft.setCursor(
-    50,
-    117
-  );
-
-
-  tft.print(
-    "MOON ENERGY"
-  );
-}
-
-
-// ======================================================
-// PAGE 9
-// CANON
-// ======================================================
-
-void drawCanonTrack(
-  int y,
-  char label,
-  int type,
-  bool active,
-  uint16_t color
-) {
-
-  tft.setTextSize(
-    2
-  );
-
-
-  tft.setTextColor(
-    active
-      ? WHITE
-      : DIM
-  );
-
-
-  tft.setCursor(
-    10,
-    y - 5
-  );
-
-
-  tft.print(
-    label
-  );
-
-
-  // rail
 
   tft.drawFastHLine(
-    34,
-    y,
-    104,
-    active
-      ? color
-      : PANEL2
+    WX + 2,
+    WY + WH / 2,
+    WW - 4,
+    C_CYAN_DARK
   );
 
-
-  if(type == 0) {
-
-    // K：和弦块
-
-    for(int i = 0; i < 8; i++) {
-
-      int h =
-        3 +
-        (
-          i % 3
-        )
-        * 3;
-
-
-      tft.fillRect(
-        39 + i * 11,
-        y - h,
-        6,
-        h * 2,
-        active
-          ? color
-          : PANEL2
-      );
-    }
-  }
-
-
-  if(type == 1) {
-
-    // B：低频粗波
-
-    for(int x = 38; x < 130; x++) {
-
-      int yy =
-        y +
-        sin(
-          x * 0.08 +
-          phase
-        )
-        * 3;
-
-
-      tft.drawPixel(
-        x,
-        yy,
-        active
-          ? color
-          : PANEL2
-      );
-
-
-      tft.drawPixel(
-        x,
-        yy + 1,
-        active
-          ? color
-          : PANEL2
-      );
-    }
-  }
-
-
-  if(type == 2) {
-
-    // G：锯齿
-
-    int px =
-      38;
-
-
-    int py =
-      y;
-
-
-    for(int x = 44; x < 132; x += 8) {
-
-      int yy =
-        (
-          (
-            x / 8
-          )
-          %
-          2
-        )
-        ?
-        y - 7
-        :
-        y + 7;
-
-
-      tft.drawLine(
-        px,
-        py,
-        x,
-        yy,
-        active
-          ? color
-          : PANEL2
-      );
-
-
-      px =
-        x;
-
-      py =
-        yy;
-    }
-  }
-
-
-  if(type == 3) {
-
-    // D：鼓点
-
-    for(int i = 0; i < 8; i++) {
-
-      int r =
-        (
-          i % 2
-        )
-        ?
-        2
-        :
-        4;
-
-
-      tft.fillCircle(
-        42 + i * 12,
-        y,
-        r,
-        active
-          ? color
-          : PANEL2
-      );
-    }
-  }
-
-
-  // state dot
-
-  tft.fillCircle(
-    146,
-    y,
-    3,
-    active
-      ? color
-      : PANEL2
+  // 底线
+  tft.drawFastHLine(
+    4,
+    120,
+    152,
+    C_PANEL
   );
 }
 
-
-void pageCanon() {
-
-  clearPage();
-
-  topBar(
-    "CONDUCT",
-    "CANON",
-    PURPLE
-  );
-
-
-  cn(
-    64,
-    37,
-    "卡农",
-    WHITE
-  );
-
-
-  drawCanonTrack(
-    51,
-    'K',
-    0,
-    true,
-    CYAN
-  );
-
-
-  drawCanonTrack(
-    70,
-    'B',
-    1,
-    true,
-    PURPLE
-  );
-
-
-  drawCanonTrack(
-    89,
-    'G',
-    2,
-    true,
-    PINK
-  );
-
-
-  drawCanonTrack(
-    108,
-    'D',
-    3,
-    false,
-    ORANGE
-  );
-
-
-  tft.setTextSize(
-    1
-  );
-
-
-  tft.setTextColor(
-    DIM
-  );
-
-
-  tft.setCursor(
-    43,
-    118
-  );
-
-
-  tft.print(
-    "3 / 4 LAYERS"
-  );
-}
-
-
 // ======================================================
-// PAGE 10
-// ERROR
+// BPM
 // ======================================================
 
-void pageError() {
+void drawBPM() {
+  static int oldBpm = -1000;
 
-  clearPage();
-
-  topBar(
-    "SYSTEM",
-    "ERROR",
-    RED
-  );
-
-
-  // glitch stripes
-
-  int shift =
-    (
-      millis() /
-      160
-    )
-    %
-    3;
-
-
-  if(shift == 0) {
-
-    tft.fillRect(
-      5,
-      37,
-      150,
-      3,
-      RED
-    );
+  if (oldBpm == bpm) {
+    return;
   }
 
-
-  if(shift == 1) {
-
-    tft.fillRect(
-      18,
-      72,
-      120,
-      2,
-      PURPLE
-    );
-  }
-
-
-  if(shift == 2) {
-
-    tft.fillRect(
-      3,
-      91,
-      153,
-      3,
-      CYAN_DARK
-    );
-  }
-
-
-  // 警告六边形感
-
-  tft.drawTriangle(
-    80,
-    30,
-    49,
-    83,
-    111,
-    83,
-    RED
-  );
-
-
-  tft.drawTriangle(
-    80,
-    34,
-    54,
-    79,
-    106,
-    79,
-    PINK
-  );
-
-
-  // !
+  oldBpm = bpm;
 
   tft.fillRect(
-    77,
-    46,
-    6,
-    20,
-    RED
-  );
-
-
-  tft.fillCircle(
-    80,
+    5,
+    31,
     73,
-    3,
-    RED
+    31,
+    C_BG
   );
 
+  tft.setTextSize(3);
 
-  cn(
-    48 + shift,
-    102,
-    "播放失败",
-    RED
-  );
+  // 阴影
+  tft.setTextColor(C_CYAN_DARK);
+  tft.setCursor(8, 34);
+  tft.print(bpm);
 
+  // 主数字
+  tft.setTextColor(C_CYAN);
+  tft.setCursor(6, 32);
+  tft.print(bpm);
 
-  tft.setTextSize(
-    1
-  );
-
-
-  tft.setTextColor(
-    DIM
-  );
-
-
-  tft.setCursor(
-    44 - shift,
-    115
-  );
-
-
-  tft.print(
-    "SIGNAL // ERR04"
-  );
+  tft.setTextSize(1);
+  tft.setTextColor(C_WHITE);
+  tft.setCursor(57, 51);
+  tft.print("BPM");
 }
 
-
 // ======================================================
-// DISPATCH
+// ENERGY
 // ======================================================
 
-void drawPage() {
+void drawIntensity() {
+  int percent =
+    constrain(
+      (int)(
+        intensity *
+        100
+      ),
+      0,
+      100
+    );
 
-  switch(
-    currentPage
-  ) {
+  tft.fillRect(
+    39,
+    64,
+    38,
+    11,
+    C_BG
+  );
 
-    case PAGE_MENU:
+  tft.setTextSize(1);
+  tft.setTextColor(C_PINK);
+  tft.setCursor(41, 66);
 
-      pageMenu();
+  if (percent < 100) {
+    tft.print(" ");
+  }
 
-      break;
+  tft.print(percent);
+  tft.print("%");
 
+  // 清空强度条
+  tft.fillRoundRect(
+    5,
+    76,
+    70,
+    5,
+    2,
+    C_PANEL
+  );
 
-    case PAGE_COMPOSE_MODE:
+  int w =
+    (int)(
+      68 *
+      intensity
+    );
 
-      pageComposeMode();
+  // 青
+  int a =
+    min(
+      w,
+      23
+    );
 
-      break;
+  if (a > 0) {
+    tft.fillRect(
+      6,
+      77,
+      a,
+      3,
+      C_CYAN
+    );
+  }
 
+  // 紫
+  int b =
+    constrain(
+      w - 23,
+      0,
+      23
+    );
 
-    case PAGE_COUNTDOWN:
+  if (b > 0) {
+    tft.fillRect(
+      29,
+      77,
+      b,
+      3,
+      C_PURPLE
+    );
+  }
 
-      pageCountdown();
+  // 粉
+  int c =
+    constrain(
+      w - 46,
+      0,
+      22
+    );
 
-      break;
-
-
-    case PAGE_RECORD:
-
-      pageRecord();
-
-      break;
-
-
-    case PAGE_GENERATING:
-
-      pageGenerating();
-
-      break;
-
-
-    case PAGE_RESULT:
-
-      pageResult();
-
-      break;
-
-
-    case PAGE_PREVIEW:
-
-      pagePreview();
-
-      break;
-
-
-    case PAGE_MOONLIGHT:
-
-      pageMoonlight();
-
-      break;
-
-
-    case PAGE_CANON:
-
-      pageCanon();
-
-      break;
-
-
-    case PAGE_ERROR:
-
-      pageError();
-
-      break;
+  if (c > 0) {
+    tft.fillRect(
+      52,
+      77,
+      c,
+      3,
+      C_PINK
+    );
   }
 }
 
+// ======================================================
+// 四拍指示
+// ======================================================
+
+void drawBeatDots() {
+  for (int i = 0; i < 4; i++) {
+    int x =
+      96 +
+      i * 11;
+
+    tft.fillCircle(
+      x,
+      76,
+      4,
+      C_BG
+    );
+
+    if (i == beatNumber - 1) {
+      uint16_t col =
+        beatNumber == 1
+        ?
+        C_CYAN
+        :
+        C_PINK;
+
+      tft.fillCircle(
+        x,
+        76,
+        3,
+        col
+      );
+
+      tft.drawCircle(
+        x,
+        76,
+        4,
+        C_PURPLE
+      );
+
+    } else {
+      tft.drawCircle(
+        x,
+        76,
+        2,
+        C_GRAY
+      );
+    }
+  }
+}
 
 // ======================================================
-// 哪些页面需要动画刷新
+// 节拍呼吸包络
 // ======================================================
 
-bool isAnimatedPage() {
+float getBeatEnvelope() {
+  unsigned long elapsed =
+    millis()
+    -
+    pulseStart;
+
+  if (elapsed >= 800) {
+    return 0.0;
+  }
+
+  // Attack
+  if (elapsed < 130) {
+    float x =
+      (float)elapsed /
+      130.0;
+
+    return
+      smoothStep(x)
+      *
+      beatStrength;
+  }
+
+  // Release
+  float x =
+    (float)(
+      elapsed - 130
+    )
+    /
+    670.0;
 
   return
-
-    currentPage ==
-      PAGE_MENU
-
-    ||
-
-    currentPage ==
-      PAGE_COUNTDOWN
-
-    ||
-
-    currentPage ==
-      PAGE_RECORD
-
-    ||
-
-    currentPage ==
-      PAGE_GENERATING
-
-    ||
-
-    currentPage ==
-      PAGE_PREVIEW
-
-    ||
-
-    currentPage ==
-      PAGE_MOONLIGHT
-
-    ||
-
-    currentPage ==
-      PAGE_CANON
-
-    ||
-
-    currentPage ==
-      PAGE_ERROR;
+    (
+      1.0 -
+      smoothStep(x)
+    )
+    *
+    beatStrength;
 }
 
-
 // ======================================================
-// 页面持续时间
-// ======================================================
-
-unsigned long pageDuration() {
-
-  switch(
-    currentPage
-  ) {
-
-    case PAGE_COUNTDOWN:
-
-      return 2300;
-
-
-    case PAGE_RECORD:
-
-      return 3000;
-
-
-    case PAGE_GENERATING:
-
-      return 2800;
-
-
-    case PAGE_PREVIEW:
-
-      return 3000;
-
-
-    case PAGE_MOONLIGHT:
-
-      return 3000;
-
-
-    case PAGE_CANON:
-
-      return 3000;
-
-
-    default:
-
-      return 2600;
-  }
-}
-
-
-// ======================================================
-// 简单扫描切页
+// 节奏球
 // ======================================================
 
-void pageTransition() {
+void drawBeatCore() {
+  tft.fillRect(
+    79,
+    21,
+    80,
+    43,
+    C_BG
+  );
 
-  for(int y = 0; y < 128; y += 8) {
+  float e =
+    getBeatEnvelope();
 
-    tft.fillRect(
-      0,
-      y,
-      160,
-      3,
-      BG
+  int cx = 123;
+  int cy = 43;
+
+  int radius =
+    6
+    +
+    (int)(
+      10 * e
     );
 
+  // 外环
+  tft.drawCircle(
+    cx,
+    cy,
+    radius + 9,
+    C_CYAN_DARK
+  );
+
+  if (e > 0.15) {
+    tft.drawCircle(
+      cx,
+      cy,
+      radius + 6,
+      C_PURPLE_DARK
+    );
+  }
+
+  if (e > 0.40) {
+    tft.drawCircle(
+      cx,
+      cy,
+      radius + 3,
+      C_PINK
+    );
+  }
+
+  // 核心
+  tft.fillCircle(
+    cx,
+    cy,
+    radius,
+    C_PURPLE
+  );
+
+  tft.fillCircle(
+    cx,
+    cy,
+    max(
+      2,
+      radius - 3
+    ),
+    C_PINK
+  );
+
+  tft.fillCircle(
+    cx,
+    cy,
+    max(
+      2,
+      radius - 7
+    ),
+    C_WHITE
+  );
+
+  // 第一拍更强
+  if (
+    beatNumber == 1
+    &&
+    e > 0.50
+  ) {
+    tft.drawCircle(
+      cx,
+      cy,
+      radius + 13,
+      C_CYAN
+    );
+  }
+
+  // 四向粒子
+  if (e > 0.65) {
+    int p =
+      4
+      +
+      (int)(
+        5 * e
+      );
 
     tft.drawFastHLine(
-      0,
-      y + 3,
-      160,
-      CYAN_DARK
+      cx - radius - p - 2,
+      cy,
+      p,
+      C_CYAN
     );
 
+    tft.drawFastHLine(
+      cx + radius + 3,
+      cy,
+      p,
+      C_CYAN
+    );
 
-    delay(
-      4
+    tft.drawFastVLine(
+      cx,
+      cy - radius - p - 2,
+      p,
+      C_PURPLE
+    );
+
+    tft.drawFastVLine(
+      cx,
+      cy + radius + 3,
+      p,
+      C_PURPLE
     );
   }
 
+  // 两侧小频谱
+  for (int i = 0; i < 4; i++) {
+    float s =
+      sin(
+        phase * 1.7
+        +
+        i * 0.9
+      );
 
-  tft.fillScreen(
-    BG
-  );
+    int h =
+      3
+      +
+      (int)(
+        fabs(s)
+        *
+        10
+        *
+        intensity
+      );
+
+    int lx =
+      84 +
+      i * 4;
+
+    int rx =
+      155 -
+      i * 4;
+
+    tft.drawFastVLine(
+      lx,
+      cy - h / 2,
+      h,
+      C_CYAN
+    );
+
+    tft.drawFastVLine(
+      rx,
+      cy - h / 2,
+      h,
+      C_PURPLE
+    );
+  }
 }
 
+// ======================================================
+// MOTION 波形
+// ======================================================
+
+void drawWave(
+  float value
+) {
+  value =
+    constrain(
+      value,
+      0.0,
+      1.0
+    );
+
+  int top =
+    WY + 2;
+
+  int bottom =
+    WY + WH - 3;
+
+  int y =
+    bottom
+    -
+    (int)(
+      value
+      *
+      (
+        bottom - top
+      )
+    );
+
+  // 清当前列
+  tft.drawFastVLine(
+    waveX,
+    top,
+    WH - 4,
+    C_BG
+  );
+
+  // 恢复中心线
+  tft.drawPixel(
+    waveX,
+    WY + WH / 2,
+    C_CYAN_DARK
+  );
+
+  // 紫色残影
+  tft.drawLine(
+    waveX - 1,
+    lastWaveY + 1,
+    waveX,
+    y + 1,
+    C_PURPLE
+  );
+
+  // 主波形
+  tft.drawLine(
+    waveX - 1,
+    lastWaveY,
+    waveX,
+    y,
+    C_CYAN
+  );
+
+  if (value > 0.78) {
+    tft.fillCircle(
+      waveX,
+      y,
+      1,
+      C_WHITE
+    );
+  }
+
+  lastWaveY = y;
+  waveX++;
+
+  if (waveX >= WX + WW - 2) {
+    waveX = WX + 2;
+    lastWaveY = WY + WH / 2;
+  }
+}
+
+// ======================================================
+// 播放进度
+// ======================================================
+
+void drawProgress() {
+  unsigned long play =
+    millis()
+    -
+    startTime;
+
+  const unsigned long total =
+    90000;
+
+  play %= total;
+
+  float progress =
+    (float)play /
+    total;
+
+  int sec =
+    play /
+    1000;
+
+  char buf[6];
+
+  sprintf(
+    buf,
+    "%02d:%02d",
+    sec / 60,
+    sec % 60
+  );
+
+  // 当前时间
+  tft.fillRect(
+    3,
+    117,
+    31,
+    11,
+    C_BG
+  );
+
+  tft.setTextSize(1);
+  tft.setTextColor(C_GRAY);
+  tft.setCursor(4, 120);
+  tft.print(buf);
+
+  // 总时间
+  tft.fillRect(
+    128,
+    117,
+    32,
+    11,
+    C_BG
+  );
+
+  tft.setCursor(130, 120);
+  tft.print("01:30");
+
+  // 进度条
+  tft.drawFastHLine(
+    36,
+    124,
+    89,
+    C_PANEL
+  );
+
+  int w =
+    (int)(
+      89 *
+      progress
+    );
+
+  if (w > 0) {
+    tft.drawFastHLine(
+      36,
+      124,
+      w,
+      C_PURPLE
+    );
+
+    tft.fillCircle(
+      36 + w,
+      124,
+      2,
+      C_CYAN
+    );
+  }
+}
+
+// ======================================================
+// DEMO 数据
+// 后续可替换为电脑端 UDP 数据
+// ======================================================
+
+void updateDemo() {
+  phase += 0.07;
+
+  // Motion
+  motionValue =
+    0.47
+    +
+    0.24 *
+    sin(
+      phase
+    )
+    +
+    0.13 *
+    sin(
+      phase * 2.4
+    )
+    +
+    0.05 *
+    sin(
+      phase * 5.0
+    );
+
+  motionValue =
+    constrain(
+      motionValue,
+      0.04,
+      0.96
+    );
+
+  // Energy
+  intensity =
+    0.52
+    +
+    0.37 *
+    sin(
+      phase * 0.12
+    );
+
+  intensity =
+    constrain(
+      intensity,
+      0.10,
+      0.92
+    );
+
+  // BPM 约 55~75
+  bpm =
+    65
+    +
+    (int)(
+      10 *
+      sin(
+        phase * 0.035
+      )
+    );
+}
 
 // ======================================================
 // SETUP
 // ======================================================
 
 void setup() {
+  Serial.begin(115200);
 
-  Serial.begin(
-    115200
-  );
-
-
+  // ESP32-S3 自定义硬件 SPI
   SPI.begin(
     TFT_SCLK,
     -1,
@@ -2674,102 +1836,86 @@ void setup() {
     TFT_CS
   );
 
+  // 已实测可用
+  tft.initR(INITR_BLACKTAB);
+  tft.setRotation(1);
 
-  tft.initR(
-    INITR_BLACKTAB
-  );
-
-
-  tft.setRotation(
-    1
-  );
-
-
-  u8g2.begin(
-    tft
-  );
-
-
+  // 中文
+  u8g2.begin(tft);
   setChineseFont();
 
+  // 颜色
   initColors();
 
+  // 开机动画
+  bootAnimation();
 
-  currentPage =
-    PAGE_MENU;
+  // 主界面
+  drawBaseUI();
 
+  startTime = millis();
+  lastBeat = millis();
+  pulseStart = millis();
 
-  pageStart =
-    millis();
-
-
-  drawPage();
+  drawBPM();
+  drawIntensity();
+  drawBeatDots();
 }
-
 
 // ======================================================
 // LOOP
 // ======================================================
 
 void loop() {
+  unsigned long now = millis();
 
-  unsigned long now =
-    millis();
+  // 约 20 FPS
+  if (now - lastFrame >= 50) {
+    lastFrame = now;
 
+    updateDemo();
 
-  // ------------------------------------
-  // 动画约12.5FPS
-  // ------------------------------------
+    // BPM -> beat
+    unsigned long interval =
+      60000UL /
+      bpm;
 
-  if(
-    now - lastFrame >=
-    80
-  ) {
+    if (now - lastBeat >= interval) {
+      lastBeat = now;
+      pulseStart = now;
 
-    lastFrame =
-      now;
+      beatNumber++;
 
+      if (beatNumber > 4) {
+        beatNumber = 1;
+      }
 
-    phase +=
-      0.13;
-
-
-    if(
-      isAnimatedPage()
-    ) {
-
-      drawPage();
-    }
-  }
-
-
-  // ------------------------------------
-  // 自动切页
-  // ------------------------------------
-
-  if(
-    now - pageStart >=
-    pageDuration()
-  ) {
-
-    pageTransition();
-
-
-    currentPage =
-      (Page)(
+      // 第一拍更重
+      beatStrength =
         (
-          (int)currentPage +
-          1
+          beatNumber == 1
         )
-        %
-        10
-      );
+        ?
+        1.0
+        :
+        0.68;
 
+      drawBeatDots();
+    }
 
-    pageStart =
-      millis();
+    drawBPM();
+    drawIntensity();
+    drawBeatCore();
+    drawWave(motionValue);
 
+    // 进度条约 5 FPS
+    static int counter = 0;
 
-    drawPage();
+    counter++;
+
+    if (counter >= 4) {
+      counter = 0;
+      drawProgress();
+    }
   }
 }
