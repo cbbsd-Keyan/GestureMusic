@@ -1,5 +1,6 @@
 # Python virtual environment
 .venv/
+.venv_legacy_*/
 venv/
 .trial-libs/
 .native-build/

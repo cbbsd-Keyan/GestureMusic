@@ -1,64 +1,49 @@
-# GestureMusic 架构与进度总览（团队对齐文档）
+# GestureMusic 当前架构与功能范围
 
-> 更新：2026-09-02。新人或掉队者读这一篇即可追上。
+更新：2026-09-15。此页描述当前可演示版本，不把历史实验当作成品功能。
 
-## 一句话
+## 数据流
 
-挥动开发板（ESP32-S3 + MPU6500）10~30 秒，系统把动作翻译成一段
-带配器的音乐——不做乐器，做"动作到音乐的翻译器"。
+```text
+指挥棒 ESP32-S3 + MPU
+  └─ Wi-Fi / UDP 4210 原始 6 轴数据
+       ├─ 动作作曲：录制 → 画像/个人基准 → 规则作曲 → 配器 → MIDI 试听与存档
+       └─ 音乐指挥：动作强度 → 启停、音量；卡农另映射为分轨层级
 
-## 架构（数据流）
+桌面编码器 ESP32-S3
+  └─ USB 串口 JSON 事件 → 桌面菜单状态机
 
-```
-ESP32-S3 + MPU6500（尺子上的"指挥棒"）
-   │ 100Hz 原始6轴数据 + ALIVE心跳（UDP 单播，注册握手）
-   ▼
-录制 record.py（场景: vigorous/gentle/free/calibration）→ CSV + meta
-   ▼
-画像 profile.py（features/）
-   ├─ tempo.py    BPM双路估计（自相关+峰值间隔，贴底自动判无效）
-   ├─ posture.py  roll/pitch（准静态过滤）
-   ├─ structure.py 乐段突变点
-   └─ 校准 normalized（个人全力挥=1.0，B实现中）
-   ▼ 画像 JSON（schema v1 已冻结，见 src/llm/schema.py）
-作曲（两条路，9/6 定主次）
-   ├─ LLM：client.py(V3 prompt+变奏轮换) → validator 校验修复
-   └─ 规则兜底：composer_rule.py（离线、秒出、永可用）
-   ▼ 乐谱 JSON（SCORE_SCHEMA 同构，两条路输出同格式）
-渲染 arrangement.py（energy 驱动：提速/八度/力度/鼓贝斯三档）
-   → arranged_play.py → MidiEngine → GM音源 → 扬声器
+桌面程序
+  └─ PowerShell 菜单、音频/MIDI 输出；彩屏和灯圈通信待最终硬件整合
 ```
 
-## 分层职责（9/2 盲测定稿）
+## 已接入功能
 
-- **生成端（LLM/规则）：只负责"每首不一样"**（旋律/和声/轮廓）
-- **渲染端（arrangement）：只负责"激不激动"**（速度/音区/力度/织体）
-- 两者解耦：同一份乐谱可用不同 energy 播出不同情绪
-
-## 已完成（有数据背书的才算）
-
-| 里程碑 | 证据 |
+| 模块 | 当前行为 |
 |---|---|
-| 数据链路 | 4 人 36 段全部 100Hz；单播注册握手后丢包≈0 |
-| BPM 精度 | 节拍器验证 90→90.0 / 120→120.1（误差<0.2%） |
-| 跨人归一化 | 四人留一交叉盲分：**个人归一化 96% vs 绝对阈值 71%** |
-| 渲染层能量映射 | 同旋律不同 energy 盲测可明确分辨（v2 三杠杆） |
-| LLM 链路 | 10/10 生成成功（V2 首批），validator 自动修复 |
-| 同质化诊断与修复 | V2 全 do-mi-sol-mi 开头 → V3 变奏轮换+lint 门禁（待 9/3 验证） |
-| 工程体系 | 任务单/规格/指南三件套，分支开发，多样性 lint 双门禁 |
+| 动作作曲 | 规则作曲，不调用在线 AI；支持整体听感与起伏映射。 |
+| 个人校准 | 三段可见录制，只有最大自然挥动用于计算强度锚值。 |
+| 月光曲指挥 | 动作控制启停和音量；不变速。 |
+| 卡农摇滚指挥 | 使用原 MIDI 的键盘、贝斯、电吉他、鼓组，强度决定声部层级。 |
+| 编码器菜单 | 旋转选择、短按确认、长按返回。 |
+| 数据存档 | 每次作曲保存输入、画像、乐谱、播放事件和动作曲线。 |
 
-## 数据资产
+## 明确未接入成品的功能
 
-- `data/batch_2026_09_w1/s00~s03`：4 人 × vigorous/gentle/free，36 段
-- `data/legacy_single_subject/`：110 段历史数据（单人，仅参考）
-- 格式与纪律见 `data/README.md`；校准规格见 `docs/calibration-spec.md`
+- 实时变速：实验后已关闭，所有正式指挥曲目固定原速。
+- 在线 LLM 作曲：仓库保留研究代码，但正式菜单不用它。
+- 姿态/摄像头音区、事件作曲：保留为历史实验，不出现在正式菜单。
+- 彩屏与灯圈：硬件可独立调试，桌面程序尚未发送最终显示协议。
 
-## 未决（9/6 决策会的两个轴）
+## 关键文件
 
-1. LLM 旋律质量（V3 首批 → 20 首盲听合格率，≥60% 为主力）
-2. 生成延迟（实测 30~68s；对策：Plan B 参数模式 or 演示垫场）
+- `src/desktop_app.py`：正式桌面入口。
+- `src/composition_session.py`：录制、个人校准、规则作曲与试听。
+- `src/audio/wand_control.py`：指挥棒启停和音量控制。
+- `src/audio/stem_conductor.py`：卡农分轨指挥。
+- `firmware/GestureMusic/GestureMusic.ino`：指挥棒固件。
+- `firmware/EncoderControl/EncoderControl.ino`：编码器固件。
 
-## 文档索引
+## 当前交付边界
 
-任务与日程 `docs/api-line-tasks.md` ｜ 上手 `docs/quickstart.md`
-校准规格 `docs/calibration-spec.md` ｜ A收敛指南 `docs/for-A-convergence.md`
+正式演示依赖 Windows、Python 环境、USB 编码器、同一 Wi-Fi 下的指挥棒、默认音频输出，以及月光曲所需的 `stream_stretch.dll`。演示前按 [演示前检查表](demo-checklist.md) 逐项确认。
